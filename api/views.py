@@ -25,13 +25,15 @@ class LoginRequiredMixin(object):
 
 class APIRoot(APIView):
     permission_classes = ( IsAuthenticatedOrReadOnly,)
-
     def get(self, request,format=None):
         return Response({
             'Queue': {'Tasks': reverse('queue-main', request=request),
                       'Tasks History': reverse('queue-user-tasks',request=request)},
             'Catalog': {'Data Source':reverse('catalog-list',request=request)},
-            'Data Store': {'Mongo':reverse('data-list',request=request)},
+	    'Data Store': {'OBIS':[reverse('acctax-list',request=request),
+                                   reverse('comtax-list',request=request),
+                                   reverse('syntax-list',request=request),],
+                            'Mongo':reverse('data-list',request=request)},
             'User Profile': {'User':reverse('user-list',request=request)}
         })
 
