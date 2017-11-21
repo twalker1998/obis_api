@@ -5,9 +5,18 @@ from rest_framework.renderers import BrowsableAPIRenderer, JSONPRenderer,JSONRen
 from rest_framework_csv.renderers import CSVRenderer
 #from renderer import CustomBrowsableAPIRenderer
 from obis.filters import AcctaxFilter,ComtaxFilter,SearchViewFilter
-from obis.models import Acctax, Comtax, Syntax, SearchView 
+from obis.models import Acctax, Comtax, Syntax, Hightax, FedStatus,StStatus
+from obis.models import SearchView 
 from serializer import AcctaxSerializer,ComtaxSerializer
 
+class obisGeneralViewSet(viewsets.ModelViewSet):
+    def __init__(self,model):
+        model=model
+    model = self.model
+    queryset = self.model.objects.all()
+#    serializer_class =  ComtaxSerializer #serializers.HyperlinkedModelSerializer
+    renderer_classes = (BrowsableAPIRenderer, JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer)
+    filter_backends = (filters.DjangoFilterBackend, filters.SearchFilter,filters.OrderingFilter)
 class SearchViewSet(viewsets.ReadOnlyModelViewSet):
     model = SearchView
     queryset = SearchView.objects.all()
@@ -67,3 +76,36 @@ class SyntaxViewSet(viewsets.ModelViewSet):
 #    model = LuSource
 #    queryset = LuSource.objects.all() #.using('purple').all()
 #    serializer_class = LuSourceSerializer
+class HightaxViewSet(viewsets.ModelViewSet):
+    """
+    This is the Comtaxlist with source table hyperlinked.
+
+    """
+    model = Hightax
+    queryset = Hightax.objects.all()
+#    serializer_class =  ComtaxSerializer #serializers.HyperlinkedModelSerializer
+    renderer_classes = (BrowsableAPIRenderer, JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer)
+    filter_backends = (filters.DjangoFilterBackend, filters.SearchFilter,filters.OrderingFilter)
+#    filter_class = ComtaxFilter
+#    search_fields = ('acode','vernacularname',
+class FedStatusViewSet(viewsets.ModelViewSet):
+    """
+    This is the Comtaxlist with source table hyperlinked.
+
+    """
+    model = FedStatus
+    queryset = FedStatus.objects.all()
+#    serializer_class =  ComtaxSerializer #serializers.HyperlinkedModelSerializer
+    renderer_classes = (BrowsableAPIRenderer, JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer)
+    filter_backends = (filters.DjangoFilterBackend, filters.SearchFilter,filters.OrderingFilter)
+class StStatusViewSet(obisGeneralViewSet):
+    """
+    This is the Comtaxlist with source table hyperlinked.
+
+    """
+    model = StStatus
+    #queryset = StStatus.objects.all()
+#    serializer_class =  ComtaxSerializer #serializers.HyperlinkedModelSerializer
+    #renderer_classes = (BrowsableAPIRenderer, JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer)
+    #filter_backends = (filters.DjangoFilterBackend, filters.SearchFilter,filters.OrderingFilter)
+

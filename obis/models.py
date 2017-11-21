@@ -45,30 +45,30 @@ class SearchView(models.Model):
 class Acctax(models.Model):
     a_id = models.IntegerField()
     acode = models.CharField(primary_key=True, max_length=-1)
-    sname = models.CharField(max_length=-1, blank=True)
-    scientificnameauthorship = models.CharField(max_length=-1, blank=True)
-#    family = models.ForeignKey('Hightax', db_column='family', blank=True, null=True)
-    genus = models.CharField(max_length=-1, blank=True)
-    species = models.CharField(max_length=-1, blank=True)
-    subspecies = models.CharField(max_length=-1, blank=True)
-    variety = models.CharField(max_length=-1, blank=True)
-    forma = models.CharField(max_length=-1, blank=True)
-    elcode = models.CharField(max_length=-1, blank=True)
+    sname = models.CharField(max_length=255, blank=True)
+    scientificnameauthorship = models.CharField(max_length=255, blank=True)
+    family = models.ForeignKey('Hightax', db_column='family', blank=True, null=True)
+    genus = models.CharField(max_length=255, blank=True)
+    species = models.CharField(max_length=255, blank=True)
+    subspecies = models.CharField(max_length=255, blank=True)
+    variety = models.CharField(max_length=255, blank=True)
+    forma = models.CharField(max_length=255, blank=True)
+    elcode = models.CharField(max_length=255, blank=True)
     gelcode = models.IntegerField(blank=True, null=True)
-    iucncode = models.CharField(max_length=-1, blank=True)
-    g_rank = models.CharField(max_length=-1, blank=True)
-    s_rank = models.CharField(max_length=-1, blank=True)
-    nativity = models.CharField(max_length=-1, blank=True)
-    source = models.CharField(max_length=-1, blank=True)
-    usda_code = models.CharField(max_length=-1, blank=True)
+    iucncode = models.CharField(max_length=255, blank=True)
+    g_rank = models.CharField(max_length=255, blank=True)
+    s_rank = models.CharField(max_length=255, blank=True)
+    nativity = models.CharField(max_length=255, blank=True)
+    source = models.CharField(max_length=255, blank=True)
+    usda_code = models.CharField(max_length=255, blank=True)
     itis_code = models.IntegerField(blank=True, null=True)
-#    fed_status = models.ForeignKey('FedStatus', blank=True, null=True)
-#    st_status = models.ForeignKey('StStatus', blank=True, null=True)
+    fed_status = models.ForeignKey('FedStatus', blank=True, null=True)
+    st_status = models.ForeignKey('StStatus', blank=True, null=True)
 #    swap = models.ForeignKey('OkSwap', blank=True, null=True)
-    name = models.CharField(max_length=-1, blank=True)
-    sspscientificnameauthorship = models.CharField(max_length=-1, blank=True)
-    varscientificnameauthorship = models.CharField(max_length=-1, blank=True)
-    formascientificnameauthorship = models.CharField(max_length=-1, blank=True)
+    name = models.CharField(max_length=255, blank=True)
+    sspscientificnameauthorship = models.CharField(max_length=255, blank=True)
+    varscientificnameauthorship = models.CharField(max_length=255, blank=True)
+    formascientificnameauthorship = models.CharField(max_length=255, blank=True)
     tracked = models.NullBooleanField()
 
     class Meta:
@@ -162,7 +162,7 @@ class Birds(models.Model):
     remarks = models.CharField(max_length=90, blank=True)
     acode = models.ForeignKey(Acctax, db_column='acode', blank=True, null=True)
     eventdate = models.DateField(blank=True, null=True)
-    relationshipremarks = models.CharField(max_length=-1, blank=True)
+    relationshipremarks = models.CharField(max_length=255, blank=True)
     decimallongitude = models.FloatField(blank=True, null=True)
     decimallatitude = models.FloatField(blank=True, null=True)
     coordinateprecision = models.IntegerField(blank=True, null=True)
@@ -186,7 +186,7 @@ class CoTrs(models.Model):
 class Comtax(models.Model):
     c_id = models.IntegerField(primary_key=True)
     acode = models.ForeignKey(Acctax, db_column='acode', blank=True, null=True)
-    vernacularname = models.CharField(max_length=-1, blank=True)
+    vernacularname = models.CharField(max_length=255, blank=True)
 
     class Meta:
         managed = False
@@ -290,7 +290,7 @@ class Dokarrs(models.Model):
     institutionid = models.CharField(max_length=100, blank=True)
     acode = models.ForeignKey(Acctax, db_column='acode', blank=True, null=True)
     eventdate = models.DateField(blank=True, null=True)
-    relationshipremarks = models.CharField(max_length=-1, blank=True)
+    relationshipremarks = models.CharField(max_length=255, blank=True)
     decimallongitude = models.FloatField(blank=True, null=True)
     decimallatitude = models.FloatField(blank=True, null=True)
 
@@ -343,13 +343,13 @@ class Eo(models.Model):
     eo_id = models.IntegerField(primary_key=True)
     first_obs_date = models.TextField(blank=True)
     last_obs_date = models.TextField(blank=True)
-    eo_data = models.CharField(max_length=-1, blank=True)
+    eo_data = models.CharField(max_length=255, blank=True)
     size_of_eo = models.IntegerField(blank=True, null=True)
     d_basic_eo_rank_id = models.IntegerField(blank=True, null=True)
     eo_rank_date = models.DateField(blank=True, null=True)
-    eo_rank_com = models.CharField(max_length=-1, blank=True)
-    gen_desc = models.CharField(max_length=-1, blank=True)
-    gen_com = models.CharField(max_length=-1, blank=True)
+    eo_rank_com = models.CharField(max_length=255, blank=True)
+    gen_desc = models.CharField(max_length=255, blank=True)
+    gen_com = models.CharField(max_length=255, blank=True)
     survey_date = models.DateField(blank=True, null=True)
 
     class Meta:
@@ -463,8 +463,8 @@ class Featnames(models.Model):
 
 class FedStatus(models.Model):
     status_id = models.IntegerField(primary_key=True)
-    status = models.CharField(max_length=-1, blank=True)
-    description = models.CharField(max_length=-1, blank=True)
+    status = models.CharField(max_length=255, blank=True)
+    description = models.CharField(max_length=255, blank=True)
 
     class Meta:
         managed = False
@@ -550,14 +550,14 @@ class Herbaria(models.Model):
 
 
 class Hightax(models.Model):
-    kingdom = models.CharField(max_length=-1, blank=True)
-    phylum = models.CharField(max_length=-1, blank=True)
-    taxclass = models.CharField(max_length=-1, blank=True)
-    taxorder = models.CharField(max_length=-1, blank=True)
+    kingdom = models.CharField(max_length=255, blank=True)
+    phylum = models.CharField(max_length=255, blank=True)
+    taxclass = models.CharField(max_length=255, blank=True)
+    taxorder = models.CharField(max_length=255, blank=True)
     family = models.CharField(primary_key=True, max_length=-1)
-    category = models.CharField(max_length=-1, blank=True)
-    name_type_desc = models.CharField(max_length=-1, blank=True)
-    name_category_desc = models.CharField(max_length=-1, blank=True)
+    category = models.CharField(max_length=255, blank=True)
+    name_type_desc = models.CharField(max_length=255, blank=True)
+    name_category_desc = models.CharField(max_length=255, blank=True)
 
     class Meta:
         managed = False
@@ -567,9 +567,9 @@ class Hightax(models.Model):
 class Layer(models.Model):
     topology = models.ForeignKey('Topology')
     layer_id = models.IntegerField()
-    schema_name = models.CharField(max_length=-1)
-    table_name = models.CharField(max_length=-1)
-    feature_column = models.CharField(max_length=-1)
+    schema_name = models.CharField(max_length=255)
+    table_name = models.CharField(max_length=255)
+    feature_column = models.CharField(max_length=255)
     feature_type = models.IntegerField()
     level = models.IntegerField()
     child_id = models.IntegerField(blank=True, null=True)
@@ -638,7 +638,7 @@ class Mammals(models.Model):
     sex = models.CharField(max_length=12, blank=True)
     materialsampleid = models.CharField(max_length=45, blank=True)
     institutionid = models.CharField(max_length=45, blank=True)
-    relationshipremarks = models.CharField(max_length=-1, blank=True)
+    relationshipremarks = models.CharField(max_length=255, blank=True)
     eventdate = models.DateField(db_column='eventDate', blank=True, null=True)  # Field name made lowercase.
     acode = models.ForeignKey(Acctax, db_column='acode', blank=True, null=True)
     decimallongitude = models.FloatField(blank=True, null=True)
@@ -651,8 +651,8 @@ class Mammals(models.Model):
 
 class NameCat(models.Model):
     d_name_category_id = models.IntegerField(primary_key=True)
-    name_type_desc = models.CharField(max_length=-1, blank=True)
-    name_category_desc = models.CharField(max_length=-1, blank=True)
+    name_type_desc = models.CharField(max_length=255, blank=True)
+    name_category_desc = models.CharField(max_length=255, blank=True)
 
     class Meta:
         managed = False
@@ -660,15 +660,15 @@ class NameCat(models.Model):
 
 
 class Observation(models.Model):
-    source_feature_descriptor = models.CharField(max_length=-1, blank=True)
-    source_feature_locator = models.CharField(max_length=-1, blank=True)
+    source_feature_descriptor = models.CharField(max_length=255, blank=True)
+    source_feature_locator = models.CharField(max_length=255, blank=True)
     coordinateprecision = models.IntegerField(blank=True, null=True)
-    georeferencesources = models.CharField(max_length=-1, blank=True)
-    recordedby = models.CharField(max_length=-1, blank=True)
+    georeferencesources = models.CharField(max_length=255, blank=True)
+    recordedby = models.CharField(max_length=255, blank=True)
     eventdate = models.DateField(blank=True, null=True)
-    occurrenceremarks = models.CharField(max_length=-1, blank=True)
+    occurrenceremarks = models.CharField(max_length=255, blank=True)
     eo_id = models.IntegerField(blank=True, null=True)
-    locationremarks = models.CharField(max_length=-1, blank=True)
+    locationremarks = models.CharField(max_length=255, blank=True)
     decimallongitude = models.FloatField(blank=True, null=True)
     decimallatitude = models.FloatField(blank=True, null=True)
     gid = models.IntegerField(primary_key=True)
@@ -683,7 +683,7 @@ class Observation(models.Model):
 class OkSwap(models.Model):
     swap_id = models.IntegerField(primary_key=True)
     tier = models.CharField(max_length=4, blank=True)
-    description = models.CharField(max_length=-1, blank=True)
+    description = models.CharField(max_length=255, blank=True)
 
     class Meta:
         managed = False
@@ -887,8 +887,8 @@ class SpatialRefSys(models.Model):
 
 class StStatus(models.Model):
     status_id = models.IntegerField(primary_key=True)
-    status = models.CharField(max_length=-1, blank=True)
-    description = models.CharField(max_length=-1, blank=True)
+    status = models.CharField(max_length=255, blank=True)
+    description = models.CharField(max_length=255, blank=True)
 
     class Meta:
         managed = False
@@ -940,7 +940,7 @@ class StreetTypeLookup(models.Model):
 
 class SurveySite(models.Model):
     eo_id = models.IntegerField(blank=True, null=True)
-    survey_site_name = models.CharField(max_length=-1, blank=True)
+    survey_site_name = models.CharField(max_length=255, blank=True)
     survey_id = models.IntegerField(primary_key=True)
 
     class Meta:
@@ -952,17 +952,17 @@ class Syntax(models.Model):
     s_id = models.IntegerField()
     acode = models.ForeignKey(Acctax, db_column='acode', blank=True, null=True)
     scode = models.CharField(primary_key=True, max_length=-1)
-    sname = models.CharField(max_length=-1, blank=True)
-    scientificnameauthorship = models.CharField(max_length=-1, blank=True)
-    family = models.CharField(max_length=-1, blank=True)
-    genus = models.CharField(max_length=-1, blank=True)
-    species = models.CharField(max_length=-1, blank=True)
-    subspecies = models.CharField(max_length=-1, blank=True)
-    variety = models.CharField(max_length=-1, blank=True)
-    name = models.CharField(max_length=-1, blank=True)
-    sspscientificnameauthorship = models.CharField(max_length=-1, blank=True)
-    varscientificnameauthorship = models.CharField(max_length=-1, blank=True)
-    formascientificnameauthorship = models.CharField(max_length=-1, blank=True)
+    sname = models.CharField(max_length=255, blank=True)
+    scientificnameauthorship = models.CharField(max_length=255, blank=True)
+    family = models.CharField(max_length=255, blank=True)
+    genus = models.CharField(max_length=255, blank=True)
+    species = models.CharField(max_length=255, blank=True)
+    subspecies = models.CharField(max_length=255, blank=True)
+    variety = models.CharField(max_length=255, blank=True)
+    name = models.CharField(max_length=255, blank=True)
+    sspscientificnameauthorship = models.CharField(max_length=255, blank=True)
+    varscientificnameauthorship = models.CharField(max_length=255, blank=True)
+    formascientificnameauthorship = models.CharField(max_length=255, blank=True)
 
     class Meta:
         managed = False
@@ -1026,11 +1026,11 @@ class Tract(models.Model):
 
 
 class VwAllTaxa(models.Model):
-    unique_code = models.CharField(max_length=-1, blank=True)
-    sname = models.CharField(max_length=-1, blank=True)
-    name = models.CharField(max_length=-1, blank=True)
+    unique_code = models.CharField(max_length=255, blank=True)
+    sname = models.CharField(max_length=255, blank=True)
+    name = models.CharField(max_length=255, blank=True)
     status = models.TextField(blank=True)
-    accepted_code = models.CharField(max_length=-1, blank=True)
+    accepted_code = models.CharField(max_length=255, blank=True)
 
     class Meta:
         managed = False
@@ -1048,14 +1048,14 @@ class VwSpatialAttribute(models.Model):
 
 
 class VwTracked(models.Model):
-    family = models.CharField(max_length=-1, blank=True)
-    sname = models.CharField(max_length=-1, blank=True)
-    name = models.CharField(max_length=-1, blank=True)
-    s_rank = models.CharField(max_length=-1, blank=True)
-    g_rank = models.CharField(max_length=-1, blank=True)
-    name_type_desc = models.CharField(max_length=-1, blank=True)
-    name_category_desc = models.CharField(max_length=-1, blank=True)
-    category = models.CharField(max_length=-1, blank=True)
+    family = models.CharField(max_length=255, blank=True)
+    sname = models.CharField(max_length=255, blank=True)
+    name = models.CharField(max_length=255, blank=True)
+    s_rank = models.CharField(max_length=255, blank=True)
+    g_rank = models.CharField(max_length=255, blank=True)
+    name_type_desc = models.CharField(max_length=255, blank=True)
+    name_category_desc = models.CharField(max_length=255, blank=True)
+    category = models.CharField(max_length=255, blank=True)
 
     class Meta:
         managed = False
@@ -1063,7 +1063,7 @@ class VwTracked(models.Model):
 
 
 class VwUniqueAcodeScode(models.Model):
-    unique_code = models.CharField(max_length=-1, blank=True)
+    unique_code = models.CharField(max_length=255, blank=True)
 
     class Meta:
         managed = False
