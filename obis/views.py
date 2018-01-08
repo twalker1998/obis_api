@@ -132,14 +132,12 @@ class SpatialRefSysViewSet(obisTableViewSet):
     model = SpatialRefSys
     queryset = SpatialRefSys.objects.all()
 
-#class DokarrsViewSet(obisViewViewSet):
-#    """
-#    This is the Dokarrs ViewSet with hyperlinked tables.
-#    """
-#    model = Dokarrs
-#    queryset = Dokarrs.objects.all()
 #***************************************** OBIS DB Views ********************************************************
+
 class VwSearchViewSet(obisViewViewSet):
+    """
+    This is the Search ViewSet with hyperlinked tables.
+    """
     model = VwSearch
     queryset = VwSearch.objects.all()
     search_fields = ('acode', 'elcode', 'family', 'fed_status_id', 'forma', 'formascientificnameauthorship',
@@ -150,7 +148,12 @@ class VwSearchViewSet(obisViewViewSet):
     'g_rank', 'gelcode', 'genus', 'itis_code', 'iucncode', 'name', 'nativity', 'pkey', 'primary_name', 's_rank', 'scientificnameauthorship',
     'sname', 'source', 'species', 'sspscientificnameauthorship', 'st_status_id', 'subspecies', 'swap_id', 'tracked',
     'usda_code', 'variety', 'varscientificnameauthorship', 'vernacularname','kingdom','phylum','taxclass','taxorder')
+
 class VwSearchmvViewSet(obisViewViewSet):
+    """
+    This is the Material View Search ViewSet with hyperlinked tables.
+    Database: When data updated must run to update view: 'REFRESH MATERIALIZED VIEW vm_search_mv;' 
+    """
     model = VwSearchmv
     queryset = VwSearchmv.objects.all()
     search_fields = ('acode', 'elcode', 'family', 'fed_status_id', 'forma', 'formascientificnameauthorship',
@@ -161,13 +164,3 @@ class VwSearchmvViewSet(obisViewViewSet):
     'g_rank', 'gelcode', 'genus', 'itis_code', 'iucncode', 'name', 'nativity', 'pkey', 'primary_name', 's_rank', 'scientificnameauthorship',
     'sname', 'source', 'species', 'sspscientificnameauthorship', 'st_status_id', 'subspecies', 'swap_id', 'tracked',
     'usda_code', 'variety', 'varscientificnameauthorship', 'vernacularname','kingdom','phylum','taxclass','taxorder')
-#class SearchViewSet(obisViewViewSet):
-#    model = SearchView
-#    queryset = SearchView.objects.all()
-#    filter_class = SearchViewFilter
-#    search_fields =('acode','sname','scientificnameauthorship','kingdom','phylum','taxclass','taxorder','family',
-#                    'genus','species','subspecies','variety','forma','elcode','gelcode','iunccode','g_rank',
-#                    's_rank','nativity','source','vernacularname')
-#    ordering_fields=('acode','sname','scientificnameauthorship','kingdom','phylum','taxclass','taxorder','family',
-#                    'genus','species','subspecies','variety','forma','elcode','gelcode','iunccode','g_rank',
-#                    's_rank','nativity','source','vernacularname')
