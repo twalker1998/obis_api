@@ -1,111 +1,173 @@
-#from django.shortcuts import render
-# Create your views here.
 from rest_framework import viewsets, filters, serializers
-from rest_framework.renderers import BrowsableAPIRenderer, JSONPRenderer,JSONRenderer,XMLRenderer,YAMLRenderer #, filters
+from rest_framework.renderers import BrowsableAPIRenderer, JSONPRenderer,JSONRenderer,XMLRenderer,YAMLRenderer
 from rest_framework_csv.renderers import CSVRenderer
-#from renderer import CustomBrowsableAPIRenderer
-from obis.filters import AcctaxFilter,ComtaxFilter,SearchViewFilter
-from obis.models import Acctax, Comtax, Syntax, Hightax, FedStatus,StStatus
-from obis.models import SearchView 
+from obis.filters import AcctaxFilter,ComtaxFilter #,SearchViewFilter
+from obis.models import Acctax,Comtax,Syntax,Hightax,FedStatus,StStatus,OkSwap,RankChange
+from obis.models import Occurrence,Source,Institution,County,CoTrs,IdentificationVerification
+from obis.models import SpatialRefSys, VwSearch, VwSearchmv #SearchView
 from serializer import AcctaxSerializer,ComtaxSerializer
 
-class obisGeneralViewSet(viewsets.ModelViewSet):
-    def __init__(self,model):
-        model=model
-    model = self.model
-    queryset = self.model.objects.all()
-#    serializer_class =  ComtaxSerializer #serializers.HyperlinkedModelSerializer
+#DB Table ViewSet Class
+class obisTableViewSet(viewsets.ModelViewSet):
     renderer_classes = (BrowsableAPIRenderer, JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer)
     filter_backends = (filters.DjangoFilterBackend, filters.SearchFilter,filters.OrderingFilter)
-class SearchViewSet(viewsets.ReadOnlyModelViewSet):
-    model = SearchView
-    queryset = SearchView.objects.all()
+
+#DB View ViewSet Class
+class obisViewViewSet(viewsets.ReadOnlyModelViewSet):
     renderer_classes = (BrowsableAPIRenderer, JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer,CSVRenderer)
     filter_backends = (filters.DjangoFilterBackend, filters.SearchFilter,filters.OrderingFilter)
-    filter_class = SearchViewFilter
-    search_fields =('acode','sname','scientificnameauthorship','kingdom','phylum','taxclass','taxorder','family','genus','species','subspecies','variety','forma',
-                    'elcode','gelcode','iunccode','g_rank','s_rank','nativity','source','vernacularname')
-    ordering_fields = ('acode','sname','scientificnameauthorship','kingdom','phylum','taxclass','taxorder','family','genus','species','subspecies','variety','forma',
-                    'elcode','gelcode','iunccode','g_rank','s_rank','nativity','source','vernacularname')    
 
-class AcctaxViewSet(viewsets.ModelViewSet):
+#***************************************** OBIS Tables **********************************************************
+class AcctaxViewSet(obisTableViewSet):
     """
-    This is the Acctax list with source table hyperlinked.
-
+    This is the Acctax ViewSet with hyperlinked tables.
     """
     model = Acctax
     queryset = Acctax.objects.all()
-    serializer_class = AcctaxSerializer 
-    renderer_classes = (BrowsableAPIRenderer, JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer,CSVRenderer)
-    filter_backends = (filters.DjangoFilterBackend, filters.SearchFilter,filters.OrderingFilter)
+    #serializer_class = AcctaxSerializer
     filter_class = AcctaxFilter
-    search_fields =('acode','sname','scientificnameauthorship','phylum','taxclass','taxorder','family','genus','species','subspecies','variety','forma',
-                    'elcode','gelcode','iunccode','g_rank','s_rank','nativity','source','comtax__vernacularname')
-    ordering_fields = ('acode','sname','scientificnameauthorship','phylum','taxclass','taxorder','family','genus','species','subspecies','variety','forma',
-                    'elcode','gelcode','iunccode','g_rank','s_rank','nativity','source')
+    search_fields = ('acode','sname','scientificnameauthorship','phylum','taxclass','taxorder','family','genus',
+                    'species','subspecies','variety','forma','elcode','gelcode','iunccode','g_rank','s_rank',
+                    'nativity','source','comtax__vernacularname')
+    ordering_fields = ('acode','sname','scientificnameauthorship','phylum','taxclass','taxorder','family','genus',
+                    'species','subspecies','variety','forma','elcode','gelcode','iunccode','g_rank','s_rank',
+                    'nativity','source')
 
-class ComtaxViewSet(viewsets.ModelViewSet):
+class ComtaxViewSet(obisTableViewSet):
     """
-    This is the Comtaxlist with source table hyperlinked.
-
+    This is the Comtax ViewSet with hyperlinked tables.
     """
     model = Comtax
     queryset = Comtax.objects.all()
-    serializer_class =  ComtaxSerializer #serializers.HyperlinkedModelSerializer
-    renderer_classes = (BrowsableAPIRenderer, JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer)
-    filter_backends = (filters.DjangoFilterBackend, filters.SearchFilter,filters.OrderingFilter)
+    #serializer_class =  ComtaxSerializer
     filter_class = ComtaxFilter
     search_fields = ('acode','vernacularname',)
 
-#'acctax__scientificnameauthorship','acctax__kingdom','acctax__phylum','acctax__taxclass',
-#                    'acctax__taxorder','acctax__family','acctax__genus','acctax__species','acctax__subspecies','acctax__variety','acctax__forma',
-#                    'acctax__elcode','acctax__iunccode','acctax__g_rank','acctax__s_rank','acctax__nativity','acctax__source')
-
-class SyntaxViewSet(viewsets.ModelViewSet):
+class SyntaxViewSet(obisTableViewSet):
     """
-    This is the Comtaxlist with source table hyperlinked.
-
+    This is the Syntax ViewSet with hyperlinked tables.
     """
     model = Syntax
     queryset = Syntax.objects.all()
-    #serializer_class = serializers.HyperlinkedModelSerializer
-    renderer_classes = (BrowsableAPIRenderer, JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer)
-    filter_backends = (filters.DjangoFilterBackend, filters.SearchFilter,filters.OrderingFilter)
-    #search_fields = ('acode','sname','scientificnameauthorship','family','genus','species','subspecies','variety')
-#class LuSourceViewSet(viewsets.ModelViewSet):
-#    model = LuSource
-#    queryset = LuSource.objects.all() #.using('purple').all()
-#    serializer_class = LuSourceSerializer
-class HightaxViewSet(viewsets.ModelViewSet):
-    """
-    This is the Comtaxlist with source table hyperlinked.
 
+class HightaxViewSet(obisTableViewSet):
+    """
+    This is the Hightax ViewSet with hyperlinked tables.
     """
     model = Hightax
     queryset = Hightax.objects.all()
-#    serializer_class =  ComtaxSerializer #serializers.HyperlinkedModelSerializer
-    renderer_classes = (BrowsableAPIRenderer, JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer)
-    filter_backends = (filters.DjangoFilterBackend, filters.SearchFilter,filters.OrderingFilter)
-#    filter_class = ComtaxFilter
-#    search_fields = ('acode','vernacularname',
-class FedStatusViewSet(viewsets.ModelViewSet):
-    """
-    This is the Comtaxlist with source table hyperlinked.
 
+class FedStatusViewSet(obisTableViewSet):
+    """
+    This is the Fed Status ViewSet with hyperlinked tables.
     """
     model = FedStatus
     queryset = FedStatus.objects.all()
-#    serializer_class =  ComtaxSerializer #serializers.HyperlinkedModelSerializer
-    renderer_classes = (BrowsableAPIRenderer, JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer)
-    filter_backends = (filters.DjangoFilterBackend, filters.SearchFilter,filters.OrderingFilter)
-class StStatusViewSet(obisGeneralViewSet):
-    """
-    This is the Comtaxlist with source table hyperlinked.
 
+class StStatusViewSet(obisTableViewSet):
+    """
+    This is the State Status ViewSet with hyperlinked tables.
     """
     model = StStatus
-    #queryset = StStatus.objects.all()
-#    serializer_class =  ComtaxSerializer #serializers.HyperlinkedModelSerializer
-    #renderer_classes = (BrowsableAPIRenderer, JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer)
-    #filter_backends = (filters.DjangoFilterBackend, filters.SearchFilter,filters.OrderingFilter)
+    queryset = StStatus.objects.all()
 
+class OkSwapViewSet(obisTableViewSet):
+    """
+    This is the Ok Swap  ViewSet with hyperlinked tables.
+    """
+    model = OkSwap
+    queryset = OkSwap.objects.all()
+
+class OccurrenceViewSet(obisTableViewSet):
+    """
+    This is the Occurrence ViewSet with hyperlinked tables.
+    """
+    model = Occurrence
+    queryset = Occurrence.objects.all()
+
+class SourceViewSet(obisTableViewSet):
+    """
+    This is the Ok Swap  ViewSet with hyperlinked tables.
+    """
+    model = Source
+    queryset = Source.objects.all()
+class InstitutionViewSet(obisTableViewSet):
+    """
+    This is the Institution  ViewSet with hyperlinked tables.
+    """
+    model = Institution
+    queryset = Institution.objects.all()
+
+class CountyViewSet(obisTableViewSet):
+    """
+    This is the County ViewSet with hyperlinked tables.
+    """
+    model = County
+    queryset = County.objects.all()
+
+class CoTrsViewSet(obisTableViewSet):
+    """
+    This is the CoTrs ViewSet with hyperlinked tables.
+    """
+    model = CoTrs
+    queryset = CoTrs.objects.all()
+
+class IdentificationVerificationViewSet(obisTableViewSet):
+    """
+    This is the IdentificationVerification ViewSet with hyperlinked tables.
+    """
+    model = IdentificationVerification
+    queryset = IdentificationVerification.objects.all()
+
+class RankChangeViewSet(obisTableViewSet):
+    """
+    This is the Rank Change ViewSet with hyperlinked tables.
+    """
+    model = RankChange
+    queryset = RankChange.objects.all()
+class SpatialRefSysViewSet(obisTableViewSet):
+    """
+    This is the Spatial-Ref-Sys  ViewSet with hyperlinked tables.
+    """
+    model = SpatialRefSys
+    queryset = SpatialRefSys.objects.all()
+
+#class DokarrsViewSet(obisViewViewSet):
+#    """
+#    This is the Dokarrs ViewSet with hyperlinked tables.
+#    """
+#    model = Dokarrs
+#    queryset = Dokarrs.objects.all()
+#***************************************** OBIS DB Views ********************************************************
+class VwSearchViewSet(obisViewViewSet):
+    model = VwSearch
+    queryset = VwSearch.objects.all()
+    search_fields = ('acode', 'elcode', 'family', 'fed_status_id', 'forma', 'formascientificnameauthorship',
+    'g_rank', 'gelcode', 'genus', 'itis_code', 'iucncode', 'name', 'nativity', 'pkey', 'primary_name', 's_rank', 'scientificnameauthorship',
+    'sname', 'source', 'species', 'sspscientificnameauthorship', 'st_status_id', 'subspecies', 'swap_id', 'tracked',
+    'usda_code', 'variety', 'varscientificnameauthorship', 'vernacularname','kingdom','phylum','taxclass','taxorder')
+    ordering_fields = ('acode', 'elcode', 'family', 'fed_status_id', 'forma', 'formascientificnameauthorship',
+    'g_rank', 'gelcode', 'genus', 'itis_code', 'iucncode', 'name', 'nativity', 'pkey', 'primary_name', 's_rank', 'scientificnameauthorship',
+    'sname', 'source', 'species', 'sspscientificnameauthorship', 'st_status_id', 'subspecies', 'swap_id', 'tracked',
+    'usda_code', 'variety', 'varscientificnameauthorship', 'vernacularname','kingdom','phylum','taxclass','taxorder')
+class VwSearchmvViewSet(obisViewViewSet):
+    model = VwSearchmv
+    queryset = VwSearchmv.objects.all()
+    search_fields = ('acode', 'elcode', 'family', 'fed_status_id', 'forma', 'formascientificnameauthorship',
+    'g_rank', 'gelcode', 'genus', 'itis_code', 'iucncode', 'name', 'nativity', 'pkey', 'primary_name', 's_rank', 'scientificnameauthorship',
+    'sname', 'source', 'species', 'sspscientificnameauthorship', 'st_status_id', 'subspecies', 'swap_id', 'tracked',
+    'usda_code', 'variety', 'varscientificnameauthorship', 'vernacularname','kingdom','phylum','taxclass','taxorder')
+    ordering_fields = ('acode', 'elcode', 'family', 'fed_status_id', 'forma', 'formascientificnameauthorship',
+    'g_rank', 'gelcode', 'genus', 'itis_code', 'iucncode', 'name', 'nativity', 'pkey', 'primary_name', 's_rank', 'scientificnameauthorship',
+    'sname', 'source', 'species', 'sspscientificnameauthorship', 'st_status_id', 'subspecies', 'swap_id', 'tracked',
+    'usda_code', 'variety', 'varscientificnameauthorship', 'vernacularname','kingdom','phylum','taxclass','taxorder')
+#class SearchViewSet(obisViewViewSet):
+#    model = SearchView
+#    queryset = SearchView.objects.all()
+#    filter_class = SearchViewFilter
+#    search_fields =('acode','sname','scientificnameauthorship','kingdom','phylum','taxclass','taxorder','family',
+#                    'genus','species','subspecies','variety','forma','elcode','gelcode','iunccode','g_rank',
+#                    's_rank','nativity','source','vernacularname')
+#    ordering_fields=('acode','sname','scientificnameauthorship','kingdom','phylum','taxclass','taxorder','family',
+#                    'genus','species','subspecies','variety','forma','elcode','gelcode','iunccode','g_rank',
+#                    's_rank','nativity','source','vernacularname')

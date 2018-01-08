@@ -1,7 +1,7 @@
-uthor__ = 'mstacy'
+author__ = 'mstacy'
 import django_filters
 
-from models import Acctax,Comtax,SearchView
+from models import Acctax,Comtax #,SearchView
 
 class AcctaxFilter(django_filters.FilterSet):
 
@@ -37,7 +37,7 @@ class ComtaxFilter(django_filters.FilterSet):
     class Meta:
         model  = Comtax
 
-
+"""
 class SearchViewFilter(django_filters.FilterSet):
     a_id = django_filters.NumberFilter(lookup_type='exact')
     acode = django_filters.CharFilter(lookup_type='icontains')
@@ -65,3 +65,5 @@ class SearchViewFilter(django_filters.FilterSet):
 
     class Meta:
         model = SearchView
+"""
+
