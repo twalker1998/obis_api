@@ -30,10 +30,26 @@ class APIRoot(APIView):
             'Queue': {'Tasks': reverse('queue-main', request=request),
                       'Tasks History': reverse('queue-user-tasks',request=request)},
             'Catalog': {'Data Source':reverse('catalog-list',request=request)},
-	    'Data Store': {'OBIS':[reverse('acctax-list',request=request),
+	    'Data Store': {'OBIS':{
+                        'Tables':[reverse('acctax-list',request=request),
                                    reverse('comtax-list',request=request),
-                                   reverse('syntax-list',request=request),],
-                            'Mongo':reverse('data-list',request=request)},
+                                   reverse('syntax-list',request=request),
+                                   reverse('occurrence-list',request=request),
+                                   reverse('source-list',request=request),
+                                   reverse('hightax-list',request=request),
+                                   reverse('fedstatus-list',request=request),
+                                   reverse('ststatus-list',request=request),
+                                   reverse('okswap-list',request=request),
+                                   reverse('institution-list',request=request),
+                                   reverse('county-list',request=request),
+                                   reverse('cotrs-list',request=request),
+                                   reverse('identificationverification-list',request=request),
+                                   reverse('rankchange-list',request=request),
+                                   reverse('spatialrefsys-list',request=request)],
+                        'Views':[reverse('vwsearch-list',request=request),
+                                reverse('vwsearchmv-list',request=request),
+                                ]},
+                        'Mongo':reverse('data-list',request=request)},
             'User Profile': {'User':reverse('user-list',request=request)}
         })
 
@@ -53,8 +69,8 @@ class UserProfile(LoginRequiredMixin,APIView):
         serializer = self.serializer_class(data,context={'request':request})
         tok = Token.objects.get_or_create(user=self.request.user)
         rdata = serializer.data
-        rdata['name'] = data.get_full_name() 
-        rdata['gravator_url']="{0}://www.gravatar.com/avatar/{1}".format(request.scheme,md5(rdata['email'].strip(' \t\n\r')).hexdigest()) 
+        rdata['name'] = data.get_full_name()
+        rdata['gravator_url']="{0}://www.gravatar.com/avatar/{1}".format(request.scheme,md5(rdata['email'].strip(' \t\n\r')).hexdigest())
         rdata['auth-token']= str(tok[0])
         return Response(rdata)
     def post(self,request,format=None):
@@ -67,7 +83,7 @@ class UserProfile(LoginRequiredMixin,APIView):
             return Response(data)
         auth_tok  = request.DATA.get('auth-token', None)
         if str(auth_tok).lower()=="update":
-            tok = Token.objects.get(user=user)    
+            tok = Token.objects.get(user=user)
             tok.delete()
             tok = Token.objects.get_or_create(user=self.request.user)
             data = {"auth-token":str(tok[0])}
