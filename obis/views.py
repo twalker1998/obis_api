@@ -5,7 +5,7 @@ from obis.filters import AcctaxFilter,ComtaxFilter #,SearchViewFilter
 from obis.models import Acctax,Comtax,Syntax,Hightax,FedStatus,StStatus,OkSwap,RankChange
 from obis.models import Occurrence,Source,Institution,County,CoTrs,IdentificationVerification
 from obis.models import SpatialRefSys, VwSearch, VwSearchmv #SearchView
-from serializer import AcctaxSerializer,ComtaxSerializer
+from serializer import AcctaxSerializer,ComtaxSerializer, SourceSerializer
 
 #DB Table ViewSet Class
 class obisTableViewSet(viewsets.ModelViewSet):
@@ -91,6 +91,7 @@ class SourceViewSet(obisTableViewSet):
     """
     model = Source
     queryset = Source.objects.all()
+    serializer_class = SourceSerializer
 class InstitutionViewSet(obisTableViewSet):
     """
     This is the Institution  ViewSet with hyperlinked tables.
@@ -152,7 +153,7 @@ class VwSearchViewSet(obisViewViewSet):
 class VwSearchmvViewSet(obisViewViewSet):
     """
     This is the Material View Search ViewSet with hyperlinked tables.
-    Database: When data updated must run to update view: 'REFRESH MATERIALIZED VIEW vm_search_mv;' 
+    Database: When data updated must run to update view: 'REFRESH MATERIALIZED VIEW vm_search_mv;'
     """
     model = VwSearchmv
     queryset = VwSearchmv.objects.all()
