@@ -11,7 +11,9 @@ This documentation is a demonstration of how to create a view or table and move 
     * Access the API docker container
 
     <code>docker ps
+    
     docker exec -it obis_api /bin/bash
+    
     ./manage.py inspectdb --database obis > misc/20180111model.py
     </code>
 
