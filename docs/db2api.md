@@ -6,14 +6,16 @@ This documentation is a demonstration of how to create a view or table and move 
 
 1. Create SQL query and run within the database.
 2.  Generate auto model Creation
-  * Log into Dev/Prod system.
-  * Access the API docker container
+    
+    * Log into Dev/Prod system.
+    * Access the API docker container
 
-    docker ps
+    $ docker ps
+    
+    $ docker exec -it obis_api /bin/bash
+    
+    $ ./manage.py inspectdb --database obis > misc/20180111model.py
 
-    docker exec -it obis_api /bin/bash
-
-    ./manage.py inspectdb --database obis > misc/20180111model.py
 3. Exit docker container (exit)
 
 ### Model Creation
