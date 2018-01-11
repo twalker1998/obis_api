@@ -10,11 +10,11 @@ This documentation is a demonstration of how to create a view or table and move 
     * Log into Dev/Prod system.
     * Access the API docker container
 
-    docker ps
+    $ docker ps
     
-    docker exec -it obis_api /bin/bash
+    $ docker exec -it obis_api /bin/bash
     
-    ./manage.py inspectdb --database obis > misc/20180111model.py
+    $ ./manage.py inspectdb --database obis > misc/20180111model.py
 
 3. Exit docker container (exit)
 
