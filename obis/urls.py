@@ -6,7 +6,7 @@ from rest_framework.urlpatterns import format_suffix_patterns
 from obis.views import AcctaxViewSet, ComtaxViewSet, SyntaxViewSet,HightaxViewSet,FedStatusViewSet,StStatusViewSet
 from obis.views import OkSwapViewSet, OccurrenceViewSet, SourceViewSet, InstitutionViewSet,CountyViewSet
 from obis.views import CoTrsViewSet, IdentificationVerificationViewSet, RankChangeViewSet, SpatialRefSysViewSet
-from obis.views import VwSearchViewSet, VwSearchmvViewSet
+#from obis.views import VwSearchViewSet, VwSearchmvViewSet
 #from obis.views import SearchViewSet
 
 
@@ -28,8 +28,8 @@ router.register('rankchange', RankChangeViewSet)
 router.register('spatialrefsys', SpatialRefSysViewSet)
 
 # View
-router.register('vwsearch', VwSearchViewSet)
-router.register('vwsearchmv', VwSearchmvViewSet)
+#router.register('vwsearch', VwSearchViewSet)
+#router.register('vwsearchmv', VwSearchmvViewSet)
 
 
 urlpatterns = patterns('',

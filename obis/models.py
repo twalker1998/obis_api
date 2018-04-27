@@ -14,7 +14,7 @@ from django.db import models
 
 class Acctax(models.Model):
     a_id = models.IntegerField()
-    acode = models.CharField(primary_key=True, max_length=50)
+    acode = models.CharField(primary_key=True, max_length=500)
     sname = models.CharField(max_length=500, blank=True)
     scientificnameauthorship = models.CharField(max_length=500, blank=True)
     family = models.ForeignKey('Hightax', db_column='family', blank=True, null=True)
@@ -31,7 +31,7 @@ class Acctax(models.Model):
     nativity = models.CharField(max_length=500, blank=True)
     source = models.CharField(max_length=500, blank=True)
     usda_code = models.CharField(max_length=500, blank=True)
-    itis_code = models.IntegerField(blank=True, null=True)
+    tsn = models.IntegerField(blank=True, null=True)
     fed_status = models.ForeignKey('FedStatus', blank=True, null=True)
     st_status = models.ForeignKey('StStatus', blank=True, null=True)
     swap = models.ForeignKey('OkSwap', blank=True, null=True)
@@ -410,7 +410,7 @@ class Hightax(models.Model):
     phylum = models.CharField(max_length=500, blank=True)
     taxclass = models.CharField(max_length=500, blank=True)
     taxorder = models.CharField(max_length=500, blank=True)
-    family = models.CharField(primary_key=True, max_length=-1)
+    family = models.CharField(primary_key=True, max_length=500)
     category = models.CharField(max_length=500, blank=True)
     name_type_desc = models.CharField(max_length=500, blank=True)
     name_category_desc = models.CharField(max_length=500, blank=True)
@@ -422,12 +422,12 @@ class Hightax(models.Model):
 
 class IdentificationVerification(models.Model):
     pkey = models.IntegerField(primary_key=True)
-    catalognumber = models.CharField(max_length=100, blank=True)
-    identifiedby = models.CharField(max_length=250, blank=True)
+    catalognumber = models.CharField(max_length=500, blank=True)
+    identifiedby = models.CharField(max_length=500, blank=True)
     identificationremarks = models.CharField(max_length=500, blank=True)
-    datalastmodified = models.CharField(max_length=50, blank=True)
-    identifiedacode = models.CharField(max_length=100, blank=True)
-    #occurrence_gid = models.ForeignKey('Occurrence', db_column='gid', blank=True, null=True)
+    datalastmodified = models.CharField(max_length=500, blank=True)
+    identifiedacode = models.CharField(max_length=500, blank=True)
+    gid = models.ForeignKey('Occurrence', db_column='gid', blank=True, null=True)
 
     class Meta:
         managed = False
@@ -581,6 +581,7 @@ class Occurrence(models.Model):
     relationshipremarks = models.CharField(max_length=500, blank=True)
     informationwitheld = models.NullBooleanField()
     awaitingreview = models.IntegerField(blank=True, null=True)
+    uuid = models.TextField(blank=True)  # This field type is a guess.
 
     class Meta:
         managed = False
@@ -810,7 +811,7 @@ class StreetTypeLookup(models.Model):
 class Syntax(models.Model):
     s_id = models.IntegerField()
     acode = models.ForeignKey(Acctax, db_column='acode', blank=True, null=True)
-    scode = models.CharField(primary_key=True, max_length=-1)
+    scode = models.CharField(primary_key=True, max_length=500)
     sname = models.CharField(max_length=500, blank=True)
     scientificnameauthorship = models.CharField(max_length=500, blank=True)
     family = models.CharField(max_length=500, blank=True)
@@ -822,6 +823,7 @@ class Syntax(models.Model):
     sspscientificnameauthorship = models.CharField(max_length=500, blank=True)
     varscientificnameauthorship = models.CharField(max_length=500, blank=True)
     formascientificnameauthorship = models.CharField(max_length=500, blank=True)
+    tsn = models.IntegerField(blank=True, null=True)
 
     class Meta:
         managed = False
@@ -853,7 +855,7 @@ class Tabblock(models.Model):
 
 class Topology(models.Model):
     id = models.IntegerField(primary_key=True)  # AutoField?
-    name = models.CharField(unique=True, max_length=-1)
+    name = models.CharField(unique=True, max_length=500)
     srid = models.IntegerField()
     precision = models.FloatField()
     hasz = models.BooleanField()
@@ -895,91 +897,6 @@ class VwAllTaxa(models.Model):
         managed = False
         db_table = 'vw_all_taxa'
 
-class VwSearch(models.Model):
-    pkey = models.CharField(primary_key=True, max_length=50)
-    a_id = models.IntegerField(blank=True, null=True)
-    acode = models.CharField(max_length=-1, blank=True)
-    sname = models.CharField(max_length=-1, blank=True)
-    scientificnameauthorship = models.CharField(max_length=-1, blank=True)
-    family = models.CharField(max_length=-1, blank=True)
-    genus = models.CharField(max_length=-1, blank=True)
-    species = models.CharField(max_length=-1, blank=True)
-    subspecies = models.CharField(max_length=-1, blank=True)
-    variety = models.CharField(max_length=-1, blank=True)
-    forma = models.CharField(max_length=-1, blank=True)
-    elcode = models.CharField(max_length=-1, blank=True)
-    gelcode = models.IntegerField(blank=True, null=True)
-    iucncode = models.CharField(max_length=-1, blank=True)
-    g_rank = models.CharField(max_length=-1, blank=True)
-    s_rank = models.CharField(max_length=-1, blank=True)
-    nativity = models.CharField(max_length=-1, blank=True)
-    source = models.CharField(max_length=-1, blank=True)
-    usda_code = models.CharField(max_length=-1, blank=True)
-    itis_code = models.IntegerField(blank=True, null=True)
-    fed_status_id = models.IntegerField(blank=True, null=True)
-    st_status_id = models.IntegerField(blank=True, null=True)
-    swap_id = models.IntegerField(blank=True, null=True)
-    name = models.CharField(max_length=-1, blank=True)
-    sspscientificnameauthorship = models.CharField(max_length=-1, blank=True)
-    varscientificnameauthorship = models.CharField(max_length=-1, blank=True)
-    formascientificnameauthorship = models.CharField(max_length=-1, blank=True)
-    tracked = models.NullBooleanField()
-    kingdom = models.CharField(max_length=-1, blank=True)
-    phylum = models.CharField(max_length=-1, blank=True)
-    taxclass = models.CharField(max_length=-1, blank=True)
-    taxorder = models.CharField(max_length=-1, blank=True)
-    vernacularname = models.CharField(max_length=-1, blank=True)
-    primary_name = models.BinaryField(blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'vw_search'
-
-class VwSearchmv(models.Model):
-    pkey = models.CharField(primary_key=True, max_length=50)
-    a_id = models.IntegerField(blank=True, null=True)
-    acode = models.CharField(max_length=-1, blank=True)
-    sname = models.CharField(max_length=-1, blank=True)
-    scientificnameauthorship = models.CharField(max_length=-1, blank=True)
-    family = models.CharField(max_length=-1, blank=True)
-    genus = models.CharField(max_length=-1, blank=True)
-    species = models.CharField(max_length=-1, blank=True)
-    subspecies = models.CharField(max_length=-1, blank=True)
-    variety = models.CharField(max_length=-1, blank=True)
-    forma = models.CharField(max_length=-1, blank=True)
-    elcode = models.CharField(max_length=-1, blank=True)
-    gelcode = models.IntegerField(blank=True, null=True)
-    iucncode = models.CharField(max_length=-1, blank=True)
-    g_rank = models.CharField(max_length=-1, blank=True)
-    s_rank = models.CharField(max_length=-1, blank=True)
-    nativity = models.CharField(max_length=-1, blank=True)
-    source = models.CharField(max_length=-1, blank=True)
-    usda_code = models.CharField(max_length=-1, blank=True)
-    itis_code = models.IntegerField(blank=True, null=True)
-    fed_status_id = models.IntegerField(blank=True, null=True)
-    st_status_id = models.IntegerField(blank=True, null=True)
-    swap_id = models.IntegerField(blank=True, null=True)
-    name = models.CharField(max_length=-1, blank=True)
-    sspscientificnameauthorship = models.CharField(max_length=-1, blank=True)
-    varscientificnameauthorship = models.CharField(max_length=-1, blank=True)
-    formascientificnameauthorship = models.CharField(max_length=-1, blank=True)
-    tracked = models.NullBooleanField()
-    kingdom = models.CharField(max_length=-1, blank=True)
-    phylum = models.CharField(max_length=-1, blank=True)
-    taxclass = models.CharField(max_length=-1, blank=True)
-    taxorder = models.CharField(max_length=-1, blank=True)
-    vernacularname = models.CharField(max_length=-1, blank=True)
-    primary_name = models.BinaryField(blank=True, null=True)
-    birds = models.BigIntegerField(db_column='Birds', blank=True, null=True)  # Field name made lowercase.
-    dokarrs = models.BigIntegerField(db_column='DOKARRS', blank=True, null=True)  # Field name made lowercase.
-    fish = models.BigIntegerField(db_column='Fish', blank=True, null=True)  # Field name made lowercase.
-    mammals = models.BigIntegerField(db_column='Mammals', blank=True, null=True)  # Field name made lowercase.
-    onhi = models.BigIntegerField(db_column='ONHI', blank=True, null=True)  # Field name made lowercase.
-    ovpd = models.BigIntegerField(db_column='OVPD', blank=True, null=True)  # Field name made lowercase.
-    class Meta:
-        managed = False
-        db_table = 'vw_search_mv'
-
 
 class VwSpatialAttribute(models.Model):
     name = models.CharField(max_length=100, blank=True)
@@ -996,9 +913,10 @@ class VwTracked(models.Model):
     family = models.CharField(max_length=500, blank=True)
     sname = models.CharField(max_length=500, blank=True)
     name = models.CharField(max_length=500, blank=True)
+    vernacularname = models.CharField(max_length=500, blank=True)
     s_rank = models.CharField(max_length=500, blank=True)
     g_rank = models.CharField(max_length=500, blank=True)
-    vernacularname = models.CharField(max_length=500, blank=True)
+    swap_id = models.IntegerField(blank=True, null=True)
     name_type_desc = models.CharField(max_length=500, blank=True)
     name_category_desc = models.CharField(max_length=500, blank=True)
     category = models.CharField(max_length=500, blank=True)

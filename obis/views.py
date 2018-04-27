@@ -4,7 +4,7 @@ from rest_framework_csv.renderers import CSVRenderer
 from obis.filters import AcctaxFilter,ComtaxFilter #,SearchViewFilter
 from obis.models import Acctax,Comtax,Syntax,Hightax,FedStatus,StStatus,OkSwap,RankChange
 from obis.models import Occurrence,Source,Institution,County,CoTrs,IdentificationVerification
-from obis.models import SpatialRefSys, VwSearch, VwSearchmv #SearchView
+from obis.models import SpatialRefSys #, VwSearch, VwSearchmv #SearchView
 from serializer import AcctaxSerializer,ComtaxSerializer
 
 #DB Table ViewSet Class
@@ -26,12 +26,21 @@ class AcctaxViewSet(obisTableViewSet):
     queryset = Acctax.objects.all()
     #serializer_class = AcctaxSerializer
     filter_class = AcctaxFilter
-    search_fields = ('acode','sname','scientificnameauthorship','phylum','taxclass','taxorder','family','genus',
-                    'species','subspecies','variety','forma','elcode','gelcode','iunccode','g_rank','s_rank',
-                    'nativity','source','comtax__vernacularname')
-    ordering_fields = ('acode','sname','scientificnameauthorship','phylum','taxclass','taxorder','family','genus',
-                    'species','subspecies','variety','forma','elcode','gelcode','iunccode','g_rank','s_rank',
-                    'nativity','source')
+    search_fields = ("sname","scientificnameauthorship","genus","species","subspecies","variety",
+                     "forma","elcode","iucncode","g_rank","s_rank","nativity","source","usda_code",
+                     "name","sspscientificnameauthorship","varscientificnameauthorship",
+                     "formascientificnameauthorship")
+    ordering_fields = ("sname","scientificnameauthorship","family","genus","species","subspecies","variety",
+                     "forma","elcode","gelcode","iucncode","g_rank","s_rank","nativity","source","usda_code","tsn",
+                     "fed_status","st_status","swap","name","sspscientificnameauthorship","varscientificnameauthorship",
+                     "formascientificnameauthorship","tracked")
+
+    #search_fields = ('acode','sname','scientificnameauthorship','phylum','taxclass','taxorder','family','genus',
+    #                'species','subspecies','variety','forma','elcode','gelcode','iunccode','g_rank','s_rank',
+    #                'nativity','source','comtax__vernacularname')
+    #ordering_fields = ('acode','sname','scientificnameauthorship','phylum','taxclass','taxorder','family','genus',
+    #                'species','subspecies','variety','forma','elcode','gelcode','iunccode','g_rank','s_rank',
+    #                'nativity','source')
 
 class ComtaxViewSet(obisTableViewSet):
     """
@@ -41,7 +50,7 @@ class ComtaxViewSet(obisTableViewSet):
     queryset = Comtax.objects.all()
     #serializer_class =  ComtaxSerializer
     filter_class = ComtaxFilter
-    search_fields = ('acode','vernacularname',)
+    search_fields = ('acode','vernacularname','primary_name')
 
 class SyntaxViewSet(obisTableViewSet):
     """
@@ -49,6 +58,14 @@ class SyntaxViewSet(obisTableViewSet):
     """
     model = Syntax
     queryset = Syntax.objects.all()
+    search_fields = ('acode','scode','sname','scientificnameauthorship',
+                    'family','genus','species','subspecies','variety',
+                    'name','sspscientificnameauthorship','varscientificnameauthorship',
+                    'formascientificnameauthorship')
+    ordering_fields = ('s_id','acode','scode','sname','scientificnameauthorship',
+                    'family','genus','species','subspecies','variety',
+                    'name','sspscientificnameauthorship','varscientificnameauthorship',
+                    'formascientificnameauthorship','tsn')
 
 class HightaxViewSet(obisTableViewSet):
     """
@@ -133,11 +150,11 @@ class SpatialRefSysViewSet(obisTableViewSet):
     queryset = SpatialRefSys.objects.all()
 
 #***************************************** OBIS DB Views ********************************************************
-
+"""
 class VwSearchViewSet(obisViewViewSet):
-    """
+    ""
     This is the Search ViewSet with hyperlinked tables.
-    """
+    ""
     model = VwSearch
     queryset = VwSearch.objects.all()
     search_fields = ('acode', 'elcode', 'family', 'fed_status_id', 'forma', 'formascientificnameauthorship',
@@ -150,10 +167,10 @@ class VwSearchViewSet(obisViewViewSet):
     'usda_code', 'variety', 'varscientificnameauthorship', 'vernacularname','kingdom','phylum','taxclass','taxorder')
 
 class VwSearchmvViewSet(obisViewViewSet):
-    """
+    ""
     This is the Material View Search ViewSet with hyperlinked tables.
-    Database: When data updated must run to update view: 'REFRESH MATERIALIZED VIEW vm_search_mv;' 
-    """
+    Database: When data updated must run to update view: 'REFRESH MATERIALIZED VIEW vm_search_mv;'
+    ""
     model = VwSearchmv
     queryset = VwSearchmv.objects.all()
     search_fields = ('acode', 'elcode', 'family', 'fed_status_id', 'forma', 'formascientificnameauthorship',
@@ -164,3 +181,4 @@ class VwSearchmvViewSet(obisViewViewSet):
     'g_rank', 'gelcode', 'genus', 'itis_code', 'iucncode', 'name', 'nativity', 'pkey', 'primary_name', 's_rank', 'scientificnameauthorship',
     'sname', 'source', 'species', 'sspscientificnameauthorship', 'st_status_id', 'subspecies', 'swap_id', 'tracked',
     'usda_code', 'variety', 'varscientificnameauthorship', 'vernacularname','kingdom','phylum','taxclass','taxorder')
+"""
