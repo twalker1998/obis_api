@@ -108,6 +108,7 @@ class SourceViewSet(obisTableViewSet):
     """
     model = Source
     queryset = Source.objects.all()
+    serializer_class = SourceSerializer
 class InstitutionViewSet(obisTableViewSet):
     """
     This is the Institution  ViewSet with hyperlinked tables.
@@ -171,6 +172,7 @@ class VwSearchmvViewSet(obisViewViewSet):
     This is the Material View Search ViewSet with hyperlinked tables.
     Database: When data updated must run to update view: 'REFRESH MATERIALIZED VIEW vm_search_mv;'
     ""
+
     model = VwSearchmv
     queryset = VwSearchmv.objects.all()
     search_fields = ('acode', 'elcode', 'family', 'fed_status_id', 'forma', 'formascientificnameauthorship',

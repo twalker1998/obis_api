@@ -1,7 +1,7 @@
 from rest_framework import serializers
 
-from models import Acctax, Comtax, Syntax
-# This is an example of how you can make your own serializer. Default seems to be working. 
+from models import Acctax, Comtax, Syntax, Source
+# This is an example of how you can make your own serializer. Default seems to be working.
 # Left this only for examples.
 
 class AcctaxSerializer(serializers.HyperlinkedModelSerializer):
@@ -17,3 +17,7 @@ class ComtaxSerializer(serializers.HyperlinkedModelSerializer): #ModelSerializer
         model= Comtax
 #        fields = ['url','acode','vernacularname']
 
+class SourceSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Source
+        fields = ('url','source', 'description')
