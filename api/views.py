@@ -45,13 +45,14 @@ class APIRoot(APIView):
                                    reverse('cotrs-list',request=request),
                                    reverse('identificationverification-list',request=request),
                                    reverse('rankchange-list',request=request),
-                                   reverse('spatialrefsys-list',request=request)],
-                        'Views':[reverse('vwsearch-list',request=request),
-                                reverse('vwsearchmv-list',request=request),
+                                   reverse('spatialrefsys-list',request=request),
                                 ]},
                         'Mongo':reverse('data-list',request=request)},
             'User Profile': {'User':reverse('user-list',request=request)}
         })
+
+#'Views':[]}reverse('vwsearch-list',request=request),
+#        reverse('vwsearchmv-list',request=request),
 
 class UserSerializer(serializers.Serializer):
     username = serializers.CharField(max_length=100)
