@@ -35,7 +35,7 @@ class Acctax(models.Model):
     fed_status = models.ForeignKey('FedStatus', blank=True, null=True)
     st_status = models.ForeignKey('StStatus', blank=True, null=True)
     swap = models.ForeignKey('OkSwap', blank=True, null=True)
-    name = models.CharField(max_length=500, blank=True)
+    scientificname = models.CharField(max_length=500, blank=True)
     sspscientificnameauthorship = models.CharField(max_length=500, blank=True)
     varscientificnameauthorship = models.CharField(max_length=500, blank=True)
     formascientificnameauthorship = models.CharField(max_length=500, blank=True)
@@ -435,7 +435,7 @@ class IdentificationVerification(models.Model):
 
 
 class Institution(models.Model):
-    institutionid = models.CharField(primary_key=True, max_length=10)
+    institutioncode = models.CharField(primary_key=True, max_length=10)
     institution = models.CharField(max_length=75, blank=True)
     curator = models.CharField(max_length=25, blank=True)
     email = models.CharField(max_length=40, blank=True)
@@ -519,6 +519,7 @@ class LoaderVariables(models.Model):
 
 
 class Occurrence(models.Model):
+    resourcetype = models.CharField(max_length=20, blank=True)
     gid = models.IntegerField(primary_key=True)
     acode = models.ForeignKey(Acctax, db_column='acode', blank=True, null=True)
     eventdate = models.DateField(blank=True, null=True)
@@ -530,23 +531,23 @@ class Occurrence(models.Model):
     sex = models.CharField(max_length=500, blank=True)
     lifestage = models.CharField(max_length=500, blank=True)
     associatedtaxa = models.CharField(max_length=500, blank=True)
-    elevation = models.FloatField(blank=True, null=True)
+    verbatimelevation = models.FloatField(blank=True, null=True)
     depth = models.FloatField(blank=True, null=True)
     depthaccuracy = models.IntegerField(blank=True, null=True)
     individualcount = models.IntegerField(blank=True, null=True)
     occurrenceremarks = models.CharField(max_length=500, blank=True)
     taxonremarks = models.CharField(max_length=500, blank=True)
-    institutionid = models.ForeignKey(Institution, db_column='institutionid', blank=True, null=True)
+    institutioncode = models.ForeignKey(Institution, db_column='institutioncode', blank=True, null=True)
     basisofrecord = models.CharField(max_length=500, blank=True)
     catalognumber = models.CharField(max_length=500, blank=True)
     othercatalognumbers = models.CharField(max_length=500, blank=True)
     typestatus = models.CharField(max_length=25, blank=True)
-    fieldnumber = models.CharField(max_length=500, blank=True)
+    recordnumber = models.CharField(max_length=500, blank=True)
     samplingprotocol = models.CharField(max_length=500, blank=True)
     preparations = models.CharField(max_length=500, blank=True)
     primary_data = models.CharField(max_length=500, blank=True)
     bibliographiccitation = models.CharField(max_length=500, blank=True)
-    source = models.ForeignKey('Source', db_column='source', blank=True, null=True)
+    datasetname = models.ForeignKey('Source', db_column='datasetname', blank=True, null=True)
     coordinateprecision = models.IntegerField(blank=True, null=True)
     decimallatitude = models.FloatField(blank=True, null=True)
     decimallongitude = models.FloatField(blank=True, null=True)
@@ -581,7 +582,7 @@ class Occurrence(models.Model):
     relationshipremarks = models.CharField(max_length=500, blank=True)
     informationwitheld = models.NullBooleanField()
     awaitingreview = models.IntegerField(blank=True, null=True)
-    uuid = models.TextField(blank=True)  # This field type is a guess.
+    occurrenceid = models.TextField(blank=True)  # This field type is a guess.
 
     class Meta:
         managed = False
@@ -819,7 +820,7 @@ class Syntax(models.Model):
     species = models.CharField(max_length=500, blank=True)
     subspecies = models.CharField(max_length=500, blank=True)
     variety = models.CharField(max_length=500, blank=True)
-    name = models.CharField(max_length=500, blank=True)
+    scientificname = models.CharField(max_length=500, blank=True)
     sspscientificnameauthorship = models.CharField(max_length=500, blank=True)
     varscientificnameauthorship = models.CharField(max_length=500, blank=True)
     formascientificnameauthorship = models.CharField(max_length=500, blank=True)
