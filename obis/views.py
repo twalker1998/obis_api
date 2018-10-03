@@ -4,8 +4,12 @@ from rest_framework_csv.renderers import CSVRenderer
 from obis.filters import AcctaxFilter,ComtaxFilter #,SearchViewFilter
 from obis.models import Acctax,Comtax,Syntax,Hightax,FedStatus,StStatus,OkSwap,RankChange
 from obis.models import Occurrence,Source,Institution,County,CoTrs,IdentificationVerification
-from obis.models import SpatialRefSys #, VwSearch, VwSearchmv #SearchView
-from serializer import AcctaxSerializer,ComtaxSerializer, SourceSerializer
+from obis.models import *
+#SpatialRefSys #, VwSearch, VwSearchmv #SearchView
+from serializer import *
+from rest_framework import permissions
+from rest_framework.parsers import JSONParser,MultiPartParser,FormParser,FileUploadParser
+
 
 #DB Table ViewSet Class
 class obisTableViewSet(viewsets.ModelViewSet):
@@ -24,7 +28,9 @@ class AcctaxViewSet(obisTableViewSet):
     """
     model = Acctax
     queryset = Acctax.objects.all()
-    #serializer_class = AcctaxSerializer
+    serializer_class = AcctaxSerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+    renderer_classes = (BrowsableAPIRenderer, JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer)
     filter_class = AcctaxFilter
     search_fields = ("sname","scientificnameauthorship","genus","species","subspecies","variety",
                      "forma","elcode","iucncode","g_rank","s_rank","nativity","source","usda_code",
@@ -47,8 +53,10 @@ class ComtaxViewSet(obisTableViewSet):
     This is the Comtax ViewSet with hyperlinked tables.
     """
     model = Comtax
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+    renderer_classes = (BrowsableAPIRenderer, JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer)
     queryset = Comtax.objects.all()
-    #serializer_class =  ComtaxSerializer
+    serializer_class =  ComtaxSerializer
     filter_class = ComtaxFilter
     search_fields = ('acode','vernacularname','primary_name')
 
@@ -57,7 +65,10 @@ class SyntaxViewSet(obisTableViewSet):
     This is the Syntax ViewSet with hyperlinked tables.
     """
     model = Syntax
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+    renderer_classes = (BrowsableAPIRenderer, JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer)
     queryset = Syntax.objects.all()
+    serializer_class =  SyntaxSerializer
     search_fields = ('acode','scode','sname','scientificnameauthorship',
                     'family','genus','species','subspecies','variety',
                     'name','sspscientificnameauthorship','varscientificnameauthorship',
@@ -73,6 +84,9 @@ class HightaxViewSet(obisTableViewSet):
     """
     model = Hightax
     queryset = Hightax.objects.all()
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+    renderer_classes = (BrowsableAPIRenderer, JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer)
+    serializer_class = HightaxSerializer
 
 class FedStatusViewSet(obisTableViewSet):
     """
@@ -80,6 +94,9 @@ class FedStatusViewSet(obisTableViewSet):
     """
     model = FedStatus
     queryset = FedStatus.objects.all()
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+    renderer_classes = (BrowsableAPIRenderer, JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer)
+    serializer_class = FedStatusSerializer
 
 class StStatusViewSet(obisTableViewSet):
     """
@@ -87,6 +104,9 @@ class StStatusViewSet(obisTableViewSet):
     """
     model = StStatus
     queryset = StStatus.objects.all()
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+    renderer_classes = (BrowsableAPIRenderer, JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer)
+    serializer_class = StStatusSerializer
 
 class OkSwapViewSet(obisTableViewSet):
     """
@@ -94,6 +114,9 @@ class OkSwapViewSet(obisTableViewSet):
     """
     model = OkSwap
     queryset = OkSwap.objects.all()
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+    renderer_classes = (BrowsableAPIRenderer, JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer)
+    serializer_class = OkSwapSerializer
 
 class OccurrenceViewSet(obisTableViewSet):
     """
@@ -101,6 +124,9 @@ class OccurrenceViewSet(obisTableViewSet):
     """
     model = Occurrence
     queryset = Occurrence.objects.all()
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+    renderer_classes = (BrowsableAPIRenderer, JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer)
+    serializer_class = OccurenceSerializer
 
 class SourceViewSet(obisTableViewSet):
     """
@@ -108,13 +134,19 @@ class SourceViewSet(obisTableViewSet):
     """
     model = Source
     queryset = Source.objects.all()
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+    renderer_classes = (BrowsableAPIRenderer, JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer)
     serializer_class = SourceSerializer
+
 class InstitutionViewSet(obisTableViewSet):
     """
     This is the Institution  ViewSet with hyperlinked tables.
     """
     model = Institution
     queryset = Institution.objects.all()
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+    renderer_classes = (BrowsableAPIRenderer, JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer)
+    serializer_class = InstitutionSerializer
 
 class CountyViewSet(obisTableViewSet):
     """
@@ -122,6 +154,9 @@ class CountyViewSet(obisTableViewSet):
     """
     model = County
     queryset = County.objects.all()
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+    renderer_classes = (BrowsableAPIRenderer, JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer)
+    serializer_class = CountySerializer
 
 class CoTrsViewSet(obisTableViewSet):
     """
@@ -129,6 +164,9 @@ class CoTrsViewSet(obisTableViewSet):
     """
     model = CoTrs
     queryset = CoTrs.objects.all()
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+    renderer_classes = (BrowsableAPIRenderer, JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer)
+    serializer_class = CoTrsSerializer
 
 class IdentificationVerificationViewSet(obisTableViewSet):
     """
@@ -136,6 +174,9 @@ class IdentificationVerificationViewSet(obisTableViewSet):
     """
     model = IdentificationVerification
     queryset = IdentificationVerification.objects.all()
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+    renderer_classes = (BrowsableAPIRenderer, JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer)
+    serializer_class = IdentificationVerificationSerializer
 
 class RankChangeViewSet(obisTableViewSet):
     """
@@ -143,12 +184,19 @@ class RankChangeViewSet(obisTableViewSet):
     """
     model = RankChange
     queryset = RankChange.objects.all()
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+    renderer_classes = (BrowsableAPIRenderer, JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer)
+    serializer_class = RankChangeSerializer
+
 class SpatialRefSysViewSet(obisTableViewSet):
     """
     This is the Spatial-Ref-Sys  ViewSet with hyperlinked tables.
     """
     model = SpatialRefSys
     queryset = SpatialRefSys.objects.all()
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+    renderer_classes = (BrowsableAPIRenderer, JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer)
+    serializer_class = SpatialRefSysSerializer
 
 #***************************************** OBIS DB Views ********************************************************
 """
@@ -172,7 +220,6 @@ class VwSearchmvViewSet(obisViewViewSet):
     This is the Material View Search ViewSet with hyperlinked tables.
     Database: When data updated must run to update view: 'REFRESH MATERIALIZED VIEW vm_search_mv;'
     ""
-
     model = VwSearchmv
     queryset = VwSearchmv.objects.all()
     search_fields = ('acode', 'elcode', 'family', 'fed_status_id', 'forma', 'formascientificnameauthorship',
