@@ -42,7 +42,7 @@ class Acctax(models.Model):
     tracked = models.NullBooleanField()
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'acctax'
 
 
@@ -63,7 +63,7 @@ class Addr(models.Model):
     statefp = models.CharField(max_length=2, blank=True)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'addr'
 
 
@@ -95,7 +95,7 @@ class Addrfeat(models.Model):
     the_geom = models.TextField(blank=True)  # This field type is a guess.
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'addrfeat'
 
 
@@ -116,7 +116,7 @@ class Bg(models.Model):
     the_geom = models.TextField(blank=True)  # This field type is a guess.
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'bg'
 
 
@@ -127,7 +127,7 @@ class CoTrs(models.Model):
     geom = models.TextField(blank=True)  # This field type is a guess.
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'co_trs'
 
 
@@ -138,7 +138,7 @@ class Comtax(models.Model):
     primary_name = models.BinaryField(blank=True, null=True)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'comtax'
 
 
@@ -147,7 +147,7 @@ class County(models.Model):
     fips = models.CharField(primary_key=True, max_length=3)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'county'
 
 
@@ -158,7 +158,7 @@ class CountyLookup(models.Model):
     name = models.CharField(max_length=90, blank=True)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'county_lookup'
 
 
@@ -171,7 +171,7 @@ class CountysubLookup(models.Model):
     name = models.CharField(max_length=90, blank=True)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'countysub_lookup'
 
 
@@ -198,7 +198,7 @@ class Cousub(models.Model):
     the_geom = models.TextField(blank=True)  # This field type is a guess.
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'cousub'
 
 
@@ -207,7 +207,7 @@ class DirectionLookup(models.Model):
     abbrev = models.CharField(max_length=3, blank=True)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'direction_lookup'
 
 
@@ -247,7 +247,7 @@ class Edges(models.Model):
     the_geom = models.TextField(blank=True)  # This field type is a guess.
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'edges'
 
 
@@ -324,7 +324,7 @@ class Faces(models.Model):
     the_geom = models.TextField(blank=True)  # This field type is a guess.
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'faces'
 
 
@@ -351,7 +351,7 @@ class Featnames(models.Model):
     statefp = models.CharField(max_length=2, blank=True)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'featnames'
 
 
@@ -361,7 +361,7 @@ class FedStatus(models.Model):
     description = models.CharField(max_length=500, blank=True)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'fed_status'
 
 
@@ -373,7 +373,7 @@ class GeocodeSettings(models.Model):
     short_desc = models.TextField(blank=True)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'geocode_settings'
 
 
@@ -387,7 +387,7 @@ class GeographyColumns(models.Model):
     type = models.TextField(blank=True)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'geography_columns'
 
 
@@ -401,7 +401,7 @@ class GeometryColumns(models.Model):
     type = models.CharField(max_length=30, blank=True)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'geometry_columns'
 
 
@@ -416,7 +416,7 @@ class Hightax(models.Model):
     name_category_desc = models.CharField(max_length=500, blank=True)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'hightax'
 
 
@@ -430,7 +430,7 @@ class IdentificationVerification(models.Model):
     gid = models.ForeignKey('Occurrence', db_column='gid', blank=True, null=True)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'identification_verification'
 
 
@@ -449,7 +449,7 @@ class Institution(models.Model):
     link = models.CharField(max_length=500, blank=True)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'institution'
 
 
@@ -464,7 +464,7 @@ class Layer(models.Model):
     child_id = models.IntegerField(blank=True, null=True)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'layer'
 
 
@@ -485,7 +485,7 @@ class LoaderLookuptables(models.Model):
     website_root_override = models.TextField(blank=True)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'loader_lookuptables'
 
 
@@ -502,7 +502,7 @@ class LoaderPlatform(models.Model):
     county_process_command = models.TextField(blank=True)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'loader_platform'
 
 
@@ -514,7 +514,7 @@ class LoaderVariables(models.Model):
     staging_schema = models.TextField(blank=True)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'loader_variables'
 
 
@@ -585,7 +585,7 @@ class Occurrence(models.Model):
     occurrenceid = models.TextField(blank=True)  # This field type is a guess.
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'occurrence'
 
 
@@ -595,7 +595,7 @@ class OkSwap(models.Model):
     description = models.CharField(max_length=500, blank=True)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'ok_swap'
 
 
@@ -608,7 +608,7 @@ class PagcGaz(models.Model):
     is_custom = models.BooleanField()
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'pagc_gaz'
 
 
@@ -621,7 +621,7 @@ class PagcLex(models.Model):
     is_custom = models.BooleanField()
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'pagc_lex'
 
 
@@ -631,7 +631,7 @@ class PagcRules(models.Model):
     is_custom = models.NullBooleanField()
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'pagc_rules'
 
 
@@ -657,7 +657,7 @@ class Place(models.Model):
     the_geom = models.TextField(blank=True)  # This field type is a guess.
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'place'
 
 
@@ -668,7 +668,7 @@ class PlaceLookup(models.Model):
     name = models.CharField(max_length=90, blank=True)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'place_lookup'
 
 
@@ -683,7 +683,7 @@ class RankChange(models.Model):
     previousdatemodified = models.DateField(blank=True, null=True)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'rank_change'
 
 
@@ -706,7 +706,7 @@ class RasterColumns(models.Model):
     extent = models.TextField(blank=True)  # This field type is a guess.
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'raster_columns'
 
 
@@ -722,7 +722,7 @@ class RasterOverviews(models.Model):
     overview_factor = models.IntegerField(blank=True, null=True)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'raster_overviews'
 
 
@@ -731,7 +731,7 @@ class SecondaryUnitLookup(models.Model):
     abbrev = models.CharField(max_length=5, blank=True)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'secondary_unit_lookup'
 
 
@@ -740,7 +740,7 @@ class Source(models.Model):
     description = models.CharField(max_length=500, blank=True)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'source'
 
 
@@ -752,7 +752,7 @@ class SpatialRefSys(models.Model):
     proj4text = models.CharField(max_length=2048, blank=True)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'spatial_ref_sys'
 
 
@@ -762,7 +762,7 @@ class StStatus(models.Model):
     description = models.CharField(max_length=500, blank=True)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'st_status'
 
 
@@ -784,7 +784,7 @@ class State(models.Model):
     the_geom = models.TextField(blank=True)  # This field type is a guess.
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'state'
 
 
@@ -795,7 +795,7 @@ class StateLookup(models.Model):
     statefp = models.CharField(unique=True, max_length=2, blank=True)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'state_lookup'
 
 
@@ -805,7 +805,7 @@ class StreetTypeLookup(models.Model):
     is_hw = models.BooleanField()
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'street_type_lookup'
 
 
@@ -827,7 +827,7 @@ class Syntax(models.Model):
     tsn = models.IntegerField(blank=True, null=True)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'syntax'
 
 
@@ -850,7 +850,7 @@ class Tabblock(models.Model):
     the_geom = models.TextField(blank=True)  # This field type is a guess.
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'tabblock'
 
 
@@ -862,7 +862,7 @@ class Topology(models.Model):
     hasz = models.BooleanField()
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'topology'
 
 
@@ -883,7 +883,7 @@ class Tract(models.Model):
     the_geom = models.TextField(blank=True)  # This field type is a guess.
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'tract'
 
 
@@ -895,7 +895,7 @@ class VwAllTaxa(models.Model):
     accepted_code = models.CharField(max_length=500, blank=True)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'vw_all_taxa'
 
 
@@ -906,7 +906,7 @@ class VwSpatialAttribute(models.Model):
     obs_gid = models.IntegerField(blank=True, null=True)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'vw_spatial_attribute'
 
 
@@ -923,7 +923,7 @@ class VwTracked(models.Model):
     category = models.CharField(max_length=500, blank=True)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'vw_tracked'
 
 
@@ -942,7 +942,7 @@ class Zcta5(models.Model):
     the_geom = models.TextField(blank=True)  # This field type is a guess.
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'zcta5'
 
 
@@ -959,7 +959,7 @@ class ZipLookup(models.Model):
     cnt = models.IntegerField(blank=True, null=True)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'zip_lookup'
 
 
@@ -976,7 +976,7 @@ class ZipLookupAll(models.Model):
     cnt = models.IntegerField(blank=True, null=True)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'zip_lookup_all'
 
 
@@ -988,7 +988,7 @@ class ZipLookupBase(models.Model):
     statefp = models.CharField(max_length=2, blank=True)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'zip_lookup_base'
 
 
@@ -998,7 +998,7 @@ class ZipState(models.Model):
     statefp = models.CharField(max_length=2, blank=True)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'zip_state'
 
 
@@ -1009,5 +1009,5 @@ class ZipStateLoc(models.Model):
     place = models.CharField(max_length=100)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'zip_state_loc'
