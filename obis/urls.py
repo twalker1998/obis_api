@@ -8,7 +8,7 @@ from obis.views import OkSwapViewSet, OccurrenceViewSet, SourceViewSet, Institut
 from obis.views import CoTrsViewSet, IdentificationVerificationViewSet, RankChangeViewSet, SpatialRefSysViewSet
 #from obis.views import VwSearchViewSet, VwSearchmvViewSet
 #from obis.views import SearchViewSet
-
+from obis.views import VwSearchViewSet
 
 router = routers.SimpleRouter()
 router.register('acctax', AcctaxViewSet)
@@ -28,7 +28,7 @@ router.register('rankchange', RankChangeViewSet)
 router.register('spatialrefsys', SpatialRefSysViewSet)
 
 # View
-#router.register('vwsearch', VwSearchViewSet)
+router.register('vwsearch', VwSearchViewSet)
 #router.register('vwsearchmv', VwSearchmvViewSet)
 
 

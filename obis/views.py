@@ -199,22 +199,20 @@ class SpatialRefSysViewSet(obisTableViewSet):
     serializer_class = SpatialRefSysSerializer
 
 #***************************************** OBIS DB Views ********************************************************
-"""
 class VwSearchViewSet(obisViewViewSet):
     ""
     This is the Search ViewSet with hyperlinked tables.
     ""
     model = VwSearch
     queryset = VwSearch.objects.all()
-    search_fields = ('acode', 'elcode', 'family', 'fed_status_id', 'forma', 'formascientificnameauthorship',
-    'g_rank', 'gelcode', 'genus', 'itis_code', 'iucncode', 'name', 'nativity', 'pkey', 'primary_name', 's_rank', 'scientificnameauthorship',
-    'sname', 'source', 'species', 'sspscientificnameauthorship', 'st_status_id', 'subspecies', 'swap_id', 'tracked',
-    'usda_code', 'variety', 'varscientificnameauthorship', 'vernacularname','kingdom','phylum','taxclass','taxorder')
-    ordering_fields = ('acode', 'elcode', 'family', 'fed_status_id', 'forma', 'formascientificnameauthorship',
-    'g_rank', 'gelcode', 'genus', 'itis_code', 'iucncode', 'name', 'nativity', 'pkey', 'primary_name', 's_rank', 'scientificnameauthorship',
-    'sname', 'source', 'species', 'sspscientificnameauthorship', 'st_status_id', 'subspecies', 'swap_id', 'tracked',
-    'usda_code', 'variety', 'varscientificnameauthorship', 'vernacularname','kingdom','phylum','taxclass','taxorder')
+    search_fields = ('acode','sname', 'scientificname', 'status', 'vernacularname', 'primary_name', 'kingdom',
+            'phylum', 'taxclass', 'family', 'genus', 'category', 'name_type_desc', 'name_category_desc', 'elcode',
+            'gelcode', 'tsn', 'usda_code')
+    ordering_fields = ('acode','sname', 'scientificname', 'status', 'vernacularname', 'primary_name', 'kingdom', 
+            'phylum', 'taxclass', 'family', 'genus', 'category', 'name_type_desc', 'name_category_desc', 'elcode',
+            'gelcode', 'tsn', 'usda_code')
 
+"""
 class VwSearchmvViewSet(obisViewViewSet):
     ""
     This is the Material View Search ViewSet with hyperlinked tables.
