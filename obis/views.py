@@ -200,9 +200,9 @@ class SpatialRefSysViewSet(obisTableViewSet):
 
 #***************************************** OBIS DB Views ********************************************************
 class VwSearchViewSet(obisViewViewSet):
-    ""
+    """
     This is the Search ViewSet with hyperlinked tables.
-    ""
+    """
     model = VwSearch
     queryset = VwSearch.objects.all()
     search_fields = ('acode','sname', 'scientificname', 'status', 'vernacularname', 'primary_name', 'kingdom',
