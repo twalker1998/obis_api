@@ -3,3 +3,4 @@ data/
 config.sh
 *.swp
 *.pyc
+.vscode/settings.json
