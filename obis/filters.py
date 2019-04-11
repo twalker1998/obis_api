@@ -34,6 +34,7 @@ class ComtaxFilter(django_filters.FilterSet):
     c_id = django_filters.NumberFilter(lookup_type='exact')
     acode = django_filters.CharFilter(lookup_type='exact')
     vernacularname = django_filters.CharFilter(lookup_type='icontains')
+    primary_name = django_filters.CharFilter(lookup_type='exact')
     class Meta:
         model  = Comtax
 
