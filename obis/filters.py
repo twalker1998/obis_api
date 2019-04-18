@@ -1,7 +1,7 @@
 author__ = 'mstacy'
 import django_filters
 
-from models import Acctax,Comtax,Occurrence #,SearchView
+from models import Acctax,Comtax,Occurrence,Syntax #,SearchView
 
 class AcctaxFilter(django_filters.FilterSet):
 
@@ -43,6 +43,13 @@ class OccurrenceFilter(django_filters.FilterSet):
 
     class Meta:
         model = Occurrence
+
+class SyntaxFilter(django_filters.FilterSet):
+    acode = django_filters.CharFilter(lookup_type='exact')
+    sname = django_filters.CharFilter(lookup_type='icontains')
+
+    class Meta:
+        model = Syntax
 
 """
 class SearchViewFilter(django_filters.FilterSet):

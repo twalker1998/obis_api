@@ -1,7 +1,7 @@
 from rest_framework import viewsets, filters, serializers
 from rest_framework.renderers import BrowsableAPIRenderer, JSONPRenderer,JSONRenderer,XMLRenderer,YAMLRenderer
 from rest_framework_csv.renderers import CSVRenderer
-from obis.filters import AcctaxFilter,ComtaxFilter,OccurrenceFilter #,SearchViewFilter
+from obis.filters import AcctaxFilter,ComtaxFilter,OccurrenceFilter,SyntaxFilter #,SearchViewFilter
 from obis.models import Acctax,Comtax,Syntax,Hightax,FedStatus,StStatus,OkSwap,RankChange
 from obis.models import Occurrence,Source,Institution,County,CoTrs,IdentificationVerification
 from obis.models import *
@@ -69,6 +69,7 @@ class SyntaxViewSet(obisTableViewSet):
     renderer_classes = (BrowsableAPIRenderer, JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer)
     queryset = Syntax.objects.all()
     serializer_class =  SyntaxSerializer
+    filter_class = SyntaxFilter
     search_fields = ('acode','scode','sname','scientificnameauthorship',
                     'family','genus','species','subspecies','variety',
                     'name','sspscientificnameauthorship','varscientificnameauthorship',
