@@ -1,7 +1,7 @@
 from rest_framework import viewsets, filters, serializers
 from rest_framework.renderers import BrowsableAPIRenderer, JSONPRenderer,JSONRenderer,XMLRenderer,YAMLRenderer
 from rest_framework_csv.renderers import CSVRenderer
-from obis.filters import AcctaxFilter,ComtaxFilter #,SearchViewFilter
+from obis.filters import AcctaxFilter,ComtaxFilter,OccurrenceFilter,SyntaxFilter #,SearchViewFilter
 from obis.models import Acctax,Comtax,Syntax,Hightax,FedStatus,StStatus,OkSwap,RankChange
 from obis.models import Occurrence,Source,Institution,County,CoTrs,IdentificationVerification
 from obis.models import *
@@ -69,6 +69,7 @@ class SyntaxViewSet(obisTableViewSet):
     renderer_classes = (BrowsableAPIRenderer, JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer)
     queryset = Syntax.objects.all()
     serializer_class =  SyntaxSerializer
+    filter_class = SyntaxFilter
     search_fields = ('acode','scode','sname','scientificnameauthorship',
                     'family','genus','species','subspecies','variety',
                     'name','sspscientificnameauthorship','varscientificnameauthorship',
@@ -127,6 +128,8 @@ class OccurrenceViewSet(obisTableViewSet):
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
     renderer_classes = (BrowsableAPIRenderer, JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer)
     serializer_class = OccurenceSerializer
+    filter_class = OccurrenceFilter
+    search_fields = ('acode')
 
 class SourceViewSet(obisTableViewSet):
     """
@@ -200,9 +203,9 @@ class SpatialRefSysViewSet(obisTableViewSet):
 
 #***************************************** OBIS DB Views ********************************************************
 class VwSearchViewSet(obisViewViewSet):
-    ""
+    """
     This is the Search ViewSet with hyperlinked tables.
-    ""
+    """
     model = VwSearch
     queryset = VwSearch.objects.all()
     search_fields = ('acode','sname', 'scientificname', 'status', 'vernacularname', 'primary_name', 'kingdom',
