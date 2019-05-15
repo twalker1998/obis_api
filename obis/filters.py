@@ -26,6 +26,7 @@ class AcctaxFilter(django_filters.FilterSet):
     s_rank = django_filters.CharFilter(lookup_type='icontains')
     nativity = django_filters.CharFilter(lookup_type='icontains')
     source = django_filters.CharFilter(lookup_type='icontains')
+    scientificname = django_filters.CharFilter(lookup_type='icontains')
 
     class Meta:
         model = Acctax

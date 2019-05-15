@@ -35,7 +35,7 @@ class AcctaxViewSet(obisTableViewSet):
     search_fields = ("sname","scientificnameauthorship","genus","species","subspecies","variety",
                      "forma","elcode","iucncode","g_rank","s_rank","nativity","source","usda_code",
                      "name","sspscientificnameauthorship","varscientificnameauthorship",
-                     "formascientificnameauthorship")
+                     "formascientificnameauthorship","scientificname")
     ordering_fields = ("sname","scientificnameauthorship","family","genus","species","subspecies","variety",
                      "forma","elcode","gelcode","iucncode","g_rank","s_rank","nativity","source","usda_code","tsn",
                      "fed_status","st_status","swap","name","sspscientificnameauthorship","varscientificnameauthorship",
