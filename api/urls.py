@@ -32,5 +32,5 @@ urlpatterns = patterns('',
     # User Profile
     url(r'^user/',UserProfile.as_view(),name='user-list'),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-    
+    path('login', login)
 )
