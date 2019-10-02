@@ -1,7 +1,7 @@
 from rest_framework import viewsets, filters, serializers
 from rest_framework.renderers import BrowsableAPIRenderer, JSONPRenderer,JSONRenderer,XMLRenderer,YAMLRenderer
 from rest_framework_csv.renderers import CSVRenderer
-from obis.filters import AcctaxFilter,ComtaxFilter,OccurrenceFilter #,SearchViewFilter
+from obis.filters import AcctaxFilter,ComtaxFilter,OccurrenceFilter,SyntaxFilter #,SearchViewFilter
 from obis.models import Acctax,Comtax,Syntax,Hightax,FedStatus,StStatus,OkSwap,RankChange
 from obis.models import Occurrence,Source,Institution,County,CoTrs,IdentificationVerification
 from obis.models import *
@@ -35,7 +35,7 @@ class AcctaxViewSet(obisTableViewSet):
     search_fields = ("sname","scientificnameauthorship","genus","species","subspecies","variety",
                      "forma","elcode","iucncode","g_rank","s_rank","nativity","source","usda_code",
                      "name","sspscientificnameauthorship","varscientificnameauthorship",
-                     "formascientificnameauthorship")
+                     "formascientificnameauthorship","scientificname")
     ordering_fields = ("sname","scientificnameauthorship","family","genus","species","subspecies","variety",
                      "forma","elcode","gelcode","iucncode","g_rank","s_rank","nativity","source","usda_code","tsn",
                      "fed_status","st_status","swap","name","sspscientificnameauthorship","varscientificnameauthorship",
@@ -69,6 +69,7 @@ class SyntaxViewSet(obisTableViewSet):
     renderer_classes = (BrowsableAPIRenderer, JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer)
     queryset = Syntax.objects.all()
     serializer_class =  SyntaxSerializer
+    filter_class = SyntaxFilter
     search_fields = ('acode','scode','sname','scientificnameauthorship',
                     'family','genus','species','subspecies','variety',
                     'name','sspscientificnameauthorship','varscientificnameauthorship',
@@ -202,9 +203,9 @@ class SpatialRefSysViewSet(obisTableViewSet):
 
 #***************************************** OBIS DB Views ********************************************************
 class VwSearchViewSet(obisViewViewSet):
-    ""
+    """
     This is the Search ViewSet with hyperlinked tables.
-    ""
+    """
     model = VwSearch
     queryset = VwSearch.objects.all()
     search_fields = ('acode','sname', 'scientificname', 'status', 'vernacularname', 'primary_name', 'kingdom',

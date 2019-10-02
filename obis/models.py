@@ -144,7 +144,7 @@ class Comtax(models.Model):
 
 class County(models.Model):
     county = models.CharField(unique=True, max_length=25, blank=True)
-    fips = models.CharField(primary_key=True, max_length=3)
+    gid = models.IntegerField(primary_key=True)
 
     class Meta:
         managed = False
@@ -1014,24 +1014,24 @@ class ZipStateLoc(models.Model):
         db_table = 'zip_state_loc'
 
 class VwSearch(models.Model):
-    acode = models.CharField(max_length=-1, blank=True)
-    sname = models.CharField(max_length=-1, blank=True)
-    scientificname = models.CharField(max_length=-1, blank=True)
-    status = models.CharField(max_length=-1, blank=True)
-    vernacularname = models.CharField(max_length=-1, blank=True)
-    primary_name = models.CharField(max_length=-1, blank=True)
-    kingdom = models.CharField(max_length=-1, blank=True)
-    phylum = models.CharField(max_length=-1, blank=True)
-    taxclass = models.CharField(max_length=-1, blank=True)
-    family = models.CharField(max_length=-1, blank=True)
-    genus = models.CharField(max_length=-1, blank=True)
-    category = models.CharField(max_length=-1, blank=True)
-    name_type_desc = models.CharField(max_length=-1, blank=True)
-    name_category_desc = models.CharField(max_length=-1, blank=True)
-    elcode = models.CharField(max_length=-1, blank=True)
+    acode = models.CharField(primary_key=True, max_length=1, blank=True)
+    sname = models.CharField(max_length=1, blank=True)
+    scientificname = models.CharField(max_length=1, blank=True)
+    status = models.CharField(max_length=1, blank=True)
+    vernacularname = models.CharField(max_length=1, blank=True)
+    primary_name = models.CharField(max_length=1, blank=True)
+    kingdom = models.CharField(max_length=1, blank=True)
+    phylum = models.CharField(max_length=1, blank=True)
+    taxclass = models.CharField(max_length=1, blank=True)
+    family = models.CharField(max_length=1, blank=True)
+    genus = models.CharField(max_length=1, blank=True)
+    category = models.CharField(max_length=1, blank=True)
+    name_type_desc = models.CharField(max_length=1, blank=True)
+    name_category_desc = models.CharField(max_length=1, blank=True)
+    elcode = models.CharField(max_length=1, blank=True)
     gelcode = models.IntegerField(blank=True, null=True)
     tsn = models.IntegerField(blank=True, null=True)
-    usda_code = models.CharField(max_length=-1, blank=True)
+    usda_code = models.CharField(max_length=1, blank=True)
 
     class Meta:
         managed = False
