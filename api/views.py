@@ -1,9 +1,12 @@
 __author__ = 'mstacy'
+from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
+from django.views.decorators.csrf import csrf_exempt
+from rest_framework.decorators import api_view, permission_classes
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.reverse import reverse
-from rest_framework.permissions import IsAuthenticatedOrReadOnly
+from rest_framework.permissions import AllowAny, IsAuthenticatedOrReadOnly
 from rest_framework import serializers, generics
 from rest_framework.authtoken.models import Token
 from rest_framework.permissions import IsAuthenticated
@@ -11,8 +14,12 @@ from rest_framework.permissions import IsAuthenticated
 from django.contrib.auth.decorators import login_required
 from hashlib import md5
 #from rest_framework import viewsets
-#from rest_framework.permissions import AllowAny
 #from .permissions import IsStaffOrTargetUser
+from rest_framework.status import (
+    HTTP_400_BAD_REQUEST,
+    HTTP_404_NOT_FOUND,
+    HTTP_200_OK
+)
 
 #Login required mixin
 class LoginRequiredMixin(object):
