@@ -1,7 +1,6 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
 from django.contrib.auth.models import Permission
-from django.urls import path
 from api.views import APIRoot, UserProfile, login #, UserView
 #from rest_framework import routers
 
@@ -32,5 +31,5 @@ urlpatterns = patterns('',
     # User Profile
     url(r'^user/',UserProfile.as_view(),name='user-list'),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-    path('login', login)
+    url(r'^login', login)
 )
