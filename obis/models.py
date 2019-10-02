@@ -144,7 +144,7 @@ class Comtax(models.Model):
 
 class County(models.Model):
     county = models.CharField(unique=True, max_length=25, blank=True)
-    fips = models.CharField(primary_key=True, max_length=3)
+    gid = models.IntegerField(primary_key=True)
 
     class Meta:
         managed = False
