@@ -1,7 +1,7 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
 from django.contrib.auth.models import Permission
-from api.views import APIRoot, UserProfile, login #, UserView
+from api.views import APIRoot, UserProfile, login, get_csrf #, UserView
 #from rest_framework import routers
 
 try:
@@ -32,4 +32,5 @@ urlpatterns = patterns('',
     url(r'^user/',UserProfile.as_view(),name='user-list'),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^login', login)
+    url(r'^csrf', get_csrf)
 )
