@@ -1,7 +1,7 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
 from django.contrib.auth.models import Permission
-from api.views import APIRoot, UserProfile, login, get_csrf #, UserView
+from api.views import APIRoot, UserProfile, login #, UserView
 #from rest_framework import routers
 
 try:
