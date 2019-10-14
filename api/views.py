@@ -1,7 +1,6 @@
 __author__ = 'mstacy'
 from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
-from django.middleware import csrf
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.views import APIView
@@ -37,13 +36,6 @@ def login(request):
                         status=HTTP_404_NOT_FOUND)
     token, _ = Token.objects.get_or_create(user=user)
     return Response({'token': token.key},
-                    status=HTTP_200_OK)
-
-@api_view(["GET"])
-@permission_classes((AllowAny,))
-def get_csrf(request):
-    csrf_token = csrf.get_token(request)
-    return Response({'csrf_token': csrf_token},
                     status=HTTP_200_OK)
 
 #Login required mixin
