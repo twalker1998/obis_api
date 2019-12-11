@@ -95,8 +95,11 @@ INSTALLED_APPS = (
     'cybercom_queue',
     'catalog',
     'data_store',
-    'obis'
-
+    'obis',
+    'allauth',
+    'allauth.account',
+    'rest_auth',
+    'rest_auth.registration'
 )
 
 MIDDLEWARE_CLASSES = (
