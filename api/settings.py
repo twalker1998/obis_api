@@ -90,6 +90,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
     'rest_framework',
     'rest_framework.authtoken',
     'cybercom_queue',
@@ -101,6 +102,8 @@ INSTALLED_APPS = (
     'rest_auth',
     'rest_auth.registration'
 )
+
+SITE_ID = 1
 
 MIDDLEWARE_CLASSES = (
     'django.middleware.gzip.GZipMiddleware',
