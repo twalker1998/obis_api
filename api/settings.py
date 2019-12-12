@@ -90,6 +90,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
     'rest_framework',
     'rest_framework.authtoken',
     'cybercom_queue',
@@ -102,15 +103,17 @@ INSTALLED_APPS = (
     'rest_auth.registration'
 )
 
+SITE_ID = 1
+
 MIDDLEWARE_CLASSES = (
     'django.middleware.gzip.GZipMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
+    #'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-
+    'api.disable.DisableCSRF'
 )
 
 ROOT_URLCONF = 'api.urls'
@@ -159,7 +162,7 @@ STATIC_URL = '/static/api/'
 #     'django.template.loaders.eggs.load_template_source',
 #)
 SESSION_COOKIE_DOMAIN = config.SESSION_COOKIE_DOMAIN
-CSRF_COOKIE_DOMAIN = config.CSRF_COOKIE_DOMAIN
+#CSRF_COOKIE_DOMAIN = config.CSRF_COOKIE_DOMAIN
 base = ''
 if FORCE_SCRIPT_NAME:
     if FORCE_SCRIPT_NAME[-1]=='/':
