@@ -405,6 +405,15 @@ class GeometryColumns(models.Model):
         db_table = 'geometry_columns'
 
 
+class GlobalRankLookup(models.Model):
+    id = models.IntegerField(blank=False, null=False)
+    code = models.CharField(max_length=15, blank=False)
+
+    class Meta:
+        managed = False
+        db_table = 'global_rank_lu'
+
+
 class Hightax(models.Model):
     kingdom = models.CharField(max_length=500, blank=True)
     phylum = models.CharField(max_length=500, blank=True)
