@@ -26,7 +26,7 @@ class Acctax(models.Model):
     elcode = models.CharField(max_length=500, blank=True)
     gelcode = models.IntegerField(blank=True, null=True)
     iucncode = models.CharField(max_length=500, blank=True)
-    g_rank = models.CharField(max_length=500, blank=True)
+    g_rank = models.ForeignKey('GlobalRankLookup', db_column='code', blank=True, null=True)
     s_rank = models.CharField(max_length=500, blank=True)
     nativity = models.CharField(max_length=500, blank=True)
     source = models.CharField(max_length=500, blank=True)
