@@ -92,3 +92,8 @@ class StateRankLookupSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = StateRankLookup
         fields = ('id','code')
+
+class NativityLookupSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = NativityLookup
+        fields = ('n_id','nativity')

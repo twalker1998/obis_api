@@ -29,6 +29,7 @@ router.register('rankchange', RankChangeViewSet)
 router.register('spatialrefsys', SpatialRefSysViewSet)
 router.register('global_rank_lu', GlobalRankLookupViewSet)
 router.register('state_rank_lu', StateRankLookupViewSet)
+router.register('nativity_lu', NativityLookupViewSet)
 
 # View
 router.register('vwsearch', VwSearchViewSet)
