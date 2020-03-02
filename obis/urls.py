@@ -9,6 +9,7 @@ from obis.views import CoTrsViewSet, IdentificationVerificationViewSet, RankChan
 #from obis.views import VwSearchViewSet, VwSearchmvViewSet
 #from obis.views import SearchViewSet
 from obis.views import VwSearchViewSet
+from obis.views import *
 
 router = routers.SimpleRouter()
 router.register('acctax', AcctaxViewSet)
@@ -26,6 +27,7 @@ router.register('cotrs', CoTrsViewSet)
 router.register('identificationverification', IdentificationVerificationViewSet)
 router.register('rankchange', RankChangeViewSet)
 router.register('spatialrefsys', SpatialRefSysViewSet)
+router.register('global_rank_lu', GlobalRankLookupViewSet)
 
 # View
 router.register('vwsearch', VwSearchViewSet)
