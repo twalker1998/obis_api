@@ -201,6 +201,48 @@ class SpatialRefSysViewSet(obisTableViewSet):
     renderer_classes = (BrowsableAPIRenderer, JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer)
     serializer_class = SpatialRefSysSerializer
 
+class GlobalRankLookupViewSet(obisTableViewSet):
+    model = GlobalRankLookup
+    queryset = GlobalRankLookup.objects.all()
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+    renderer_classes = (BrowsableAPIRenderer, JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer)
+    serializer_class = GlobalRankLookupSerializer
+
+class StateRankLookupViewSet(obisTableViewSet):
+    model = StateRankLookup
+    queryset = StateRankLookup.objects.all()
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+    renderer_classes = (BrowsableAPIRenderer, JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer)
+    serializer_class = StateRankLookupSerializer
+
+class NativityLookupViewSet(obisTableViewSet):
+    model = NativityLookup
+    queryset = NativityLookup.objects.all()
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+    renderer_classes = (BrowsableAPIRenderer, JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer)
+    serializer_class = NativityLookupSerializer
+
+class CategoryLookupViewSet(obisTableViewSet):
+    model = CategoryLookup
+    queryset = CategoryLookup.objects.all()
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+    renderer_classes = (BrowsableAPIRenderer, JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer)
+    serializer_class = CategoryLookupSerializer
+
+class NameCategoryDescLookupViewSet(obisTableViewSet):
+    model = NameCategoryDescLookup
+    queryset = NameCategoryDescLookup.objects.all()
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+    renderer_classes = (BrowsableAPIRenderer, JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer)
+    serializer_class = NameCategoryDescLookupSerializer
+
+class NameTypeDescLookupViewSet(obisTableViewSet):
+    model = NameTypeDescLookup
+    queryset = NameTypeDescLookup.objects.all()
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+    renderer_classes = (BrowsableAPIRenderer, JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer)
+    serializer_class = NameTypeDescLookupSerializer
+
 #***************************************** OBIS DB Views ********************************************************
 class VwSearchViewSet(obisViewViewSet):
     """

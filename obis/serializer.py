@@ -26,7 +26,7 @@ class HightaxSerializer(serializers.HyperlinkedModelSerializer):
     family = serializers.CharField(source='family')
     class Meta:
          model = Hightax
-         fields = ('url','kingdom','phylum','taxclass','taxorder','family','category')
+         fields = ('url','kingdom','phylum','taxclass','taxorder','family','category','name_type_desc','name_category_desc')
 
 class SyntaxSerializer(serializers.HyperlinkedModelSerializer):    
      class Meta:
@@ -82,3 +82,33 @@ class SpatialRefSysSerializer(serializers.HyperlinkedModelSerializer):
      class Meta:
          model = SpatialRefSys
          fields = ('url','srid','auth_name','auth_srid','srtext','proj4text')
+
+class GlobalRankLookupSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = GlobalRankLookup
+        fields = ('id','code')
+
+class StateRankLookupSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = StateRankLookup
+        fields = ('id','code')
+
+class NativityLookupSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = NativityLookup
+        fields = ('n_id','nativity')
+
+class CategoryLookupSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = CategoryLookup
+        fields = ('a_id','category')
+
+class NameCategoryDescLookupSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = NameCategoryDescLookup
+        fields = ('a_id','name_category_desc')
+
+class NameTypeDescLookupSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = NameTypeDescLookup
+        fields = ('a_id','name_type_desc')
