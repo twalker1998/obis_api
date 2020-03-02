@@ -26,7 +26,7 @@ class Acctax(models.Model):
     elcode = models.CharField(max_length=500, blank=True)
     gelcode = models.IntegerField(blank=True, null=True)
     iucncode = models.CharField(max_length=500, blank=True)
-    g_rank = models.ForeignKey('GlobalRankLookup', db_column='code', blank=True, null=True)
+    g_rank = models.ForeignKey('GlobalRankLookup', db_column='g_rank', blank=True, null=True)
     s_rank = models.CharField(max_length=500, blank=True)
     nativity = models.CharField(max_length=500, blank=True)
     source = models.CharField(max_length=500, blank=True)
@@ -407,7 +407,7 @@ class GeometryColumns(models.Model):
 
 class GlobalRankLookup(models.Model):
     id = models.IntegerField(blank=False, null=False)
-    code = models.CharField(max_length=15, blank=False)
+    code = models.CharField(primary_key=True, max_length=15, blank=False)
 
     class Meta:
         managed = False

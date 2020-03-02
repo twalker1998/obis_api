@@ -83,7 +83,7 @@ class SpatialRefSysSerializer(serializers.HyperlinkedModelSerializer):
          model = SpatialRefSys
          fields = ('url','srid','auth_name','auth_srid','srtext','proj4text')
 
-class GlobalRankLookupSeralizer(serializers.HyperlinkedModelSerializer):
+class GlobalRankLookupSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = GlobalRankLookup
         fields = ('id','code')

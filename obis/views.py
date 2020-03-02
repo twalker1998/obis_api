@@ -206,7 +206,7 @@ class GlobalRankLookupViewSet(obisTableViewSet):
     queryset = GlobalRankLookup.objects.all()
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
     renderer_classes = (BrowsableAPIRenderer, JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer)
-    seralizer_class = GlobalRankSerializer
+    serializer_class = GlobalRankLookupSerializer
 
 #***************************************** OBIS DB Views ********************************************************
 class VwSearchViewSet(obisViewViewSet):
