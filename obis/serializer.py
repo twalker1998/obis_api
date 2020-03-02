@@ -26,7 +26,7 @@ class HightaxSerializer(serializers.HyperlinkedModelSerializer):
     family = serializers.CharField(source='family')
     class Meta:
          model = Hightax
-         fields = ('url','kingdom','phylum','taxclass','taxorder','family','category')
+         fields = ('url','kingdom','phylum','taxclass','taxorder','family','category','name_type_desc','name_category_desc')
 
 class SyntaxSerializer(serializers.HyperlinkedModelSerializer):    
      class Meta:
