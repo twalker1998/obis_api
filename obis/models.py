@@ -27,7 +27,7 @@ class Acctax(models.Model):
     gelcode = models.IntegerField(blank=True, null=True)
     iucncode = models.CharField(max_length=500, blank=True)
     g_rank = models.ForeignKey('GlobalRankLookup', db_column='g_rank', blank=True, null=True)
-    s_rank = models.CharField(max_length=500, blank=True)
+    s_rank = models.ForeignKey('StateRankLookup', db_column='s_rank', blank=True, null=True)
     nativity = models.CharField(max_length=500, blank=True)
     source = models.CharField(max_length=500, blank=True)
     usda_code = models.CharField(max_length=500, blank=True)
@@ -764,6 +764,15 @@ class SpatialRefSys(models.Model):
     class Meta:
         managed = False
         db_table = 'spatial_ref_sys'
+
+
+class StateRankLookup(models.Model):
+    id = models.IntegerField(blank=False, null=False)
+    code = models.CharField(primary_key=True, max_length=15, blank=False)
+
+    class Meta:
+        managed = False
+        db_table = 'state_rank_lu'
 
 
 class StStatus(models.Model):

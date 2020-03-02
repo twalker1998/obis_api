@@ -28,6 +28,7 @@ router.register('identificationverification', IdentificationVerificationViewSet)
 router.register('rankchange', RankChangeViewSet)
 router.register('spatialrefsys', SpatialRefSysViewSet)
 router.register('global_rank_lu', GlobalRankLookupViewSet)
+router.register('state_rank_lu', StateRankLookupViewSet)
 
 # View
 router.register('vwsearch', VwSearchViewSet)
