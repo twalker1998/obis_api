@@ -70,12 +70,6 @@ class APIRoot(APIView):
                                    reverse('identificationverification-list',request=request),
                                    reverse('rankchange-list',request=request),
                                    reverse('spatialrefsys-list',request=request),
-                                   reverse('global-rank-lu-list',request=request),
-                                   reverse('state-rank-lu-list',request=request),
-                                   reverse('nativity-lu-list',request=request),
-                                   reverse('category-lu-list',request=request),
-                                   reverse('name-category-lu-list',request=request),
-                                   reverse('name-type-lu-list',request=request),
                                 ]},
                         'Mongo':reverse('data-list',request=request)},
             'User Profile': {'User':reverse('user-list',request=request)}
