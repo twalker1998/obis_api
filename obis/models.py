@@ -120,6 +120,15 @@ class Bg(models.Model):
         db_table = 'bg'
 
 
+class CategoryLookup(models.Model):
+    a_id = models.IntegerField(blank=False, null=False)
+    category = models.CharField(primary_key=True, max_length=30, blank=False, null=False)
+
+    class Meta:
+        managed = False
+        db_table = 'category_lu'
+
+
 class CoTrs(models.Model):
     gid = models.IntegerField(primary_key=True)
     name = models.CharField(max_length=100, blank=True)
@@ -420,9 +429,9 @@ class Hightax(models.Model):
     taxclass = models.CharField(max_length=500, blank=True)
     taxorder = models.CharField(max_length=500, blank=True)
     family = models.CharField(primary_key=True, max_length=500)
-    category = models.CharField(max_length=500, blank=True)
-    name_type_desc = models.CharField(max_length=500, blank=True)
-    name_category_desc = models.CharField(max_length=500, blank=True)
+    category = models.ForeignKey('CategoryLookup', db_column='category', blank=True, null=True)
+    name_type_desc = models.ForeignKey('NameTypeDescLookup', db_column='name_type_desc', blank=True, null=True)
+    name_category_desc = models.ForeignKey('NameCategoryDescLookup', db_column='name_category_desc', blank=True, null=True)
 
     class Meta:
         managed = False
@@ -525,6 +534,24 @@ class LoaderVariables(models.Model):
     class Meta:
         managed = False
         db_table = 'loader_variables'
+
+
+class NameCategoryDescLookup(models.Model):
+    a_id = models.IntegerField(blank=False, null=False)
+    name_category_desc = models.CharField(primary_key=True, max_length=30, blank=False, null=False)
+
+    class Meta:
+        managed = False
+        db_table = 'name_category_desc_lu'
+
+
+class NameTypeDescLookup(models.Model):
+    a_id = models.IntegerField(blank=False, null=False)
+    name_type_desc = models.CharField(primary_key=True, max_length=30, blank=False, null=False)
+
+    class Meta:
+        managed = False
+        db_table = 'name_type_desc_lu'
 
 
 class NativityLookup(models.Model):

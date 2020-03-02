@@ -97,3 +97,18 @@ class NativityLookupSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = NativityLookup
         fields = ('n_id','nativity')
+
+class CategoryLookupSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = CategoryLookup
+        fields = ('a_id','category')
+
+class NameCategoryDescLookupSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = NameCategoryDescLookup
+        fields = ('a_id','name_category_desc')
+
+class NameTypeDescLookupSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = NameTypeDescLookup
+        fields = ('a_id','name_type_desc')
