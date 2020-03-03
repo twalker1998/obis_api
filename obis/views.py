@@ -223,6 +223,8 @@ class StateRankLookupViewSet(obisTableViewSet):
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
     renderer_classes = (BrowsableAPIRenderer, JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer)
     serializer_class = StateRankLookupSerializer
+    filter_class = StateRankLookupFilter
+    search_fields = ("id")
 
 class NativityLookupViewSet(obisTableViewSet):
     model = NativityLookup

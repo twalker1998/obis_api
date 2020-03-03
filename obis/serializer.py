@@ -95,6 +95,7 @@ class GlobalRankLookupSerializer(serializers.HyperlinkedModelSerializer):
         fields = ('id','code')
 
 class StateRankLookupSerializer(serializers.HyperlinkedModelSerializer):
+    id = serializers.CharField(source='id')
     class Meta:
         model = StateRankLookup
         fields = ('id','code')
