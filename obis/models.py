@@ -25,7 +25,7 @@ class Acctax(models.Model):
     forma = models.CharField(max_length=500, blank=True)
     elcode = models.CharField(max_length=500, blank=True)
     gelcode = models.IntegerField(blank=True, null=True)
-    iucncode = models.CharField(max_length=500, blank=True)
+    iucncode = models.ForeignKey('IUCNLookup', db_column='iucncode', blank=True, null=True)
     g_rank = models.ForeignKey('GlobalRankLookup', db_column='g_rank', blank=True, null=True)
     s_rank = models.ForeignKey('StateRankLookup', db_column='s_rank', blank=True, null=True)
     nativity = models.ForeignKey('NativityLookup', db_column='nativity', blank=True, null=True)
@@ -469,6 +469,15 @@ class Institution(models.Model):
     class Meta:
         managed = False
         db_table = 'institution'
+
+
+class IUCNLookup(models.Model):
+    code = models.CharField(primary_key=True, max_length=2, blank=False, null=False)
+    description = models.CharField(max_length=60, blank=False, null=False)
+
+    class Meta:
+        managed = False
+        db_table = 'iucn_lu'
 
 
 class Layer(models.Model):

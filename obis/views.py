@@ -1,7 +1,7 @@
 from rest_framework import viewsets, filters, serializers
 from rest_framework.renderers import BrowsableAPIRenderer, JSONPRenderer,JSONRenderer,XMLRenderer,YAMLRenderer
 from rest_framework_csv.renderers import CSVRenderer
-from obis.filters import AcctaxFilter,ComtaxFilter,OccurrenceFilter,SyntaxFilter #,SearchViewFilter
+from obis.filters import *
 from obis.models import Acctax,Comtax,Syntax,Hightax,FedStatus,StStatus,OkSwap,RankChange
 from obis.models import Occurrence,Source,Institution,County,CoTrs,IdentificationVerification
 from obis.models import *
@@ -201,12 +201,21 @@ class SpatialRefSysViewSet(obisTableViewSet):
     renderer_classes = (BrowsableAPIRenderer, JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer)
     serializer_class = SpatialRefSysSerializer
 
+class IUCNLookupViewSet(obisTableViewSet):
+    model = IUCNLookup
+    queryset = IUCNLookup.objects.all()
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+    renderer_classes = (BrowsableAPIRenderer, JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer)
+    serializer_class = IUCNLookupSerializer
+
 class GlobalRankLookupViewSet(obisTableViewSet):
     model = GlobalRankLookup
     queryset = GlobalRankLookup.objects.all()
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
     renderer_classes = (BrowsableAPIRenderer, JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer)
     serializer_class = GlobalRankLookupSerializer
+    filter_class = GlobalRankLookupFilter
+    search_fields = ("id")
 
 class StateRankLookupViewSet(obisTableViewSet):
     model = StateRankLookup
@@ -214,6 +223,8 @@ class StateRankLookupViewSet(obisTableViewSet):
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
     renderer_classes = (BrowsableAPIRenderer, JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer)
     serializer_class = StateRankLookupSerializer
+    filter_class = StateRankLookupFilter
+    search_fields = ("id")
 
 class NativityLookupViewSet(obisTableViewSet):
     model = NativityLookup
@@ -221,6 +232,8 @@ class NativityLookupViewSet(obisTableViewSet):
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
     renderer_classes = (BrowsableAPIRenderer, JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer)
     serializer_class = NativityLookupSerializer
+    filter_class = NativityLookupFilter
+    search_fields = ("n_id")
 
 class CategoryLookupViewSet(obisTableViewSet):
     model = CategoryLookup
@@ -228,6 +241,8 @@ class CategoryLookupViewSet(obisTableViewSet):
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
     renderer_classes = (BrowsableAPIRenderer, JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer)
     serializer_class = CategoryLookupSerializer
+    filter_class = CategoryLookupFilter
+    search_fields = ("a_id")
 
 class NameCategoryDescLookupViewSet(obisTableViewSet):
     model = NameCategoryDescLookup
@@ -235,6 +250,8 @@ class NameCategoryDescLookupViewSet(obisTableViewSet):
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
     renderer_classes = (BrowsableAPIRenderer, JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer)
     serializer_class = NameCategoryDescLookupSerializer
+    filter_class = NameCategoryDescLookupFilter
+    search_fields = ("a_id")
 
 class NameTypeDescLookupViewSet(obisTableViewSet):
     model = NameTypeDescLookup
@@ -242,6 +259,8 @@ class NameTypeDescLookupViewSet(obisTableViewSet):
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
     renderer_classes = (BrowsableAPIRenderer, JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer)
     serializer_class = NameTypeDescLookupSerializer
+    filter_class = NameTypeDescLookupFilter
+    search_fields = ("a_id")
 
 #***************************************** OBIS DB Views ********************************************************
 class VwSearchViewSet(obisViewViewSet):

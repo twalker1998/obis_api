@@ -1,7 +1,7 @@
 author__ = 'mstacy'
 import django_filters
 
-from models import Acctax,Comtax,Occurrence,Syntax #,SearchView
+from models import Acctax,Comtax,Occurrence,Syntax,GlobalRankLookup,StateRankLookup,NativityLookup,CategoryLookup,NameCategoryDescLookup,NameTypeDescLookup #,SearchView
 
 class AcctaxFilter(django_filters.FilterSet):
 
@@ -51,6 +51,42 @@ class SyntaxFilter(django_filters.FilterSet):
 
     class Meta:
         model = Syntax
+
+class GlobalRankLookupFilter(django_filters.FilterSet):
+    id = django_filters.NumberFilter(lookup_type='exact')
+
+    class Meta:
+        model = GlobalRankLookup
+
+class StateRankLookupFilter(django_filters.FilterSet):
+    id = django_filters.NumberFilter(lookup_type='exact')
+
+    class Meta:
+        model = StateRankLookup
+
+class NativityLookupFilter(django_filters.FilterSet):
+    n_id = django_filters.NumberFilter(lookup_type='exact')
+
+    class Meta:
+        model = NativityLookup
+
+class CategoryLookupFilter(django_filters.FilterSet):
+    a_id = django_filters.NumberFilter(lookup_type='exact')
+
+    class Meta:
+        model = CategoryLookup
+
+class NameCategoryDescLookupFilter(django_filters.FilterSet):
+    a_id = django_filters.NumberFilter(lookup_type='exact')
+
+    class Meta:
+        model = NameCategoryDescLookup
+
+class NameTypeDescLookupFilter(django_filters.FilterSet):
+    a_id = django_filters.NumberFilter(lookup_type='exact')
+
+    class Meta:
+        model = NameTypeDescLookup
 
 """
 class SearchViewFilter(django_filters.FilterSet):

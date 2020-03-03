@@ -83,32 +83,43 @@ class SpatialRefSysSerializer(serializers.HyperlinkedModelSerializer):
          model = SpatialRefSys
          fields = ('url','srid','auth_name','auth_srid','srtext','proj4text')
 
+class IUCNLookupSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = IUCNLookup
+        fields = ('code','description')
+
 class GlobalRankLookupSerializer(serializers.HyperlinkedModelSerializer):
+    id = serializers.CharField(source='id')
     class Meta:
         model = GlobalRankLookup
         fields = ('id','code')
 
 class StateRankLookupSerializer(serializers.HyperlinkedModelSerializer):
+    id = serializers.CharField(source='id')
     class Meta:
         model = StateRankLookup
         fields = ('id','code')
 
 class NativityLookupSerializer(serializers.HyperlinkedModelSerializer):
+    n_id = serializers.CharField(source='n_id')
     class Meta:
         model = NativityLookup
         fields = ('n_id','nativity')
 
 class CategoryLookupSerializer(serializers.HyperlinkedModelSerializer):
+    a_id = serializers.CharField(source='a_id')
     class Meta:
         model = CategoryLookup
         fields = ('a_id','category')
 
 class NameCategoryDescLookupSerializer(serializers.HyperlinkedModelSerializer):
+    a_id = serializers.CharField(source="a_id")
     class Meta:
         model = NameCategoryDescLookup
         fields = ('a_id','name_category_desc')
 
 class NameTypeDescLookupSerializer(serializers.HyperlinkedModelSerializer):
+    a_id = serializers.CharField(source="a_id")
     class Meta:
         model = NameTypeDescLookup
         fields = ('a_id','name_type_desc')
