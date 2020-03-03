@@ -1,7 +1,7 @@
 from rest_framework import viewsets, filters, serializers
 from rest_framework.renderers import BrowsableAPIRenderer, JSONPRenderer,JSONRenderer,XMLRenderer,YAMLRenderer
 from rest_framework_csv.renderers import CSVRenderer
-from obis.filters import AcctaxFilter,ComtaxFilter,OccurrenceFilter,SyntaxFilter #,SearchViewFilter
+from obis.filters import *
 from obis.models import Acctax,Comtax,Syntax,Hightax,FedStatus,StStatus,OkSwap,RankChange
 from obis.models import Occurrence,Source,Institution,County,CoTrs,IdentificationVerification
 from obis.models import *
@@ -214,6 +214,8 @@ class GlobalRankLookupViewSet(obisTableViewSet):
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
     renderer_classes = (BrowsableAPIRenderer, JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer)
     serializer_class = GlobalRankLookupSerializer
+    filter_class = GlobalRankLookupFilter
+    search_fields = ("id")
 
 class StateRankLookupViewSet(obisTableViewSet):
     model = StateRankLookup

@@ -1,7 +1,7 @@
 author__ = 'mstacy'
 import django_filters
 
-from models import Acctax,Comtax,Occurrence,Syntax #,SearchView
+from models import Acctax,Comtax,Occurrence,Syntax,GlobalRankLookup #,SearchView
 
 class AcctaxFilter(django_filters.FilterSet):
 
@@ -51,6 +51,12 @@ class SyntaxFilter(django_filters.FilterSet):
 
     class Meta:
         model = Syntax
+
+class GlobalRankLookupFilter(django_filters.FilterSet):
+    id = django_filters.NumberFilter(lookup_type='exact')
+
+    class Meta:
+        model = GlobalRankLookup
 
 """
 class SearchViewFilter(django_filters.FilterSet):
