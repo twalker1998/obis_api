@@ -113,6 +113,7 @@ class CategoryLookupSerializer(serializers.HyperlinkedModelSerializer):
         fields = ('a_id','category')
 
 class NameCategoryDescLookupSerializer(serializers.HyperlinkedModelSerializer):
+    a_id = serializers.CharField(source="a_id")
     class Meta:
         model = NameCategoryDescLookup
         fields = ('a_id','name_category_desc')

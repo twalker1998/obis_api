@@ -250,6 +250,8 @@ class NameCategoryDescLookupViewSet(obisTableViewSet):
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
     renderer_classes = (BrowsableAPIRenderer, JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer)
     serializer_class = NameCategoryDescLookupSerializer
+    filter_class = NameCategoryDescLookupFilter
+    search_fields = ("a_id")
 
 class NameTypeDescLookupViewSet(obisTableViewSet):
     model = NameTypeDescLookup
