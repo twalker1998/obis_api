@@ -89,6 +89,7 @@ class IUCNLookupSerializer(serializers.HyperlinkedModelSerializer):
         fields = ('code','description')
 
 class GlobalRankLookupSerializer(serializers.HyperlinkedModelSerializer):
+    id = serializers.CharField(source='id')
     class Meta:
         model = GlobalRankLookup
         fields = ('id','code')
