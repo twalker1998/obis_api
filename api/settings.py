@@ -113,7 +113,8 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'api.disable.DisableCSRF'
+    'api.disable.DisableCSRF',
+    'api.cors.CorsMiddleware'
 )
 
 ROOT_URLCONF = 'api.urls'
