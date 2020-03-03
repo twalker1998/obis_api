@@ -232,6 +232,8 @@ class NativityLookupViewSet(obisTableViewSet):
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
     renderer_classes = (BrowsableAPIRenderer, JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer)
     serializer_class = NativityLookupSerializer
+    filter_class = NativityLookupFilter
+    search_fields = ("n_id")
 
 class CategoryLookupViewSet(obisTableViewSet):
     model = CategoryLookup

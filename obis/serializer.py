@@ -101,6 +101,7 @@ class StateRankLookupSerializer(serializers.HyperlinkedModelSerializer):
         fields = ('id','code')
 
 class NativityLookupSerializer(serializers.HyperlinkedModelSerializer):
+    n_id = serializers.CharField(source='n_id')
     class Meta:
         model = NativityLookup
         fields = ('n_id','nativity')
