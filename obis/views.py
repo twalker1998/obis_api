@@ -207,6 +207,8 @@ class IUCNLookupViewSet(obisTableViewSet):
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
     renderer_classes = (BrowsableAPIRenderer, JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer)
     serializer_class = IUCNLookupSerializer
+    filter_class = IUCNLookupFilter
+    search_fields = ("code")
 
 class GlobalRankLookupViewSet(obisTableViewSet):
     model = GlobalRankLookup

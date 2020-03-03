@@ -1,7 +1,7 @@
 author__ = 'mstacy'
 import django_filters
 
-from models import Acctax,Comtax,Occurrence,Syntax,GlobalRankLookup,StateRankLookup,NativityLookup,CategoryLookup,NameCategoryDescLookup,NameTypeDescLookup #,SearchView
+from models import Acctax,Comtax,Occurrence,Syntax,IUCNLookup,GlobalRankLookup,StateRankLookup,NativityLookup,CategoryLookup,NameCategoryDescLookup,NameTypeDescLookup #,SearchView
 
 class AcctaxFilter(django_filters.FilterSet):
 
@@ -51,6 +51,12 @@ class SyntaxFilter(django_filters.FilterSet):
 
     class Meta:
         model = Syntax
+
+class IUCNLookupFilter(django_filters.FilterSet):
+    code = django_filters.CharFilter(lookup_type='exact')
+
+    class Meta:
+        model = IUCNLookup
 
 class GlobalRankLookupFilter(django_filters.FilterSet):
     id = django_filters.NumberFilter(lookup_type='exact')
