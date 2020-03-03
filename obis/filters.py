@@ -1,7 +1,7 @@
 author__ = 'mstacy'
 import django_filters
 
-from models import Acctax,Comtax,Occurrence,Syntax,GlobalRankLookup,StateRankLookup,NativityLookup #,SearchView
+from models import Acctax,Comtax,Occurrence,Syntax,GlobalRankLookup,StateRankLookup,NativityLookup,CategoryLookup #,SearchView
 
 class AcctaxFilter(django_filters.FilterSet):
 
@@ -69,6 +69,12 @@ class NativityLookupFilter(django_filters.FilterSet):
 
     class Meta:
         model = NativityLookup
+
+class CategoryLookupFilter(django_filters.FilterSet):
+    a_id = django_filters.NumberFilter(lookup_type='exact')
+
+    class Meta:
+        model = CategoryLookup
 
 """
 class SearchViewFilter(django_filters.FilterSet):

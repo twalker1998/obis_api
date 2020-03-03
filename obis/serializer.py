@@ -107,6 +107,7 @@ class NativityLookupSerializer(serializers.HyperlinkedModelSerializer):
         fields = ('n_id','nativity')
 
 class CategoryLookupSerializer(serializers.HyperlinkedModelSerializer):
+    a_id = serializers.CharField(source='a_id')
     class Meta:
         model = CategoryLookup
         fields = ('a_id','category')
