@@ -259,6 +259,8 @@ class NameTypeDescLookupViewSet(obisTableViewSet):
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
     renderer_classes = (BrowsableAPIRenderer, JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer)
     serializer_class = NameTypeDescLookupSerializer
+    filter_class = NameTypeDescLookupFilter
+    search_fields = ("a_id")
 
 #***************************************** OBIS DB Views ********************************************************
 class VwSearchViewSet(obisViewViewSet):
