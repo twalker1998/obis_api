@@ -201,6 +201,13 @@ class SpatialRefSysViewSet(obisTableViewSet):
     renderer_classes = (BrowsableAPIRenderer, JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer)
     serializer_class = SpatialRefSysSerializer
 
+class IUCNLookupViewSet(obisTableViewSet):
+    model = IUCNLookup
+    queryset = IUCNLookup.objects.all()
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+    renderer_classes = (BrowsableAPIRenderer, JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer)
+    serializer_class = IUCNLookupSerializer
+
 class GlobalRankLookupViewSet(obisTableViewSet):
     model = GlobalRankLookup
     queryset = GlobalRankLookup.objects.all()
