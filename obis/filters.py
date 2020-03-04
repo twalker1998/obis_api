@@ -53,7 +53,7 @@ class SyntaxFilter(django_filters.FilterSet):
         model = Syntax
 
 class IUCNLookupFilter(django_filters.FilterSet):
-    code = django_filters.CharFilter(lookup_type='exact')
+    id = django_filters.NumberFilter(lookup_type='exact')
 
     class Meta:
         model = IUCNLookup
