@@ -208,7 +208,7 @@ class IUCNLookupViewSet(obisTableViewSet):
     renderer_classes = (BrowsableAPIRenderer, JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer)
     serializer_class = IUCNLookupSerializer
     filter_class = IUCNLookupFilter
-    search_fields = ("code")
+    search_fields = ("id")
 
 class GlobalRankLookupViewSet(obisTableViewSet):
     model = GlobalRankLookup
