@@ -474,6 +474,7 @@ class Institution(models.Model):
 class IUCNLookup(models.Model):
     code = models.CharField(primary_key=True, max_length=2, blank=False, null=False)
     description = models.CharField(max_length=60, blank=False, null=False)
+    id = models.IntegerField(blank=False, null=False)
 
     class Meta:
         managed = False
