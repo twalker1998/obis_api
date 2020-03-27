@@ -10,11 +10,12 @@ class AcctaxSerializer(serializers.HyperlinkedModelSerializer):
         model = Acctax
 	fields = ('url','a_id','acode','sname','scientificnameauthorship','family','genus','species','subspecies','variety','forma','elcode','gelcode','iucncode','g_rank','s_rank','nativity','source','usda_code','tsn','fed_status','st_status','swap','scientificname','sspscientificnameauthorship','varscientificnameauthorship','formascientificnameauthorship','tracked')
 
-class ComtaxSerializer(serializers.HyperlinkedModelSerializer): #ModelSerializer):
-    primary_name = serializers.CharField(source='primary_name')
+class ComtaxSerializer(serializers.HyperlinkedModelSerializer):
+    #primary_name = serializers.CharField(source='primary_name')
+    c_id = serializers.CharField(source='c_id')
     class Meta:
-        model= Comtax
-        fields = ['url','c_id','acode','vernacularname','primary_name']
+        model = Comtax
+        fields = ('url','c_id','acode','vernacularname','primary_name')
 
 class SourceSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:

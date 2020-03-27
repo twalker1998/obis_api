@@ -54,9 +54,9 @@ class ComtaxViewSet(obisTableViewSet):
     """
     model = Comtax
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
-    renderer_classes = (BrowsableAPIRenderer, JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer)
+    renderer_classes = (BrowsableAPIRenderer,JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer)
     queryset = Comtax.objects.all()
-    serializer_class =  ComtaxSerializer
+    serializer_class = ComtaxSerializer
     filter_class = ComtaxFilter
     search_fields = ('acode','vernacularname','primary_name')
 
