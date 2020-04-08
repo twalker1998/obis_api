@@ -98,6 +98,14 @@ class Addrfeat(models.Model):
         managed = False
         db_table = 'addrfeat'
 
+class BasisOfRecordLookup(models.Model):
+    id = models.IntegerField(blank=False, null=False)
+    basisofrecord = models.CharField(primary_key=True, max_length=50, blank=False, null=False)
+
+    class Meta:
+        managed = False
+        db_table = 'basisofrecord_lu'
+
 
 class Bg(models.Model):
     gid = models.IntegerField()
@@ -152,8 +160,8 @@ class Comtax(models.Model):
 
 
 class County(models.Model):
-    county = models.CharField(unique=True, max_length=25, blank=True)
-    gid = models.IntegerField(primary_key=True)
+    county = models.CharField(primary_key=True, unique=True, max_length=25, blank=True)
+    gid = models.IntegerField(blank=False, null=False)
 
     class Meta:
         managed = False
@@ -574,13 +582,12 @@ class NativityLookup(models.Model):
 
 
 class Occurrence(models.Model):
-    resourcetype = models.CharField(max_length=20, blank=True)
+    resourcetype = models.ForeignKey('ResourceTypeLookup', db_column='resourcetype', blank=True, null=True)
     gid = models.IntegerField(primary_key=True)
     acode = models.ForeignKey(Acctax, db_column='acode', blank=True, null=True)
     eventdate = models.DateField(blank=True, null=True)
     recordedby = models.CharField(max_length=500, blank=True)
-    # county = models.ForeignKey(County, db_column='county', blank=True, null=True)
-    county = models.CharField(max_length=25, blank=True, null=True)
+    county = models.ForeignKey(County, db_column='county', blank=True, null=True)
     locality = models.CharField(max_length=500, blank=True)
     behavior = models.CharField(max_length=500, blank=True)
     habitat = models.CharField(max_length=500, blank=True)
@@ -594,7 +601,7 @@ class Occurrence(models.Model):
     occurrenceremarks = models.CharField(max_length=500, blank=True)
     taxonremarks = models.CharField(max_length=500, blank=True)
     institutioncode = models.ForeignKey(Institution, db_column='institutioncode', blank=True, null=True)
-    basisofrecord = models.CharField(max_length=500, blank=True)
+    basisofrecord = models.ForeignKey(BasisOfRecordLookup, db_column='basisofrecord', blank=True, null=True)
     catalognumber = models.CharField(max_length=500, blank=True)
     othercatalognumbers = models.CharField(max_length=500, blank=True)
     typestatus = models.CharField(max_length=25, blank=True)
@@ -780,6 +787,14 @@ class RasterOverviews(models.Model):
     class Meta:
         managed = False
         db_table = 'raster_overviews'
+
+class ResourceTypeLookup(models.Model):
+    id = models.IntegerField(blank=False, null=False)
+    resourcetype = models.CharField(primary_key=True, max_length=50, blank=False, null=False)
+
+    class Meta:
+        managed = False
+        db_table = 'resourcetype_lu'
 
 
 class SecondaryUnitLookup(models.Model):

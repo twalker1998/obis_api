@@ -60,9 +60,10 @@ class InstitutionSerializer(serializers.HyperlinkedModelSerializer):
          fields = ('url','institutioncode','institution','curator','email','telephone','address','city','state','country','zipcode','institutiontype','link')
 
 class CountySerializer(serializers.HyperlinkedModelSerializer):
-     class Meta:
-         model = County
-         fields = ('url','county','fips')
+    county = serializers.CharField(source='county')
+    class Meta:
+        model = County
+        fields = ('url','county','gid')
 
 class IdentificationVerificationSerializer(serializers.HyperlinkedModelSerializer):
      class Meta:
@@ -125,3 +126,15 @@ class NameTypeDescLookupSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = NameTypeDescLookup
         fields = ('a_id','name_type_desc')
+
+class BasisOfRecordLookupSerializer(serializers.HyperlinkedModelSerializer):
+    id = serializers.CharField(source='id')
+    class Meta:
+        model = BasisOfRecordLookup
+        fields = ('id','basisofrecord')
+
+class ResourceTypeLookupSerializer(serializers.HyperlinkedModelSerializer):
+    id = serializers.CharField(source='id')
+    class Meta:
+        model = ResourceTypeLookup
+        fields = ('id','resourcetype')

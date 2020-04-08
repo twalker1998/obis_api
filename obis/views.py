@@ -160,6 +160,8 @@ class CountyViewSet(obisTableViewSet):
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
     renderer_classes = (BrowsableAPIRenderer, JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer)
     serializer_class = CountySerializer
+    filter_class = CountyFilter
+    search_fields = ('gid')
 
 class CoTrsViewSet(obisTableViewSet):
     """
@@ -263,6 +265,24 @@ class NameTypeDescLookupViewSet(obisTableViewSet):
     serializer_class = NameTypeDescLookupSerializer
     filter_class = NameTypeDescLookupFilter
     search_fields = ("a_id")
+
+class BasisOfRecordLookupViewSet(obisTableViewSet):
+    model = BasisOfRecordLookup
+    queryset = BasisOfRecordLookup.objects.all()
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+    renderer_classes = (BrowsableAPIRenderer, JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer)
+    serializer_class = BasisOfRecordLookupSerializer
+    filter_class = BasisOfRecordLookupFilter
+    search_fields = ("id")
+
+class ResourceTypeLookupViewSet(obisTableViewSet):
+    model = ResourceTypeLookup
+    queryset = ResourceTypeLookup.objects.all()
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+    renderer_classes = (BrowsableAPIRenderer, JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer)
+    serializer_class = ResourceTypeLookupSerializer
+    filter_class = ResourceTypeLookupFilter
+    search_fields = ("id")
 
 #***************************************** OBIS DB Views ********************************************************
 class VwSearchViewSet(obisViewViewSet):
