@@ -152,8 +152,7 @@ class Comtax(models.Model):
 
 
 class County(models.Model):
-    county = models.CharField(unique=True, max_length=25, blank=True)
-    gid = models.IntegerField(primary_key=True)
+    county = models.CharField(primary_key=True, unique=True, max_length=25, blank=True)
 
     class Meta:
         managed = False
