@@ -98,6 +98,14 @@ class Addrfeat(models.Model):
         managed = False
         db_table = 'addrfeat'
 
+class BasisOfRecordLookup(models.Model):
+    id = models.IntegerField(blank=False, null=False)
+    basisofrecord = models.CharField(primary_key=True, max_length=50, blank=False, null=False)
+
+    class Meta:
+        managed = False
+        db_table = 'basisofrecord_lu'
+
 
 class Bg(models.Model):
     gid = models.IntegerField()
@@ -593,7 +601,7 @@ class Occurrence(models.Model):
     occurrenceremarks = models.CharField(max_length=500, blank=True)
     taxonremarks = models.CharField(max_length=500, blank=True)
     institutioncode = models.ForeignKey(Institution, db_column='institutioncode', blank=True, null=True)
-    basisofrecord = models.CharField(max_length=500, blank=True)
+    basisofrecord = models.ForeignKey(BasisOfRecordLookup, db_column='basisofrecord', blank=True, null=True)
     catalognumber = models.CharField(max_length=500, blank=True)
     othercatalognumbers = models.CharField(max_length=500, blank=True)
     typestatus = models.CharField(max_length=25, blank=True)

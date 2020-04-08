@@ -264,6 +264,15 @@ class NameTypeDescLookupViewSet(obisTableViewSet):
     filter_class = NameTypeDescLookupFilter
     search_fields = ("a_id")
 
+class BasisOfRecordLookupViewSet(obisTableViewSet):
+    model = BasisOfRecordLookup
+    queryset = BasisOfRecordLookup.objects.all()
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+    renderer_classes = (BrowsableAPIRenderer, JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer)
+    serializer_class = BasisOfRecordLookupSerializer
+    filter_class = BasisofRecordLookupFilter
+    search_fields = ("id")
+
 #***************************************** OBIS DB Views ********************************************************
 class VwSearchViewSet(obisViewViewSet):
     """
