@@ -94,6 +94,9 @@ class NameTypeDescLookupFilter(django_filters.FilterSet):
     class Meta:
         model = NameTypeDescLookup
 
+class CountyFilter(django_filters.FilterSet):
+    gid = django_filters.NumberFilter(lookup_type='exact')
+
 """
 class SearchViewFilter(django_filters.FilterSet):
     a_id = django_filters.NumberFilter(lookup_type='exact')

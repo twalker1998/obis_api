@@ -160,6 +160,8 @@ class CountyViewSet(obisTableViewSet):
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
     renderer_classes = (BrowsableAPIRenderer, JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer)
     serializer_class = CountySerializer
+    filter_class = CountyFilter
+    search_fields = ('gid')
 
 class CoTrsViewSet(obisTableViewSet):
     """
