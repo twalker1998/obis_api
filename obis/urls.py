@@ -34,6 +34,8 @@ router.register('nativity_lu', NativityLookupViewSet)
 router.register('category_lu', CategoryLookupViewSet)
 router.register('name_category_desc_lu', NameCategoryDescLookupViewSet)
 router.register('name_type_desc_lu', NameTypeDescLookupViewSet)
+router.register('basisofrecord_lu', BasisOfRecordLookupViewSet)
+router.register('resourcetype_lu', ResourceTypeLookupViewSet)
 
 # View
 router.register('vwsearch', VwSearchViewSet)
