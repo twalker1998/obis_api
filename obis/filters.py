@@ -100,6 +100,18 @@ class CountyFilter(django_filters.FilterSet):
     class Meta:
         model = County
 
+class BasisOfRecordLookupFilter(django_filters.FilterSet):
+    id = django_filters.NumberFilter(lookup_type='exact')
+
+    class Meta:
+        model = BasisOfRecordLookup
+
+class ResourceTypeLookupFilter(django_filters.FilterSet):
+    id = django_filters.NumberFilter(lookup_type='exact')
+
+    class Meta:
+        model = ResourceTypeLookup
+
 """
 class SearchViewFilter(django_filters.FilterSet):
     a_id = django_filters.NumberFilter(lookup_type='exact')

@@ -126,3 +126,15 @@ class NameTypeDescLookupSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = NameTypeDescLookup
         fields = ('a_id','name_type_desc')
+
+class BasisOfRecordLookupSerializer(serializers.HyperlinkedModelSerializer):
+    id = serializers.CharField(source='id')
+    class Meta:
+        model = BasisOfRecordLookup
+        fields = ('id','basisofrecord')
+
+class ResourceTypeLookupSerializer(serializers.HyperlinkedModelSerializer):
+    id = serializers.CharField(source='id')
+    class Meta:
+        model = ResourceTypeLookup
+        fields = ('id','resourcetype')
