@@ -63,7 +63,7 @@ class CountySerializer(serializers.HyperlinkedModelSerializer):
     county = serializers.CharField(source='county')
     class Meta:
         model = County
-        fields = ('url','county')
+        fields = ('url','county','gid')
 
 class IdentificationVerificationSerializer(serializers.HyperlinkedModelSerializer):
      class Meta:
