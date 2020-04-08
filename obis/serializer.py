@@ -60,9 +60,10 @@ class InstitutionSerializer(serializers.HyperlinkedModelSerializer):
          fields = ('url','institutioncode','institution','curator','email','telephone','address','city','state','country','zipcode','institutiontype','link')
 
 class CountySerializer(serializers.HyperlinkedModelSerializer):
-     class Meta:
-         model = County
-         fields = ('url','county','gid')
+    county = serializers.CharField(source='county')
+    class Meta:
+        model = County
+        fields = ('url','county','gid')
 
 class IdentificationVerificationSerializer(serializers.HyperlinkedModelSerializer):
      class Meta:

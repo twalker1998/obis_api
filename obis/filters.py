@@ -1,7 +1,7 @@
 author__ = 'mstacy'
 import django_filters
 
-from models import Acctax,Comtax,Occurrence,Syntax,IUCNLookup,GlobalRankLookup,StateRankLookup,NativityLookup,CategoryLookup,NameCategoryDescLookup,NameTypeDescLookup,BasisOfRecordLookup,ResourceTypeLookup #,SearchView
+from models import Acctax,Comtax,County,Occurrence,Syntax,IUCNLookup,GlobalRankLookup,StateRankLookup,NativityLookup,CategoryLookup,NameCategoryDescLookup,NameTypeDescLookup #,SearchView
 
 class AcctaxFilter(django_filters.FilterSet):
 
@@ -93,6 +93,12 @@ class NameTypeDescLookupFilter(django_filters.FilterSet):
 
     class Meta:
         model = NameTypeDescLookup
+
+class CountyFilter(django_filters.FilterSet):
+    gid = django_filters.NumberFilter(lookup_type='exact')
+
+    class Meta:
+        model = County
 
 class BasisOfRecordLookupFilter(django_filters.FilterSet):
     id = django_filters.NumberFilter(lookup_type='exact')
