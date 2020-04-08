@@ -582,8 +582,7 @@ class NativityLookup(models.Model):
 
 
 class Occurrence(models.Model):
-    resourcetype = models.CharField(max_length=20, blank=True)
-    # resourcetype = models.ForeignKey(ResourceTypeLookup, db_column='resourcetype', blank=True, null=True)
+    resourcetype = models.ForeignKey('ResourceTypeLookup', db_column='resourcetype', blank=True, null=True)
     gid = models.IntegerField(primary_key=True)
     acode = models.ForeignKey(Acctax, db_column='acode', blank=True, null=True)
     eventdate = models.DateField(blank=True, null=True)
