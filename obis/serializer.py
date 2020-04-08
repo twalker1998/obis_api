@@ -131,3 +131,9 @@ class BasisOfRecordLookupSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = BasisOfRecordLookup
         fields = ('id','basisofrecord')
+
+class ResourceTypeLookupSerializer(serializers.HyperlinkedModelSerializer):
+    id = serializers.CharField(source='id')
+    class Meta:
+        model = ResourceTypeLookup
+        fields = ('id','resourcetype')

@@ -270,7 +270,16 @@ class BasisOfRecordLookupViewSet(obisTableViewSet):
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
     renderer_classes = (BrowsableAPIRenderer, JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer)
     serializer_class = BasisOfRecordLookupSerializer
-    filter_class = BasisofRecordLookupFilter
+    filter_class = BasisOfRecordLookupFilter
+    search_fields = ("id")
+
+class ResourceTypeLookupViewSet(obisTableViewSet):
+    model = ResourceTypeLookup
+    queryset = ResourceTypeLookup.objects.all()
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+    renderer_classes = (BrowsableAPIRenderer, JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer)
+    serializer_class = ResourceTypeLookupSerializer
+    filter_class = ResourceTypeLookupFilter
     search_fields = ("id")
 
 #***************************************** OBIS DB Views ********************************************************

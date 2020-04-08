@@ -582,7 +582,7 @@ class NativityLookup(models.Model):
 
 
 class Occurrence(models.Model):
-    resourcetype = models.CharField(max_length=20, blank=True)
+    resourcetype = models.ForeignKey(ResourceTypeLookup, db_column='resourcetype', blank=True, null=True)
     gid = models.IntegerField(primary_key=True)
     acode = models.ForeignKey(Acctax, db_column='acode', blank=True, null=True)
     eventdate = models.DateField(blank=True, null=True)
@@ -787,6 +787,14 @@ class RasterOverviews(models.Model):
     class Meta:
         managed = False
         db_table = 'raster_overviews'
+
+class ResourceTypeLookup(models.Model):
+    id = models.IntegerField(blank=False, null=False)
+    resourcetype = models.CharField(primary_key=True, max_length=50, blank=False, null=False)
+
+    class Meta:
+        managed = False
+        db_table = 'resourcetype_lu'
 
 
 class SecondaryUnitLookup(models.Model):
