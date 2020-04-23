@@ -129,7 +129,7 @@ class OccurrenceViewSet(obisTableViewSet):
     renderer_classes = (BrowsableAPIRenderer, JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer)
     serializer_class = OccurenceSerializer
     filter_class = OccurrenceFilter
-    search_fields = ('acode')
+    search_fields = ('acode','catalognumber')
 
 class SourceViewSet(obisTableViewSet):
     """
