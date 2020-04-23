@@ -41,6 +41,7 @@ class ComtaxFilter(django_filters.FilterSet):
 
 class OccurrenceFilter(django_filters.FilterSet):
     acode = django_filters.CharFilter(lookup_type='exact')
+    catalognumber = django_filters.CharFilter(lookup_type='icontains')
 
     class Meta:
         model = Occurrence
