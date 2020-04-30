@@ -319,6 +319,15 @@ class DPopulationViewSet(obisTableViewSet):
     renderer_classes = (BrowsableAPIRenderer, JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer)
     serializer_class = DPopulationSerializer
 
+class DistributionDataViewSet(obisTableViewSet):
+    model = DistributionData
+    queryset = DistributionData.objects.all()
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+    renderer_classes = (BrowsableAPIRenderer, JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer)
+    serializer_class = DistributionDataSerializer
+    filter_class = DistributionDataFilter
+    search_fields = ("acode")
+
 #***************************************** OBIS DB Views ********************************************************
 class VwSearchViewSet(obisViewViewSet):
     """

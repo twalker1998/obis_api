@@ -273,6 +273,17 @@ class DirectionLookup(models.Model):
         db_table = 'direction_lookup'
 
 
+class DistributionData(models.Model):
+    d_id = models.IntegerField(primary_key=True, blank=False, null=False)
+    acode = models.ForeignKey(Acctax, db_column='acode', blank=True, null=True)
+    elcode = models.CharField(max_length=50, blank=True, null=True)
+    origin = models.ForeignKey(DOrigin, db_column='origin', blank=True, null=True)
+    regularity = models.ForeignKey(DRegularity, db_column='regularity', blank=True, null=True)
+    dist_confidence = models.ForeignKey(DDistConfidence, db_column='dist_confidence', blank=True, null=True)
+    presence_absence = models.ForeignKey(DPresenceAbsence, db_column='presence_absence', blank=True, null=True)
+    population = models.ForeignKey(DPopulation, db_column='population', blank=True, null=True)
+
+
 class Edges(models.Model):
     gid = models.IntegerField(primary_key=True)
     statefp = models.CharField(max_length=2, blank=True)

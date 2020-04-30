@@ -41,6 +41,7 @@ router.register('d_regularity', DRegularityViewSet)
 router.register('d_dist_confidence', DDistConfidenceViewSet)
 router.register('d_presence_absence', DPresenceAbsenceViewSet)
 router.register('d_population', DPopulationViewSet)
+router.register('distribution_data', DistributionDataViewSet)
 
 # View
 router.register('vwsearch', VwSearchViewSet)
