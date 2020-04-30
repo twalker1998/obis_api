@@ -66,9 +66,10 @@ class CountySerializer(serializers.HyperlinkedModelSerializer):
         fields = ('url','county','gid')
 
 class IdentificationVerificationSerializer(serializers.HyperlinkedModelSerializer):
-     class Meta:
-         model = IdentificationVerification
-         fields = ('url','pkey','catalognumber','identifiedby','identificationremarks','datalastmodified','identifiedacode','gid')
+    pkey = serializers.CharField(source='pkey')
+    class Meta:
+        model = IdentificationVerification
+        fields = ('url','pkey','catalognumber','identifiedby','identificationremarks','datalastmodified','identifiedacode','gid')
 
 class CoTrsSerializer(serializers.HyperlinkedModelSerializer):
      class Meta:
