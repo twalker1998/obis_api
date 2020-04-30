@@ -219,7 +219,7 @@ class Cousub(models.Model):
         db_table = 'cousub'
 
 
-class DOriginLookup(models.Model):
+class DOrigin(models.Model):
     d_origin_id = models.IntegerField(primary_key=True, blank=False, null=False)
     origin = models.CharField(max_length=30, blank=True, null=True)
 
