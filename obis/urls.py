@@ -37,6 +37,7 @@ router.register('name_type_desc_lu', NameTypeDescLookupViewSet)
 router.register('basisofrecord_lu', BasisOfRecordLookupViewSet)
 router.register('resourcetype_lu', ResourceTypeLookupViewSet)
 router.register('d_origin', DOriginViewSet)
+router.register('d_regularity', DRegularityViewSet)
 
 # View
 router.register('vwsearch', VwSearchViewSet)

@@ -144,3 +144,9 @@ class DOriginSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = DOrigin
         fields = ('d_origin_id','origin')
+
+class DRegularitySerializer(serializers.HyperlinkedModelSerializer):
+    regularity = serializers.CharField(source='regularity')
+    class Meta:
+        model = DRegularity
+        fields = ('d_regularity_id','regularity')

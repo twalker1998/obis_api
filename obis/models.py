@@ -228,6 +228,15 @@ class DOrigin(models.Model):
         db_table = 'd_origin'
 
 
+class DRegularity(models.Model):
+    d_regularity_id = models.IntegerField(primary_key=True, blank=False, null=False)
+    regularity = models.CharField(max_length=50, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'd_regularity'
+
+
 class DirectionLookup(models.Model):
     name = models.CharField(primary_key=True, max_length=20)
     abbrev = models.CharField(max_length=3, blank=True)
