@@ -138,3 +138,9 @@ class ResourceTypeLookupSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = ResourceTypeLookup
         fields = ('id','resourcetype')
+
+class DOriginLookupSerializer(serializers.HyperlinkedModelSerializer):
+    origin = serializers.CharField(source='origin')
+    class Meta:
+        model = DOriginLookup
+        fields = ('d_origin_id','origin')

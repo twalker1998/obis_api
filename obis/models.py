@@ -219,6 +219,15 @@ class Cousub(models.Model):
         db_table = 'cousub'
 
 
+class DOriginLookup(models.Model):
+    d_origin_id = models.IntegerField(primary_key=True, blank=False, null=False)
+    origin = models.CharField(max_length=30, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'd_origin'
+
+
 class DirectionLookup(models.Model):
     name = models.CharField(primary_key=True, max_length=20)
     abbrev = models.CharField(max_length=3, blank=True)

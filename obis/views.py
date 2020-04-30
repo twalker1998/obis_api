@@ -284,6 +284,13 @@ class ResourceTypeLookupViewSet(obisTableViewSet):
     filter_class = ResourceTypeLookupFilter
     search_fields = ("id")
 
+class DOriginLookupViewSet(obisTableViewSet):
+    model = DOriginLookup
+    queryset = DOriginLookup.objects.all()
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+    renderer_classes = (BrowsableAPIRenderer, JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer)
+    serializer_class = DOriginLookupSerializer
+
 #***************************************** OBIS DB Views ********************************************************
 class VwSearchViewSet(obisViewViewSet):
     """
