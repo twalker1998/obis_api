@@ -36,6 +36,12 @@ router.register('name_category_desc_lu', NameCategoryDescLookupViewSet)
 router.register('name_type_desc_lu', NameTypeDescLookupViewSet)
 router.register('basisofrecord_lu', BasisOfRecordLookupViewSet)
 router.register('resourcetype_lu', ResourceTypeLookupViewSet)
+router.register('d_origin', DOriginViewSet)
+router.register('d_regularity', DRegularityViewSet)
+router.register('d_dist_confidence', DDistConfidenceViewSet)
+router.register('d_presence_absence', DPresenceAbsenceViewSet)
+router.register('d_population', DPopulationViewSet)
+router.register('distribution_data', DistributionDataViewSet)
 
 # View
 router.register('vwsearch', VwSearchViewSet)

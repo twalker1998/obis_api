@@ -1,7 +1,7 @@
 author__ = 'mstacy'
 import django_filters
 
-from models import Acctax,Comtax,County,Occurrence,Syntax,IUCNLookup,GlobalRankLookup,StateRankLookup,NativityLookup,CategoryLookup,NameCategoryDescLookup,NameTypeDescLookup,BasisOfRecordLookup,ResourceTypeLookup #,SearchView
+from models import Acctax,Comtax,County,Occurrence,Syntax,IUCNLookup,GlobalRankLookup,StateRankLookup,NativityLookup,CategoryLookup,NameCategoryDescLookup,NameTypeDescLookup,BasisOfRecordLookup,ResourceTypeLookup,DistributionData #,SearchView
 
 class AcctaxFilter(django_filters.FilterSet):
 
@@ -112,6 +112,12 @@ class ResourceTypeLookupFilter(django_filters.FilterSet):
 
     class Meta:
         model = ResourceTypeLookup
+
+class DistributionDataFilter(django_filters.FilterSet):
+    acode = django_filters.CharFilter(lookup_type='exact')
+
+    class Meta:
+        model = DistributionData
 
 """
 class SearchViewFilter(django_filters.FilterSet):

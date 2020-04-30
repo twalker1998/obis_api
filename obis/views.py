@@ -284,6 +284,50 @@ class ResourceTypeLookupViewSet(obisTableViewSet):
     filter_class = ResourceTypeLookupFilter
     search_fields = ("id")
 
+class DOriginViewSet(obisTableViewSet):
+    model = DOrigin
+    queryset = DOrigin.objects.all()
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+    renderer_classes = (BrowsableAPIRenderer, JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer)
+    serializer_class = DOriginSerializer
+
+class DRegularityViewSet(obisTableViewSet):
+    model = DRegularity
+    queryset = DRegularity.objects.all()
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+    renderer_classes = (BrowsableAPIRenderer, JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer)
+    serializer_class = DRegularitySerializer
+
+class DDistConfidenceViewSet(obisTableViewSet):
+    model = DDistConfidence
+    queryset = DDistConfidence.objects.all()
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+    renderer_classes = (BrowsableAPIRenderer, JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer)
+    serializer_class = DDistConfidenceSerializer
+
+class DPresenceAbsenceViewSet(obisTableViewSet):
+    model = DPresenceAbsence
+    queryset = DPresenceAbsence.objects.all()
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+    renderer_classes = (BrowsableAPIRenderer, JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer)
+    serializer_class = DPresenceAbsenceSerializer
+
+class DPopulationViewSet(obisTableViewSet):
+    model = DPopulation
+    queryset = DPopulation.objects.all()
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+    renderer_classes = (BrowsableAPIRenderer, JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer)
+    serializer_class = DPopulationSerializer
+
+class DistributionDataViewSet(obisTableViewSet):
+    model = DistributionData
+    queryset = DistributionData.objects.all()
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+    renderer_classes = (BrowsableAPIRenderer, JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer)
+    serializer_class = DistributionDataSerializer
+    filter_class = DistributionDataFilter
+    search_fields = ("acode")
+
 #***************************************** OBIS DB Views ********************************************************
 class VwSearchViewSet(obisViewViewSet):
     """

@@ -219,6 +219,51 @@ class Cousub(models.Model):
         db_table = 'cousub'
 
 
+class DDistConfidence(models.Model):
+    d_dist_confidence_id = models.IntegerField(primary_key=True, blank=False, null=False)
+    dist_confidence = models.CharField(max_length=50, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'd_dist_confidence'
+
+
+class DOrigin(models.Model):
+    d_origin_id = models.IntegerField(primary_key=True, blank=False, null=False)
+    origin = models.CharField(max_length=30, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'd_origin'
+
+
+class DPopulation(models.Model):
+    d_population_id = models.IntegerField(primary_key=True, blank=False, null=False)
+    population = models.CharField(max_length=30, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'd_population'
+
+
+class DPresenceAbsence(models.Model):
+    d_presence_absence_id = models.IntegerField(primary_key=True, blank=False, null=False)
+    presence_absence = models.CharField(max_length=30, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'd_presence_absence'
+
+
+class DRegularity(models.Model):
+    d_regularity_id = models.IntegerField(primary_key=True, blank=False, null=False)
+    regularity = models.CharField(max_length=50, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'd_regularity'
+
+
 class DirectionLookup(models.Model):
     name = models.CharField(primary_key=True, max_length=20)
     abbrev = models.CharField(max_length=3, blank=True)
@@ -226,6 +271,21 @@ class DirectionLookup(models.Model):
     class Meta:
         managed = False
         db_table = 'direction_lookup'
+
+
+class DistributionData(models.Model):
+    d_id = models.IntegerField(primary_key=True, blank=False, null=False)
+    acode = models.ForeignKey(Acctax, db_column='acode', blank=True, null=True)
+    elcode = models.CharField(max_length=50, blank=True, null=True)
+    origin = models.ForeignKey(DOrigin, db_column='origin', blank=True, null=True)
+    regularity = models.ForeignKey(DRegularity, db_column='regularity', blank=True, null=True)
+    dist_confidence = models.ForeignKey(DDistConfidence, db_column='dist_confidence', blank=True, null=True)
+    presence_absence = models.ForeignKey(DPresenceAbsence, db_column='presence_absence', blank=True, null=True)
+    population = models.ForeignKey(DPopulation, db_column='population', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'distribution_data'
 
 
 class Edges(models.Model):

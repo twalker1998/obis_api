@@ -66,9 +66,10 @@ class CountySerializer(serializers.HyperlinkedModelSerializer):
         fields = ('url','county','gid')
 
 class IdentificationVerificationSerializer(serializers.HyperlinkedModelSerializer):
-     class Meta:
-         model = IdentificationVerification
-         fields = ('url','pkey','catalognumber','identifiedby','identificationremarks','datalastmodified','identifiedacode','gid')
+    pkey = serializers.CharField(source='pkey')
+    class Meta:
+        model = IdentificationVerification
+        fields = ('url','pkey','catalognumber','identifiedby','identificationremarks','datalastmodified','identifiedacode','gid')
 
 class CoTrsSerializer(serializers.HyperlinkedModelSerializer):
      class Meta:
@@ -138,3 +139,39 @@ class ResourceTypeLookupSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = ResourceTypeLookup
         fields = ('id','resourcetype')
+
+class DOriginSerializer(serializers.HyperlinkedModelSerializer):
+    origin = serializers.CharField(source='origin')
+    class Meta:
+        model = DOrigin
+        fields = ('d_origin_id','origin')
+
+class DRegularitySerializer(serializers.HyperlinkedModelSerializer):
+    regularity = serializers.CharField(source='regularity')
+    class Meta:
+        model = DRegularity
+        fields = ('d_regularity_id','regularity')
+
+class DDistConfidenceSerializer(serializers.HyperlinkedModelSerializer):
+    dist_confidence = serializers.CharField(source='dist_confidence')
+    class Meta:
+        model = DDistConfidence
+        fields = ('d_dist_confidence_id','dist_confidence')
+
+class DPresenceAbsenceSerializer(serializers.HyperlinkedModelSerializer):
+    presence_absence = serializers.CharField(source='presence_absence')
+    class Meta:
+        model = DPresenceAbsence
+        fields = ('d_presence_absence_id','presence_absence')
+
+class DPopulationSerializer(serializers.HyperlinkedModelSerializer):
+    population = serializers.CharField(source='population')
+    class Meta:
+        model = DPopulation
+        fields = ('d_population_id','population')
+
+class DistributionDataSerializer(serializers.HyperlinkedModelSerializer):
+    d_id = serializers.CharField(source='d_id')
+    class Meta:
+        model = DistributionData
+        fields = ('d_id','acode','elcode','origin','regularity','dist_confidence','presence_absence','population')
