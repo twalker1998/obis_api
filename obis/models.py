@@ -283,6 +283,10 @@ class DistributionData(models.Model):
     presence_absence = models.ForeignKey(DPresenceAbsence, db_column='presence_absence', blank=True, null=True)
     population = models.ForeignKey(DPopulation, db_column='population', blank=True, null=True)
 
+    class Meta:
+        managed = False
+        db_table = 'distribution_data'
+
 
 class Edges(models.Model):
     gid = models.IntegerField(primary_key=True)
