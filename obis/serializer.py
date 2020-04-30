@@ -150,3 +150,9 @@ class DRegularitySerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = DRegularity
         fields = ('d_regularity_id','regularity')
+
+class DDistConfidenceSerializer(serializers.HyperlinkedModelSerializer):
+    dist_confidence = serializers.CharField(source='dist_confidence')
+    class Meta:
+        model = DDistConfidence
+        fields = ('d_dist_confidence_id','dist_confidence')

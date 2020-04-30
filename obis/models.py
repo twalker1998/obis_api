@@ -219,6 +219,15 @@ class Cousub(models.Model):
         db_table = 'cousub'
 
 
+class DDistConfidence(models.Model):
+    d_dist_confidence_id = models.IntegerField(primary_key=True, blank=False, null=False)
+    dist_confidence = models.CharField(max_length=50, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'd_dist_confidence'
+
+
 class DOrigin(models.Model):
     d_origin_id = models.IntegerField(primary_key=True, blank=False, null=False)
     origin = models.CharField(max_length=30, blank=True, null=True)
