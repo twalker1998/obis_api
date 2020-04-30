@@ -156,3 +156,9 @@ class DDistConfidenceSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = DDistConfidence
         fields = ('d_dist_confidence_id','dist_confidence')
+
+class DPresenceAbsenceSerializer(serializers.HyperlinkedModelSerializer):
+    presence_absence = serializers.CharField(source='presence_absence')
+    class Meta:
+        model = DPresenceAbsence
+        fields = ('d_presence_absence_id','presence_absence')

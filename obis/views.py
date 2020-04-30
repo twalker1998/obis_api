@@ -305,6 +305,13 @@ class DDistConfidenceViewSet(obisTableViewSet):
     renderer_classes = (BrowsableAPIRenderer, JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer)
     serializer_class = DDistConfidenceSerializer
 
+class DPresenceAbsenceViewSet(obisTableViewSet):
+    model = DPresenceAbsence
+    queryset = DPresenceAbsence.objects.all()
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+    renderer_classes = (BrowsableAPIRenderer, JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer)
+    serializer_class = DPresenceAbsenceSerializer
+
 #***************************************** OBIS DB Views ********************************************************
 class VwSearchViewSet(obisViewViewSet):
     """
