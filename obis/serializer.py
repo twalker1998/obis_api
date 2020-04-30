@@ -173,5 +173,5 @@ class DPopulationSerializer(serializers.HyperlinkedModelSerializer):
 class DistributionDataSerializer(serializers.HyperlinkedModelSerializer):
     d_id = serializers.CharField(source='d_id')
     class Meta:
-        model: DistributionData
+        model = DistributionData
         fields = ('d_id','acode','elcode','origin','regularity','dist_confidence','presence_absence','population')
