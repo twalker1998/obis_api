@@ -237,6 +237,15 @@ class DOrigin(models.Model):
         db_table = 'd_origin'
 
 
+class DPopulation(models.Model):
+    d_population_id = models.IntegerField(primary_key=True, blank=False, null=False)
+    population = models.CharField(max_length=30, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'd_population'
+
+
 class DPresenceAbsence(models.Model):
     d_presence_absence_id = models.IntegerField(primary_key=True, blank=False, null=False)
     presence_absence = models.CharField(max_length=30, blank=True, null=True)

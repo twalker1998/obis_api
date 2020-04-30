@@ -162,3 +162,9 @@ class DPresenceAbsenceSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = DPresenceAbsence
         fields = ('d_presence_absence_id','presence_absence')
+
+class DPopulationSerializer(serializers.HyperlinkedModelSerializer):
+    population = serializers.CharField(source='population')
+    class Meta:
+        model = DPopulation
+        fields = ('d_population_id','population')
