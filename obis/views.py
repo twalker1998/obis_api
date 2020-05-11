@@ -305,6 +305,7 @@ class DDistConfidenceViewSet(obisTableViewSet):
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
     renderer_classes = (BrowsableAPIRenderer, JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer)
     serializer_class = DDistConfidenceSerializer
+    lookup_field = 'd_dist_confidence_id'
 
 class DPresenceAbsenceViewSet(obisTableViewSet):
     model = DPresenceAbsence
