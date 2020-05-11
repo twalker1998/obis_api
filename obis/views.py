@@ -321,6 +321,7 @@ class DPopulationViewSet(obisTableViewSet):
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
     renderer_classes = (BrowsableAPIRenderer, JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer)
     serializer_class = DPopulationSerializer
+    lookup_field = 'd_population_id'
 
 class DistributionDataViewSet(obisTableViewSet):
     model = DistributionData

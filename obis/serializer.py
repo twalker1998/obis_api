@@ -179,6 +179,10 @@ class DPopulationSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = DPopulation
         fields = ('d_population_id','population')
+        lookup_field = 'd_population_id'
+        extra_kwargs = {
+            'url': {'lookup_field': 'd_population_id'}
+        }
 
 class DistributionDataSerializer(serializers.HyperlinkedModelSerializer):
     d_id = serializers.CharField(source='d_id')
