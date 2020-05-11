@@ -147,10 +147,14 @@ class DOriginSerializer(serializers.HyperlinkedModelSerializer):
         fields = ('d_origin_id','origin')
 
 class DRegularitySerializer(serializers.HyperlinkedModelSerializer):
-    regularity = serializers.CharField(source='regularity')
+    #regularity = serializers.CharField(source='regularity')
     class Meta:
         model = DRegularity
-        fields = ('d_regularity_id','regularity')
+        fields = ('url','d_regularity_id','regularity')
+        lookup_field = 'd_regularity_id'
+        extra_kwargs = {
+            'url': {'lookup_field': 'd_regularity_id'}
+        }
 
 class DDistConfidenceSerializer(serializers.HyperlinkedModelSerializer):
     dist_confidence = serializers.CharField(source='dist_confidence')

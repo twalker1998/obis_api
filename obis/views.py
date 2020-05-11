@@ -297,6 +297,7 @@ class DRegularityViewSet(obisTableViewSet):
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
     renderer_classes = (BrowsableAPIRenderer, JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer)
     serializer_class = DRegularitySerializer
+    lookup_field = 'd_regularity_id'
 
 class DDistConfidenceViewSet(obisTableViewSet):
     model = DDistConfidence
