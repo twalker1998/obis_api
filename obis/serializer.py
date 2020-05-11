@@ -143,7 +143,7 @@ class ResourceTypeLookupSerializer(serializers.HyperlinkedModelSerializer):
 class DOriginSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = DOrigin
-        fields = ('d_origin_id','origin')
+        fields = ('url','d_origin_id','origin')
         lookup_field = 'd_origin_id'
         extra_kwargs = {
             'url': {'lookup_field': 'd_origin_id'}
@@ -161,7 +161,7 @@ class DRegularitySerializer(serializers.HyperlinkedModelSerializer):
 class DDistConfidenceSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = DDistConfidence
-        fields = ('d_dist_confidence_id','dist_confidence')
+        fields = ('url','d_dist_confidence_id','dist_confidence')
         lookup_field = 'd_dist_confidence_id'
         extra_kwargs = {
             'url': {'lookup_field': 'd_dist_confidence_id'}
@@ -170,7 +170,7 @@ class DDistConfidenceSerializer(serializers.HyperlinkedModelSerializer):
 class DPresenceAbsenceSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = DPresenceAbsence
-        fields = ('d_presence_absence_id','presence_absence')
+        fields = ('url','d_presence_absence_id','presence_absence')
         lookup_field = 'd_presence_absence_id'
         extra_kwargs = {
             'url': {'lookup_field': 'd_presence_absence_id'}
@@ -179,7 +179,7 @@ class DPresenceAbsenceSerializer(serializers.HyperlinkedModelSerializer):
 class DPopulationSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = DPopulation
-        fields = ('d_population_id','population')
+        fields = ('url','d_population_id','population')
         lookup_field = 'd_population_id'
         extra_kwargs = {
             'url': {'lookup_field': 'd_population_id'}
@@ -189,7 +189,7 @@ class DistributionDataSerializer(serializers.HyperlinkedModelSerializer):
     d_id = serializers.CharField(source='d_id')
     class Meta:
         model = DistributionData
-        fields = ('d_id','acode','elcode','origin','regularity','dist_confidence','presence_absence','population')
+        fields = ('url','d_id','acode','elcode','origin','regularity','dist_confidence','presence_absence','population')
         extra_kwargs = {
             'origin': {'lookup_field': 'd_origin_id'},
             'regularity': {'lookup_field': 'd_regularity_id'},
