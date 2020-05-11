@@ -187,13 +187,14 @@ class DPopulationSerializer(serializers.HyperlinkedModelSerializer):
 
 class DistributionDataSerializer(serializers.HyperlinkedModelSerializer):
     d_id = serializers.CharField(source='d_id')
+    origin = serializers.HyperlinkedIdentityField(view_name='dorigin-detail', lookup_field='d_origin_id')
     class Meta:
         model = DistributionData
         fields = ('url','d_id','acode','elcode','origin','regularity','dist_confidence','presence_absence','population')
-        extra_kwargs = {
-            'origin': {'lookup_field': 'd_origin_id'},
-            'regularity': {'lookup_field': 'd_regularity_id'},
-            'dist_confidence': {'lookup_field', 'd_dist_confidence_id'},
-            'presence_absence': {'lookup_field': 'd_presence_absence_id'},
-            'population': {'lookup_field': 'd_population_id'}
-        }
+#        extra_kwargs = {
+#            'origin': {'lookup_field': 'd_origin_id'},
+#            'regularity': {'lookup_field': 'd_regularity_id'},
+#            'dist_confidence': {'lookup_field', 'd_dist_confidence_id'},
+#            'presence_absence': {'lookup_field': 'd_presence_absence_id'},
+#            'population': {'lookup_field': 'd_population_id'}
+#        }
