@@ -141,37 +141,57 @@ class ResourceTypeLookupSerializer(serializers.HyperlinkedModelSerializer):
         fields = ('id','resourcetype')
 
 class DOriginSerializer(serializers.HyperlinkedModelSerializer):
-    origin = serializers.CharField(source='origin')
     class Meta:
         model = DOrigin
-        fields = ('d_origin_id','origin')
+        fields = ('url','d_origin_id','origin')
+        lookup_field = 'd_origin_id'
+        extra_kwargs = {
+            'url': {'lookup_field': 'd_origin_id'}
+        }
 
 class DRegularitySerializer(serializers.HyperlinkedModelSerializer):
-    regularity = serializers.CharField(source='regularity')
     class Meta:
         model = DRegularity
-        fields = ('d_regularity_id','regularity')
+        fields = ('url','d_regularity_id','regularity')
+        lookup_field = 'd_regularity_id'
+        extra_kwargs = {
+            'url': {'lookup_field': 'd_regularity_id'}
+        }
 
 class DDistConfidenceSerializer(serializers.HyperlinkedModelSerializer):
-    dist_confidence = serializers.CharField(source='dist_confidence')
     class Meta:
         model = DDistConfidence
-        fields = ('d_dist_confidence_id','dist_confidence')
+        fields = ('url','d_dist_confidence_id','dist_confidence')
+        lookup_field = 'd_dist_confidence_id'
+        extra_kwargs = {
+            'url': {'lookup_field': 'd_dist_confidence_id'}
+        }
 
 class DPresenceAbsenceSerializer(serializers.HyperlinkedModelSerializer):
-    presence_absence = serializers.CharField(source='presence_absence')
     class Meta:
         model = DPresenceAbsence
-        fields = ('d_presence_absence_id','presence_absence')
+        fields = ('url','d_presence_absence_id','presence_absence')
+        lookup_field = 'd_presence_absence_id'
+        extra_kwargs = {
+            'url': {'lookup_field': 'd_presence_absence_id'}
+        }
 
 class DPopulationSerializer(serializers.HyperlinkedModelSerializer):
-    population = serializers.CharField(source='population')
     class Meta:
         model = DPopulation
-        fields = ('d_population_id','population')
+        fields = ('url','d_population_id','population')
+        lookup_field = 'd_population_id'
+        extra_kwargs = {
+            'url': {'lookup_field': 'd_population_id'}
+        }
 
 class DistributionDataSerializer(serializers.HyperlinkedModelSerializer):
     d_id = serializers.CharField(source='d_id')
+    origin = serializers.HyperlinkedIdentityField(view_name='dorigin-detail', lookup_field='d_origin_id')
+    regularity = serializers.HyperlinkedIdentityField(view_name='dregularity-detail', lookup_field='d_regularity_id')
+    dist_confidence = serializers.HyperlinkedIdentityField(view_name='ddistconfidence-detail', lookup_field='d_dist_confidence_id')
+    presence_absence = serializers.HyperlinkedIdentityField(view_name='dpresenceabsence-detail', lookup_field='d_presence_absence_id')
+    population = serializers.HyperlinkedIdentityField(view_name='dpopulation-detail', lookup_field='d_population_id')
     class Meta:
         model = DistributionData
-        fields = ('d_id','acode','elcode','origin','regularity','dist_confidence','presence_absence','population')
+        fields = ('url','d_id','acode','elcode','origin','regularity','dist_confidence','presence_absence','population')

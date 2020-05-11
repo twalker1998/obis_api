@@ -220,8 +220,8 @@ class Cousub(models.Model):
 
 
 class DDistConfidence(models.Model):
-    d_dist_confidence_id = models.IntegerField(primary_key=True, blank=False, null=False)
-    dist_confidence = models.CharField(max_length=50, blank=True, null=True)
+    d_dist_confidence_id = models.IntegerField(blank=False, null=False)
+    dist_confidence = models.CharField(primary_key=True, max_length=50, blank=False, null=False)
 
     class Meta:
         managed = False
@@ -229,8 +229,8 @@ class DDistConfidence(models.Model):
 
 
 class DOrigin(models.Model):
-    d_origin_id = models.IntegerField(primary_key=True, blank=False, null=False)
-    origin = models.CharField(max_length=30, blank=True, null=True)
+    d_origin_id = models.IntegerField(blank=False, null=False)
+    origin = models.CharField(primary_key=True, max_length=30, blank=False, null=False)
 
     class Meta:
         managed = False
@@ -238,8 +238,8 @@ class DOrigin(models.Model):
 
 
 class DPopulation(models.Model):
-    d_population_id = models.IntegerField(primary_key=True, blank=False, null=False)
-    population = models.CharField(max_length=30, blank=True, null=True)
+    d_population_id = models.IntegerField(blank=False, null=False)
+    population = models.CharField(primary_key=True, max_length=30, blank=False, null=False)
 
     class Meta:
         managed = False
@@ -247,8 +247,8 @@ class DPopulation(models.Model):
 
 
 class DPresenceAbsence(models.Model):
-    d_presence_absence_id = models.IntegerField(primary_key=True, blank=False, null=False)
-    presence_absence = models.CharField(max_length=30, blank=True, null=True)
+    d_presence_absence_id = models.IntegerField(blank=False, null=False)
+    presence_absence = models.CharField(primary_key=True, max_length=30, blank=False, null=False)
 
     class Meta:
         managed = False
@@ -256,8 +256,8 @@ class DPresenceAbsence(models.Model):
 
 
 class DRegularity(models.Model):
-    d_regularity_id = models.IntegerField(primary_key=True, blank=False, null=False)
-    regularity = models.CharField(max_length=50, blank=True, null=True)
+    d_regularity_id = models.IntegerField(blank=False, null=False)
+    regularity = models.CharField(primary_key=True, max_length=50, blank=False, null=False)
 
     class Meta:
         managed = False
