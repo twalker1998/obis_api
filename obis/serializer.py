@@ -169,6 +169,10 @@ class DPresenceAbsenceSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = DPresenceAbsence
         fields = ('d_presence_absence_id','presence_absence')
+        lookup_field = 'd_presence_absence_id'
+        extra_kwargs = {
+            'url': {'lookup_field': 'd_presence_absence_id'}
+        }
 
 class DPopulationSerializer(serializers.HyperlinkedModelSerializer):
     population = serializers.CharField(source='population')

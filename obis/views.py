@@ -313,6 +313,7 @@ class DPresenceAbsenceViewSet(obisTableViewSet):
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
     renderer_classes = (BrowsableAPIRenderer, JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer)
     serializer_class = DPresenceAbsenceSerializer
+    lookup_field = 'd_presence_absence_id'
 
 class DPopulationViewSet(obisTableViewSet):
     model = DPopulation
