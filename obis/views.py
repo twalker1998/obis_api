@@ -290,6 +290,7 @@ class DOriginViewSet(obisTableViewSet):
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
     renderer_classes = (BrowsableAPIRenderer, JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer)
     serializer_class = DOriginSerializer
+    lookup_field = 'd_origin_id'
 
 class DRegularityViewSet(obisTableViewSet):
     model = DRegularity

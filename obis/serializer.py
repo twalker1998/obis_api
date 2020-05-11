@@ -141,10 +141,13 @@ class ResourceTypeLookupSerializer(serializers.HyperlinkedModelSerializer):
         fields = ('id','resourcetype')
 
 class DOriginSerializer(serializers.HyperlinkedModelSerializer):
-    origin = serializers.CharField(source='origin')
     class Meta:
         model = DOrigin
         fields = ('d_origin_id','origin')
+        lookup_field = 'd_origin_id'
+        extra_kwargs = {
+            'url': {'lookup_field': 'd_origin_id'}
+        }
 
 class DRegularitySerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
@@ -165,7 +168,6 @@ class DDistConfidenceSerializer(serializers.HyperlinkedModelSerializer):
         }
 
 class DPresenceAbsenceSerializer(serializers.HyperlinkedModelSerializer):
-    presence_absence = serializers.CharField(source='presence_absence')
     class Meta:
         model = DPresenceAbsence
         fields = ('d_presence_absence_id','presence_absence')
@@ -175,7 +177,6 @@ class DPresenceAbsenceSerializer(serializers.HyperlinkedModelSerializer):
         }
 
 class DPopulationSerializer(serializers.HyperlinkedModelSerializer):
-    population = serializers.CharField(source='population')
     class Meta:
         model = DPopulation
         fields = ('d_population_id','population')
