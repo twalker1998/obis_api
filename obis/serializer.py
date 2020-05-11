@@ -190,3 +190,10 @@ class DistributionDataSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = DistributionData
         fields = ('d_id','acode','elcode','origin','regularity','dist_confidence','presence_absence','population')
+        extra_kwargs = {
+            'origin': {'lookup_field': 'd_origin_id'},
+            'regularity': {'lookup_field': 'd_regularity_id'},
+            'dist_confidence': {'lookup_field', 'd_dist_confidence_id'},
+            'presence_absence': {'lookup_field': 'd_presence_absence_id'},
+            'population': {'lookup_field': 'd_population_id'}
+        }
