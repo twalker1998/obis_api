@@ -290,7 +290,6 @@ class DOriginViewSet(obisTableViewSet):
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
     renderer_classes = (BrowsableAPIRenderer, JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer)
     serializer_class = DOriginSerializer
-    lookup_field = 'd_origin_id'
 
 class DRegularityViewSet(obisTableViewSet):
     model = DRegularity
@@ -298,7 +297,6 @@ class DRegularityViewSet(obisTableViewSet):
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
     renderer_classes = (BrowsableAPIRenderer, JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer)
     serializer_class = DRegularitySerializer
-    lookup_field = 'd_regularity_id'
 
 class DDistConfidenceViewSet(obisTableViewSet):
     model = DDistConfidence
@@ -306,7 +304,6 @@ class DDistConfidenceViewSet(obisTableViewSet):
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
     renderer_classes = (BrowsableAPIRenderer, JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer)
     serializer_class = DDistConfidenceSerializer
-    lookup_field = 'd_dist_confidence_id'
 
 class DPresenceAbsenceViewSet(obisTableViewSet):
     model = DPresenceAbsence
@@ -314,7 +311,6 @@ class DPresenceAbsenceViewSet(obisTableViewSet):
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
     renderer_classes = (BrowsableAPIRenderer, JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer)
     serializer_class = DPresenceAbsenceSerializer
-    lookup_field = 'd_presence_absence_id'
 
 class DPopulationViewSet(obisTableViewSet):
     model = DPopulation
@@ -322,7 +318,6 @@ class DPopulationViewSet(obisTableViewSet):
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
     renderer_classes = (BrowsableAPIRenderer, JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer)
     serializer_class = DPopulationSerializer
-    lookup_field = 'd_population_id'
 
 class DistributionDataViewSet(obisTableViewSet):
     model = DistributionData
