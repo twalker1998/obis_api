@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="OBIS API Authentication">
+        <meta name="author" content="Tyler Walker, Oklahoma Biological Survey">
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+
+        <title>OBIS API Authentication</title>
+    </head>
+    <body role="document">
+        <div class="navbar navbar-inverse" role="navigation">
+            <div class="container">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">API Endpoints <span class="caret"></span></a>
+
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="{% url 'register' %}">Register</a></li>
+                            <li><a href="{% url 'verification' %}"></a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="container theme-showcase" role="main">
+            {% block content %}{% endblock %}
+        </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+        <script type="text/javascript">
+        var error_response = function(data){
+            $('.api-response').html("API Response: " + data.status + ' ' + data.statusText + '<br/>Content: ' + data.responseText);
+        }
+        var success_response = function(data){
+            $('.api-response').html("API Response: OK<br/>Content: " + JSON.stringify(data));
+        }
+
+        $().ready(function(){
+            $('form.ajax-post button[type=submit]').click(function(){
+            var form = $('form.ajax-post');
+            $.post(form.attr('action'), form.serialize())
+            .fail(function(data){error_response(data);})
+            .done(function(data){success_response(data);});
+            return false;
+            });
+        });
+        </script>
+        {% block script %}{% endblock %}
+    </body>
+</html>
