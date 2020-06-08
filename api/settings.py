@@ -99,7 +99,7 @@ INSTALLED_APPS = (
     'rest_auth',
     'allauth',
     'allauth.account',
-    'rest_auth.registration'
+    'rest_auth.registration',
     'cybercom_queue',
     'catalog',
     'data_store',
