@@ -32,8 +32,8 @@ urlpatterns = patterns('',
     url(r'^user/',UserProfile.as_view(),name='user-list'),
     url(r'^login', login),
     # Authentication
-    url(r'^signup/$', TemplateView.as_view(template_name="signup.html"), name='signup'),
-    url(r'^email-verification/$', TemplateView.as_view(template_name="email_verification.html"), name='email-verification'),
+    url(r'^register/$', TemplateView.as_view(template_name="register.html"), name='register'),
+    url(r'^verify/$', TemplateView.as_view(template_name="verify.html"), name='verify'),
     url(r'^rest-auth/', include('rest_auth.urls')),
     url(r'^rest-auth/registration/', include('rest_auth.registration.urls')),
     # Admin Urls
