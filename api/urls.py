@@ -2,6 +2,8 @@ from django.conf.urls import patterns, include, url
 from django.contrib import admin
 from django.contrib.auth.models import Permission
 from api.views import APIRoot, UserProfile, login #, UserView
+from allauth.account.views import confirm_email
+
 #from rest_framework import routers
 
 try:
@@ -33,5 +35,6 @@ urlpatterns = patterns('',
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^login', login),
     url(r'^auth/', include('rest_auth.urls')),
+    url(r"^auth/registration/account-confirm-email/(?P<key>[\s\d\w().+-_',:&]+)/$", confirm_email, name="account_confirm_email"),
     url(r'^auth/registration/', include('rest_auth.registration.urls'))
 )
