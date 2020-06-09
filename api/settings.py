@@ -121,7 +121,10 @@ MIDDLEWARE_CLASSES = (
     'api.cors.CorsMiddleware'
 )
 
+ACCOUNT_ADAPTER = 'api.adapter.CustomDefaultAccountAdapter'
+ACCOUNT_EMAIL_SUBJECT_PREFIX = "[obis.ou.edu] "
 ACCOUNT_SIGNUP_FORM_CLASS = 'api.forms.SignupForm'
+URL_FRONT = 'http://localhost:4200/registration/'
 
 ROOT_URLCONF = 'api.urls'
 
