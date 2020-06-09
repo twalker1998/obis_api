@@ -106,7 +106,7 @@ INSTALLED_APPS = (
     'obis'
 )
 
-SITE_ID = 1
+SITE_ID = 2
 
 MIDDLEWARE_CLASSES = (
     'django.middleware.gzip.GZipMiddleware',
