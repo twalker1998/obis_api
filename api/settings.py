@@ -121,6 +121,8 @@ MIDDLEWARE_CLASSES = (
     'api.cors.CorsMiddleware'
 )
 
+ACCOUNT_SIGNUP_FORM_CLASS = 'api.forms.SignupForm'
+
 ROOT_URLCONF = 'api.urls'
 
 WSGI_APPLICATION = 'api.wsgi.application'
