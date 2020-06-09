@@ -28,6 +28,8 @@ TEMPLATE_DIRS = (os.path.join(BASE_DIR, 'templates'),)
 from django.conf import global_settings
 TEMPLATE_CONTEXT_PROCESSORS = global_settings.TEMPLATE_CONTEXT_PROCESSORS + (
     "api.processor.title",
+    'django.contrib.auth.context_processors.auth',
+    "allauth.account.context_processors.account"
 )
 
 USE_X_FORWARDED_HOST =  config.USE_X_FORWARDED_HOST
@@ -39,7 +41,8 @@ FORCE_SCRIPT_NAME = config.FORCE_SCRIPT_NAME
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config.DEBUG
 
-TEMPLATE_DEBUG = config.TEMPLATE_DEBUG
+#TEMPLATE_DEBUG = config.TEMPLATE_DEBUG
+TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = config.ALLOWED_HOSTS
 
@@ -88,19 +91,19 @@ INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
-    'django.contrib.messages',
+    #'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
     'rest_framework',
     'rest_framework.authtoken',
+    'rest_auth',
+    'allauth',
+    'allauth.account',
+    'rest_auth.registration',
     'cybercom_queue',
     'catalog',
     'data_store',
-    'obis',
-    'allauth',
-    'allauth.account',
-    'rest_auth',
-    'rest_auth.registration'
+    'obis'
 )
 
 SITE_ID = 1
@@ -109,13 +112,19 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.gzip.GZipMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    #'django.middleware.csrf.CsrfViewMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'api.disable.DisableCSRF',
     'api.cors.CorsMiddleware'
 )
+
+ACCOUNT_ADAPTER = 'api.adapter.CustomDefaultAccountAdapter'
+ACCOUNT_EMAIL_SUBJECT_PREFIX = "[obis.ou.edu] "
+ACCOUNT_SIGNUP_FORM_CLASS = 'api.forms.SignupForm'
+URL_FRONT = 'http://obsvweb1.ou.edu/registration/'
 
 ROOT_URLCONF = 'api.urls'
 
