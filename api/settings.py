@@ -124,7 +124,7 @@ MIDDLEWARE_CLASSES = (
 ACCOUNT_ADAPTER = 'api.adapter.CustomDefaultAccountAdapter'
 ACCOUNT_EMAIL_SUBJECT_PREFIX = "[obis.ou.edu] "
 ACCOUNT_SIGNUP_FORM_CLASS = 'api.forms.SignupForm'
-URL_FRONT = 'http://obsvweb1.ou.edu/registration/'
+URL_FRONT = 'http://obsvweb1.ou.edu/obis/registration/'
 
 ROOT_URLCONF = 'api.urls'
 
