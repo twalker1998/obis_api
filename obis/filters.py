@@ -13,7 +13,7 @@ class AcctaxFilter(django_filters.FilterSet):
     phylum = django_filters.CharFilter(lookup_type='icontains')
     taxclass = django_filters.CharFilter(lookup_type='icontains')
     taxorder = django_filters.CharFilter(lookup_type='icontains')
-    family = django_filters.CharFilter(lookup_type='icontains')
+    family = django_filters.CharFilter(lookup_type='exact')
     genus = django_filters.CharFilter(lookup_type='icontains')
     species = django_filters.CharFilter(lookup_type='icontains')
     subspecies = django_filters.CharFilter(lookup_type='icontains')
