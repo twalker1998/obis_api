@@ -684,6 +684,8 @@ class Occurrence(models.Model):
     problem_with_record = models.CharField(max_length=500, blank=True)
     previousidentifications = models.CharField(max_length=500, blank=True)
     identificationverificationstatus = models.CharField(max_length=500, blank=True)
+    identificationconfidence = models.CharField(max_length=10, blank=True)
+    identificationremarks = models.CharField(max_length=500, blank=True)
     datelastmodified = models.DateField(blank=True, null=True)
     associatedoccurrences = models.CharField(max_length=500, blank=True)
     associatedsequences = models.CharField(max_length=500, blank=True)
