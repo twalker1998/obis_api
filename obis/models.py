@@ -669,7 +669,7 @@ class Occurrence(models.Model):
     samplingprotocol = models.CharField(max_length=500, blank=True)
     preparations = models.CharField(max_length=500, blank=True)
     primary_data = models.CharField(max_length=500, blank=True)
-    bibliographiccitation = models.CharField(max_length=500, blank=True)
+    associatedreferences = models.CharField(max_length=500, blank=True)
     datasetname = models.ForeignKey('Source', db_column='datasetname', blank=True, null=True)
     coordinateprecision = models.IntegerField(blank=True, null=True)
     decimallatitude = models.FloatField(blank=True, null=True)
