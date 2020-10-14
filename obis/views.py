@@ -124,12 +124,18 @@ class OccurrenceViewSet(obisTableViewSet):
     This is the Occurrence ViewSet with hyperlinked tables.
     """
     model = Occurrence
-    queryset = Occurrence.objects.all()
+    # queryset = Occurrence.objects.all()
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
     renderer_classes = (BrowsableAPIRenderer, JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer)
     serializer_class = OccurenceSerializer
     filter_class = OccurrenceFilter
     search_fields = ('acode','catalognumber')
+
+    def get_queryset(self):
+        if self.request.user.groups.filter(name='OKL').exists():
+            return Occurrence.objects.filter(institutioncode='OKL')
+        else:
+            return Occurrence.objects.all()
 
 class SourceViewSet(obisTableViewSet):
     """
