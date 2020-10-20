@@ -6,7 +6,7 @@ from obis.models import Acctax,Comtax,Syntax,Hightax,FedStatus,StStatus,OkSwap,R
 from obis.models import Occurrence,Source,Institution,County,CoTrs,IdentificationVerification
 from obis.models import *
 #SpatialRefSys #, VwSearch, VwSearchmv #SearchView
-from serializer import *
+from obis.serializer import *
 from rest_framework import permissions
 from rest_framework.parsers import JSONParser,MultiPartParser,FormParser,FileUploadParser
 
