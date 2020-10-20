@@ -135,7 +135,7 @@ class OccurrenceViewSet(obisTableViewSet):
         if self.request.user.is_staff:
             return Occurrence.objects.all()
         else:
-            institutioncodes = [g.name for g in self.request.user.groups]
+            institutioncodes = [g.name for g in self.request.user.groups.all()]
             return Occurrence.objects.filter(institutioncode__in=institutioncodes)
 
 class SourceViewSet(obisTableViewSet):
