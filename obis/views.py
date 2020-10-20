@@ -132,10 +132,14 @@ class OccurrenceViewSet(obisTableViewSet):
     search_fields = ('acode','catalognumber')
 
     def get_queryset(self):
-        if self.request.user.is_staff:
+        user = self.request.user
+
+        if user.is_authenticated() == 'False':
             return Occurrence.objects.all()
         else:
-            institutioncodes = [g.name for g in self.request.user.groups.all()]
+            # Will have to change method of filtering when Django/DRF is upgraded
+            # django.db.models.Q
+            institutioncodes = [g.name for g in user.groups.all()]
             return Occurrence.objects.filter(institutioncode__in=institutioncodes)
 
 class SourceViewSet(obisTableViewSet):
