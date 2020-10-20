@@ -134,7 +134,7 @@ class OccurrenceViewSet(obisTableViewSet):
     def get_queryset(self):
         user = self.request.user
 
-        if user.is_authenticated() == 'False':
+        if user.is_authenticated() == False:
             return Occurrence.objects.all()
         else:
             # Will have to change method of filtering when Django/DRF is upgraded
