@@ -6,7 +6,7 @@ from obis.models import Acctax,Comtax,Syntax,Hightax,FedStatus,StStatus,OkSwap,R
 from obis.models import Occurrence,Source,Institution,County,CoTrs,IdentificationVerification
 from obis.models import *
 #SpatialRefSys #, VwSearch, VwSearchmv #SearchView
-from serializer import *
+from obis.serializer import *
 from rest_framework import permissions
 from rest_framework.parsers import JSONParser,MultiPartParser,FormParser,FileUploadParser
 
@@ -124,12 +124,23 @@ class OccurrenceViewSet(obisTableViewSet):
     This is the Occurrence ViewSet with hyperlinked tables.
     """
     model = Occurrence
-    queryset = Occurrence.objects.all()
+    # queryset = Occurrence.objects.all()
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
     renderer_classes = (BrowsableAPIRenderer, JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer)
     serializer_class = OccurenceSerializer
     filter_class = OccurrenceFilter
     search_fields = ('acode','catalognumber')
+
+    def get_queryset(self):
+        user = self.request.user
+
+        if user.is_authenticated() == False or user.is_staff:
+            return Occurrence.objects.all()
+        else:
+            # Will have to change method of filtering when Django/DRF is upgraded
+            # django.db.models.Q
+            institutioncodes = [g.name for g in user.groups.all()]
+            return Occurrence.objects.filter(institutioncode__in=institutioncodes)
 
 class SourceViewSet(obisTableViewSet):
     """
