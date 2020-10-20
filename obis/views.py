@@ -132,10 +132,11 @@ class OccurrenceViewSet(obisTableViewSet):
     search_fields = ('acode','catalognumber')
 
     def get_queryset(self):
-        if self.request.user.groups.filter(name='OKL').exists():
-            return Occurrence.objects.filter(institutioncode='OKL')
-        else:
+        if self.request.user.is_staff:
             return Occurrence.objects.all()
+        else:
+            institutioncodes = [g.name for g in self.request.user.groups]
+            return Occurrence.objects.filter(institutioncode__in=institutioncodes)
 
 class SourceViewSet(obisTableViewSet):
     """
