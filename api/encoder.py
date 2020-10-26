@@ -5,8 +5,8 @@ from __future__ import unicode_literals
 from django.db.models.query import QuerySet
 from collections import OrderedDict as SortedDict
 from django.utils.functional import Promise
-from rest_framework.compat import force_text
 from django.utils import timezone
+from django.utils.encoding import force_text
 from rest_framework.serializers import DictWithMetadata, SortedDictWithMetadata
 import datetime
 import decimal
