@@ -71,12 +71,7 @@ REST_FRAMEWORK = {
     #Renderer defaults
     'DEFAULT_RENDERER_CLASSES': (
         'rest_framework.renderers.BrowsableAPIRenderer',
-        # UJSON 2.3 times faster then std json renderer
-        'rest_framework.renderers.JSONRenderer',
-        'rest_framework.renderers.XMLRenderer',
-        'rest_framework.renderers.YAMLRenderer',
-        #'data_layer.pagination.PaginatedCSVRenderer',
-        #'drf_ujson.renderers.UJSONRenderer',
+        'rest_framework.renderers.JSONRenderer'
 
     ),
     #Pagination settings
