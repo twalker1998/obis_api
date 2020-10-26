@@ -20,17 +20,22 @@ except ImportError:
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
-TEMPLATE_DIRS = (os.path.join(BASE_DIR, 'templates'),)
-#print TEMPLATE_DIRS
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
-
-from django.conf import global_settings
-TEMPLATE_CONTEXT_PROCESSORS = global_settings.TEMPLATE_CONTEXT_PROCESSORS + (
-    "api.processor.title",
-    'django.contrib.auth.context_processors.auth',
-    "allauth.account.context_processors.account"
-)
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [
+            (os.path.join(BASE_DIR, 'templates'),)
+        ],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'api.processor.title',
+                'django.contrib.auth.context_processors.auth',
+                'allauth.account.context_processors.account'
+            ],
+        },
+    },
+]
 
 USE_X_FORWARDED_HOST =  config.USE_X_FORWARDED_HOST
 SECURE_PROXY_SSL_HEADER = config.SECURE_PROXY_SSL_HEADER
