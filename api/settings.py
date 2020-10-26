@@ -73,7 +73,6 @@ REST_FRAMEWORK = {
         'rest_framework.renderers.BrowsableAPIRenderer',
         # UJSON 2.3 times faster then std json renderer
         'rest_framework.renderers.JSONRenderer',
-        'rest_framework.renderers.JSONPRenderer',
         'rest_framework.renderers.XMLRenderer',
         'rest_framework.renderers.YAMLRenderer',
         #'data_layer.pagination.PaginatedCSVRenderer',

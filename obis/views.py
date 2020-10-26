@@ -1,5 +1,5 @@
 from rest_framework import viewsets, filters, serializers
-from rest_framework.renderers import BrowsableAPIRenderer, JSONPRenderer,JSONRenderer,XMLRenderer,YAMLRenderer
+from rest_framework.renderers import BrowsableAPIRenderer,JSONRenderer,XMLRenderer,YAMLRenderer
 from rest_framework_csv.renderers import CSVRenderer
 from obis.filters import *
 from obis.models import Acctax,Comtax,Syntax,Hightax,FedStatus,StStatus,OkSwap,RankChange
@@ -13,12 +13,12 @@ from rest_framework.parsers import JSONParser,MultiPartParser,FormParser,FileUpl
 
 #DB Table ViewSet Class
 class obisTableViewSet(viewsets.ModelViewSet):
-    renderer_classes = (BrowsableAPIRenderer, JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer)
+    renderer_classes = (BrowsableAPIRenderer, JSONRenderer,XMLRenderer,YAMLRenderer)
     filter_backends = (filters.DjangoFilterBackend, filters.SearchFilter,filters.OrderingFilter)
 
 #DB View ViewSet Class
 class obisViewViewSet(viewsets.ReadOnlyModelViewSet):
-    renderer_classes = (BrowsableAPIRenderer, JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer,CSVRenderer)
+    renderer_classes = (BrowsableAPIRenderer, JSONRenderer,XMLRenderer,YAMLRenderer,CSVRenderer)
     filter_backends = (filters.DjangoFilterBackend, filters.SearchFilter,filters.OrderingFilter)
 
 #***************************************** OBIS Tables **********************************************************
@@ -30,7 +30,7 @@ class AcctaxViewSet(obisTableViewSet):
     queryset = Acctax.objects.all()
     serializer_class = AcctaxSerializer
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
-    renderer_classes = (BrowsableAPIRenderer, JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer)
+    renderer_classes = (BrowsableAPIRenderer, JSONRenderer,XMLRenderer,YAMLRenderer)
     filter_class = AcctaxFilter
     search_fields = ("sname","scientificnameauthorship","genus","species","subspecies","variety",
                      "forma","elcode","iucncode","g_rank","s_rank","nativity","source","usda_code",
@@ -54,7 +54,7 @@ class ComtaxViewSet(obisTableViewSet):
     """
     model = Comtax
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
-    renderer_classes = (BrowsableAPIRenderer,JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer)
+    renderer_classes = (BrowsableAPIRenderer,JSONRenderer,XMLRenderer,YAMLRenderer)
     queryset = Comtax.objects.all()
     serializer_class = ComtaxSerializer
     filter_class = ComtaxFilter
@@ -66,7 +66,7 @@ class SyntaxViewSet(obisTableViewSet):
     """
     model = Syntax
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
-    renderer_classes = (BrowsableAPIRenderer, JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer)
+    renderer_classes = (BrowsableAPIRenderer, JSONRenderer,XMLRenderer,YAMLRenderer)
     queryset = Syntax.objects.all()
     serializer_class =  SyntaxSerializer
     filter_class = SyntaxFilter
@@ -86,7 +86,7 @@ class HightaxViewSet(obisTableViewSet):
     model = Hightax
     queryset = Hightax.objects.all()
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
-    renderer_classes = (BrowsableAPIRenderer, JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer)
+    renderer_classes = (BrowsableAPIRenderer, JSONRenderer,XMLRenderer,YAMLRenderer)
     serializer_class = HightaxSerializer
 
 class FedStatusViewSet(obisTableViewSet):
@@ -96,7 +96,7 @@ class FedStatusViewSet(obisTableViewSet):
     model = FedStatus
     queryset = FedStatus.objects.all()
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
-    renderer_classes = (BrowsableAPIRenderer, JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer)
+    renderer_classes = (BrowsableAPIRenderer, JSONRenderer,XMLRenderer,YAMLRenderer)
     serializer_class = FedStatusSerializer
 
 class StStatusViewSet(obisTableViewSet):
@@ -106,7 +106,7 @@ class StStatusViewSet(obisTableViewSet):
     model = StStatus
     queryset = StStatus.objects.all()
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
-    renderer_classes = (BrowsableAPIRenderer, JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer)
+    renderer_classes = (BrowsableAPIRenderer, JSONRenderer,XMLRenderer,YAMLRenderer)
     serializer_class = StStatusSerializer
 
 class OkSwapViewSet(obisTableViewSet):
@@ -116,7 +116,7 @@ class OkSwapViewSet(obisTableViewSet):
     model = OkSwap
     queryset = OkSwap.objects.all()
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
-    renderer_classes = (BrowsableAPIRenderer, JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer)
+    renderer_classes = (BrowsableAPIRenderer, JSONRenderer,XMLRenderer,YAMLRenderer)
     serializer_class = OkSwapSerializer
 
 class OccurrenceViewSet(obisTableViewSet):
@@ -126,7 +126,7 @@ class OccurrenceViewSet(obisTableViewSet):
     model = Occurrence
     # queryset = Occurrence.objects.all()
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
-    renderer_classes = (BrowsableAPIRenderer, JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer)
+    renderer_classes = (BrowsableAPIRenderer, JSONRenderer,XMLRenderer,YAMLRenderer)
     serializer_class = OccurenceSerializer
     filter_class = OccurrenceFilter
     search_fields = ('acode','catalognumber')
@@ -149,7 +149,7 @@ class SourceViewSet(obisTableViewSet):
     model = Source
     queryset = Source.objects.all()
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
-    renderer_classes = (BrowsableAPIRenderer, JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer)
+    renderer_classes = (BrowsableAPIRenderer, JSONRenderer,XMLRenderer,YAMLRenderer)
     serializer_class = SourceSerializer
 
 class InstitutionViewSet(obisTableViewSet):
@@ -159,7 +159,7 @@ class InstitutionViewSet(obisTableViewSet):
     model = Institution
     queryset = Institution.objects.all()
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
-    renderer_classes = (BrowsableAPIRenderer, JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer)
+    renderer_classes = (BrowsableAPIRenderer, JSONRenderer,XMLRenderer,YAMLRenderer)
     serializer_class = InstitutionSerializer
 
 class CountyViewSet(obisTableViewSet):
@@ -169,7 +169,7 @@ class CountyViewSet(obisTableViewSet):
     model = County
     queryset = County.objects.all()
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
-    renderer_classes = (BrowsableAPIRenderer, JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer)
+    renderer_classes = (BrowsableAPIRenderer, JSONRenderer,XMLRenderer,YAMLRenderer)
     serializer_class = CountySerializer
     filter_class = CountyFilter
     search_fields = ('gid')
@@ -181,7 +181,7 @@ class CoTrsViewSet(obisTableViewSet):
     model = CoTrs
     queryset = CoTrs.objects.all()
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
-    renderer_classes = (BrowsableAPIRenderer, JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer)
+    renderer_classes = (BrowsableAPIRenderer, JSONRenderer,XMLRenderer,YAMLRenderer)
     serializer_class = CoTrsSerializer
 
 class IdentificationVerificationViewSet(obisTableViewSet):
@@ -191,7 +191,7 @@ class IdentificationVerificationViewSet(obisTableViewSet):
     model = IdentificationVerification
     queryset = IdentificationVerification.objects.all()
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
-    renderer_classes = (BrowsableAPIRenderer, JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer)
+    renderer_classes = (BrowsableAPIRenderer, JSONRenderer,XMLRenderer,YAMLRenderer)
     serializer_class = IdentificationVerificationSerializer
 
 class RankChangeViewSet(obisTableViewSet):
@@ -201,7 +201,7 @@ class RankChangeViewSet(obisTableViewSet):
     model = RankChange
     queryset = RankChange.objects.all()
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
-    renderer_classes = (BrowsableAPIRenderer, JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer)
+    renderer_classes = (BrowsableAPIRenderer, JSONRenderer,XMLRenderer,YAMLRenderer)
     serializer_class = RankChangeSerializer
 
 class SpatialRefSysViewSet(obisTableViewSet):
@@ -211,14 +211,14 @@ class SpatialRefSysViewSet(obisTableViewSet):
     model = SpatialRefSys
     queryset = SpatialRefSys.objects.all()
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
-    renderer_classes = (BrowsableAPIRenderer, JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer)
+    renderer_classes = (BrowsableAPIRenderer, JSONRenderer,XMLRenderer,YAMLRenderer)
     serializer_class = SpatialRefSysSerializer
 
 class IUCNLookupViewSet(obisTableViewSet):
     model = IUCNLookup
     queryset = IUCNLookup.objects.all()
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
-    renderer_classes = (BrowsableAPIRenderer, JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer)
+    renderer_classes = (BrowsableAPIRenderer, JSONRenderer,XMLRenderer,YAMLRenderer)
     serializer_class = IUCNLookupSerializer
     filter_class = IUCNLookupFilter
     search_fields = ("id")
@@ -227,7 +227,7 @@ class GlobalRankLookupViewSet(obisTableViewSet):
     model = GlobalRankLookup
     queryset = GlobalRankLookup.objects.all()
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
-    renderer_classes = (BrowsableAPIRenderer, JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer)
+    renderer_classes = (BrowsableAPIRenderer, JSONRenderer,XMLRenderer,YAMLRenderer)
     serializer_class = GlobalRankLookupSerializer
     filter_class = GlobalRankLookupFilter
     search_fields = ("id")
@@ -236,7 +236,7 @@ class StateRankLookupViewSet(obisTableViewSet):
     model = StateRankLookup
     queryset = StateRankLookup.objects.all()
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
-    renderer_classes = (BrowsableAPIRenderer, JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer)
+    renderer_classes = (BrowsableAPIRenderer, JSONRenderer,XMLRenderer,YAMLRenderer)
     serializer_class = StateRankLookupSerializer
     filter_class = StateRankLookupFilter
     search_fields = ("id")
@@ -245,7 +245,7 @@ class NativityLookupViewSet(obisTableViewSet):
     model = NativityLookup
     queryset = NativityLookup.objects.all()
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
-    renderer_classes = (BrowsableAPIRenderer, JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer)
+    renderer_classes = (BrowsableAPIRenderer, JSONRenderer,XMLRenderer,YAMLRenderer)
     serializer_class = NativityLookupSerializer
     filter_class = NativityLookupFilter
     search_fields = ("n_id")
@@ -254,7 +254,7 @@ class CategoryLookupViewSet(obisTableViewSet):
     model = CategoryLookup
     queryset = CategoryLookup.objects.all()
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
-    renderer_classes = (BrowsableAPIRenderer, JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer)
+    renderer_classes = (BrowsableAPIRenderer, JSONRenderer,XMLRenderer,YAMLRenderer)
     serializer_class = CategoryLookupSerializer
     filter_class = CategoryLookupFilter
     search_fields = ("a_id")
@@ -263,7 +263,7 @@ class NameCategoryDescLookupViewSet(obisTableViewSet):
     model = NameCategoryDescLookup
     queryset = NameCategoryDescLookup.objects.all()
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
-    renderer_classes = (BrowsableAPIRenderer, JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer)
+    renderer_classes = (BrowsableAPIRenderer, JSONRenderer,XMLRenderer,YAMLRenderer)
     serializer_class = NameCategoryDescLookupSerializer
     filter_class = NameCategoryDescLookupFilter
     search_fields = ("a_id")
@@ -272,7 +272,7 @@ class NameTypeDescLookupViewSet(obisTableViewSet):
     model = NameTypeDescLookup
     queryset = NameTypeDescLookup.objects.all()
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
-    renderer_classes = (BrowsableAPIRenderer, JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer)
+    renderer_classes = (BrowsableAPIRenderer, JSONRenderer,XMLRenderer,YAMLRenderer)
     serializer_class = NameTypeDescLookupSerializer
     filter_class = NameTypeDescLookupFilter
     search_fields = ("a_id")
@@ -281,7 +281,7 @@ class BasisOfRecordLookupViewSet(obisTableViewSet):
     model = BasisOfRecordLookup
     queryset = BasisOfRecordLookup.objects.all()
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
-    renderer_classes = (BrowsableAPIRenderer, JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer)
+    renderer_classes = (BrowsableAPIRenderer, JSONRenderer,XMLRenderer,YAMLRenderer)
     serializer_class = BasisOfRecordLookupSerializer
     filter_class = BasisOfRecordLookupFilter
     search_fields = ("id")
@@ -290,7 +290,7 @@ class ResourceTypeLookupViewSet(obisTableViewSet):
     model = ResourceTypeLookup
     queryset = ResourceTypeLookup.objects.all()
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
-    renderer_classes = (BrowsableAPIRenderer, JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer)
+    renderer_classes = (BrowsableAPIRenderer, JSONRenderer,XMLRenderer,YAMLRenderer)
     serializer_class = ResourceTypeLookupSerializer
     filter_class = ResourceTypeLookupFilter
     search_fields = ("id")
@@ -299,42 +299,42 @@ class DOriginViewSet(obisTableViewSet):
     model = DOrigin
     queryset = DOrigin.objects.all()
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
-    renderer_classes = (BrowsableAPIRenderer, JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer)
+    renderer_classes = (BrowsableAPIRenderer, JSONRenderer,XMLRenderer,YAMLRenderer)
     serializer_class = DOriginSerializer
 
 class DRegularityViewSet(obisTableViewSet):
     model = DRegularity
     queryset = DRegularity.objects.all()
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
-    renderer_classes = (BrowsableAPIRenderer, JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer)
+    renderer_classes = (BrowsableAPIRenderer, JSONRenderer,XMLRenderer,YAMLRenderer)
     serializer_class = DRegularitySerializer
 
 class DDistConfidenceViewSet(obisTableViewSet):
     model = DDistConfidence
     queryset = DDistConfidence.objects.all()
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
-    renderer_classes = (BrowsableAPIRenderer, JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer)
+    renderer_classes = (BrowsableAPIRenderer, JSONRenderer,XMLRenderer,YAMLRenderer)
     serializer_class = DDistConfidenceSerializer
 
 class DPresenceAbsenceViewSet(obisTableViewSet):
     model = DPresenceAbsence
     queryset = DPresenceAbsence.objects.all()
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
-    renderer_classes = (BrowsableAPIRenderer, JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer)
+    renderer_classes = (BrowsableAPIRenderer, JSONRenderer,XMLRenderer,YAMLRenderer)
     serializer_class = DPresenceAbsenceSerializer
 
 class DPopulationViewSet(obisTableViewSet):
     model = DPopulation
     queryset = DPopulation.objects.all()
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
-    renderer_classes = (BrowsableAPIRenderer, JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer)
+    renderer_classes = (BrowsableAPIRenderer, JSONRenderer,XMLRenderer,YAMLRenderer)
     serializer_class = DPopulationSerializer
 
 class DistributionDataViewSet(obisTableViewSet):
     model = DistributionData
     queryset = DistributionData.objects.all()
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
-    renderer_classes = (BrowsableAPIRenderer, JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer)
+    renderer_classes = (BrowsableAPIRenderer, JSONRenderer,XMLRenderer,YAMLRenderer)
     serializer_class = DistributionDataSerializer
     filter_class = DistributionDataFilter
     search_fields = ("acode")

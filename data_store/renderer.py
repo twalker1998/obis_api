@@ -1,5 +1,5 @@
 __author__ = 'mstacy'
-from rest_framework.renderers import BrowsableAPIRenderer, JSONRenderer #, #JSONPRenderer
+from rest_framework.renderers import BrowsableAPIRenderer, JSONRenderer
 from api.encoder import JSONEncoder
 
 class DataBrowsableAPIRenderer(BrowsableAPIRenderer):
@@ -56,10 +56,3 @@ class mongoJSONPRenderer(mongoJSONRenderer):
         json = super(mongoJSONPRenderer, self).render(data, accepted_media_type,
                                                  renderer_context)
         return callback.encode(self.charset) + b'(' + json + b');'
-
-
-
-
-#class mongoJSONPRenderer(JSONPRenderer):
-
- #   encoder_class = JSONPRenderer
