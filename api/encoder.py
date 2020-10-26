@@ -7,7 +7,6 @@ from collections import OrderedDict as SortedDict
 from django.utils.functional import Promise
 from django.utils import timezone
 from django.utils.encoding import force_text
-from rest_framework.serializers import DictWithMetadata, SortedDictWithMetadata
 import datetime
 import decimal
 import types
@@ -104,10 +103,6 @@ else:
             SafeDumper.represent_decimal)
 
     SafeDumper.add_representer(SortedDict,
-            yaml.representer.SafeRepresenter.represent_dict)
-    SafeDumper.add_representer(DictWithMetadata,
-            yaml.representer.SafeRepresenter.represent_dict)
-    SafeDumper.add_representer(SortedDictWithMetadata,
             yaml.representer.SafeRepresenter.represent_dict)
     SafeDumper.add_representer(types.GeneratorType,
             yaml.representer.SafeRepresenter.represent_list)
