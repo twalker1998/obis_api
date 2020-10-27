@@ -102,7 +102,8 @@ INSTALLED_APPS = (
     'cybercom_queue',
     'catalog',
     'data_store',
-    'obis'
+    'obis',
+    'django_filters'
 )
 
 SITE_ID = 2
