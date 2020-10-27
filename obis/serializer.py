@@ -9,8 +9,7 @@ class AcctaxSerializer(serializers.HyperlinkedModelSerializer):
         fields = ('url','a_id','acode','sname','scientificnameauthorship','family','genus','species','subspecies','variety','forma','elcode','gelcode','iucncode','g_rank','s_rank','nativity','source','usda_code','tsn','fed_status','st_status','swap','scientificname','sspscientificnameauthorship','varscientificnameauthorship','formascientificnameauthorship','tracked')
 
 class ComtaxSerializer(serializers.HyperlinkedModelSerializer):
-    #primary_name = serializers.CharField(source='primary_name')
-    c_id = serializers.CharField(source='c_id')
+    c_id = serializers.CharField()
     class Meta:
         model = Comtax
         fields = ('url','c_id','acode','vernacularname','primary_name')
@@ -22,7 +21,7 @@ class SourceSerializer(serializers.HyperlinkedModelSerializer):
 
 class HightaxSerializer(serializers.HyperlinkedModelSerializer):
     #url = serializers.HyperlinkedIdentityField(view_name="obis:hightax-detail")
-    family = serializers.CharField(source='family')
+    family = serializers.CharField()
     class Meta:
         model = Hightax
         fields = ('url','kingdom','phylum','taxclass','taxorder','family','category','name_type_desc','name_category_desc')
@@ -58,13 +57,13 @@ class InstitutionSerializer(serializers.HyperlinkedModelSerializer):
         fields = ('url','institutioncode','institution','curator','email','telephone','address','city','state','country','zipcode','institutiontype','link')
 
 class CountySerializer(serializers.HyperlinkedModelSerializer):
-    county = serializers.CharField(source='county')
+    county = serializers.CharField()
     class Meta:
         model = County
         fields = ('url','county','gid')
 
 class IdentificationVerificationSerializer(serializers.HyperlinkedModelSerializer):
-    pkey = serializers.CharField(source='pkey')
+    pkey = serializers.CharField()
     class Meta:
         model = IdentificationVerification
         fields = ('url','pkey','catalognumber','identifiedby','identificationremarks','datalastmodified','identifiedacode','gid')
@@ -85,55 +84,55 @@ class SpatialRefSysSerializer(serializers.HyperlinkedModelSerializer):
         fields = ('url','srid','auth_name','auth_srid','srtext','proj4text')
 
 class IUCNLookupSerializer(serializers.HyperlinkedModelSerializer):
-    id = serializers.CharField(source='id')
+    id = serializers.CharField()
     class Meta:
         model = IUCNLookup
         fields = ('code','description','id')
 
 class GlobalRankLookupSerializer(serializers.HyperlinkedModelSerializer):
-    id = serializers.CharField(source='id')
+    id = serializers.CharField()
     class Meta:
         model = GlobalRankLookup
         fields = ('id','code')
 
 class StateRankLookupSerializer(serializers.HyperlinkedModelSerializer):
-    id = serializers.CharField(source='id')
+    id = serializers.CharField()
     class Meta:
         model = StateRankLookup
         fields = ('id','code')
 
 class NativityLookupSerializer(serializers.HyperlinkedModelSerializer):
-    n_id = serializers.CharField(source='n_id')
+    n_id = serializers.CharField()
     class Meta:
         model = NativityLookup
         fields = ('n_id','nativity')
 
 class CategoryLookupSerializer(serializers.HyperlinkedModelSerializer):
-    a_id = serializers.CharField(source='a_id')
+    a_id = serializers.CharField()
     class Meta:
         model = CategoryLookup
         fields = ('a_id','category')
 
 class NameCategoryDescLookupSerializer(serializers.HyperlinkedModelSerializer):
-    a_id = serializers.CharField(source="a_id")
+    a_id = serializers.CharField()
     class Meta:
         model = NameCategoryDescLookup
         fields = ('a_id','name_category_desc')
 
 class NameTypeDescLookupSerializer(serializers.HyperlinkedModelSerializer):
-    a_id = serializers.CharField(source="a_id")
+    a_id = serializers.CharField()
     class Meta:
         model = NameTypeDescLookup
         fields = ('a_id','name_type_desc')
 
 class BasisOfRecordLookupSerializer(serializers.HyperlinkedModelSerializer):
-    id = serializers.CharField(source='id')
+    id = serializers.CharField()
     class Meta:
         model = BasisOfRecordLookup
         fields = ('id','basisofrecord')
 
 class ResourceTypeLookupSerializer(serializers.HyperlinkedModelSerializer):
-    id = serializers.CharField(source='id')
+    id = serializers.CharField()
     class Meta:
         model = ResourceTypeLookup
         fields = ('id','resourcetype')
@@ -164,7 +163,7 @@ class DPopulationSerializer(serializers.HyperlinkedModelSerializer):
         fields = ('url','d_population_id','population')
 
 class DistributionDataSerializer(serializers.HyperlinkedModelSerializer):
-    d_id = serializers.CharField(source='d_id')
+    d_id = serializers.CharField()
     class Meta:
         model = DistributionData
         fields = ('url','d_id','acode','elcode','origin','regularity','dist_confidence','presence_absence','population')
