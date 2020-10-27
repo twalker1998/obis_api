@@ -1,4 +1,4 @@
-from rest_framework import viewsets
+from rest_framework import filters, viewsets
 from rest_framework.renderers import BrowsableAPIRenderer,JSONRenderer
 from rest_framework_csv.renderers import CSVRenderer
 from obis.filters import *
@@ -8,18 +8,18 @@ from obis.models import *
 #SpatialRefSys #, VwSearch, VwSearchmv #SearchView
 from obis.serializer import *
 from rest_framework import permissions
-import django_filters as filters
+from django_filters.rest_framework import DjangoFilterBackend
 
 
 #DB Table ViewSet Class
 class obisTableViewSet(viewsets.ModelViewSet):
     renderer_classes = (BrowsableAPIRenderer, JSONRenderer)
-    filter_backends = (filters.DjangoFilterBackend, filters.SearchFilter,filters.OrderingFilter)
+    filter_backends = (DjangoFilterBackend, filters.SearchFilter,filters.OrderingFilter)
 
 #DB View ViewSet Class
 class obisViewViewSet(viewsets.ReadOnlyModelViewSet):
     renderer_classes = (BrowsableAPIRenderer, JSONRenderer,CSVRenderer)
-    filter_backends = (filters.DjangoFilterBackend, filters.SearchFilter,filters.OrderingFilter)
+    filter_backends = (DjangoFilterBackend, filters.SearchFilter,filters.OrderingFilter)
 
 #***************************************** OBIS Tables **********************************************************
 class AcctaxViewSet(obisTableViewSet):
