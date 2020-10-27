@@ -152,7 +152,7 @@ class Comtax(models.Model):
     c_id = models.IntegerField(primary_key=True)
     acode = models.ForeignKey(Acctax, db_column='acode', blank=True, null=True)
     vernacularname = models.CharField(max_length=500, blank=True)
-    primary_name = models.CharField(blank=True, null=True)
+    primary_name = models.CharField(max_length=500, blank=True, null=True)
 
     class Meta:
         managed = False
