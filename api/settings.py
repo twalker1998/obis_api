@@ -31,7 +31,7 @@ TEMPLATES = [
             'context_processors': [
                 'api.processor.title',
                 'django.contrib.auth.context_processors.auth',
-                'allauth.account.context_processors.account'
+                'django.template.context_processors.request'
             ],
         },
     },
