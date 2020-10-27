@@ -30,14 +30,17 @@ class AcctaxFilter(django_filters.FilterSet):
 
     class Meta:
         model = Acctax
+        fields = '__all__'
 
 class ComtaxFilter(django_filters.FilterSet):
     c_id = django_filters.NumberFilter(lookup_type='exact')
     acode = django_filters.CharFilter(lookup_type='exact')
     vernacularname = django_filters.CharFilter(lookup_type='icontains')
     primary_name = django_filters.CharFilter(lookup_type='exact')
+
     class Meta:
-        model  = Comtax
+        model = Comtax
+        fields = '__all__'
 
 class OccurrenceFilter(django_filters.FilterSet):
     acode = django_filters.CharFilter(lookup_type='exact')
@@ -45,6 +48,7 @@ class OccurrenceFilter(django_filters.FilterSet):
 
     class Meta:
         model = Occurrence
+        fields = '__all__'
 
 class SyntaxFilter(django_filters.FilterSet):
     acode = django_filters.CharFilter(lookup_type='exact')
@@ -52,72 +56,84 @@ class SyntaxFilter(django_filters.FilterSet):
 
     class Meta:
         model = Syntax
+        fields = '__all__'
 
 class IUCNLookupFilter(django_filters.FilterSet):
     id = django_filters.NumberFilter(lookup_type='exact')
 
     class Meta:
         model = IUCNLookup
+        fields = '__all__'
 
 class GlobalRankLookupFilter(django_filters.FilterSet):
     id = django_filters.NumberFilter(lookup_type='exact')
 
     class Meta:
         model = GlobalRankLookup
+        fields = '__all__'
 
 class StateRankLookupFilter(django_filters.FilterSet):
     id = django_filters.NumberFilter(lookup_type='exact')
 
     class Meta:
         model = StateRankLookup
+        fields = '__all__'
 
 class NativityLookupFilter(django_filters.FilterSet):
     n_id = django_filters.NumberFilter(lookup_type='exact')
 
     class Meta:
         model = NativityLookup
+        fields = '__all__'
 
 class CategoryLookupFilter(django_filters.FilterSet):
     a_id = django_filters.NumberFilter(lookup_type='exact')
 
     class Meta:
         model = CategoryLookup
+        fields = '__all__'
 
 class NameCategoryDescLookupFilter(django_filters.FilterSet):
     a_id = django_filters.NumberFilter(lookup_type='exact')
 
     class Meta:
         model = NameCategoryDescLookup
+        fields = '__all__'
 
 class NameTypeDescLookupFilter(django_filters.FilterSet):
     a_id = django_filters.NumberFilter(lookup_type='exact')
 
     class Meta:
         model = NameTypeDescLookup
+        fields = '__all__'
 
 class CountyFilter(django_filters.FilterSet):
     gid = django_filters.NumberFilter(lookup_type='exact')
 
     class Meta:
         model = County
+        fields = '__all__'
 
 class BasisOfRecordLookupFilter(django_filters.FilterSet):
     id = django_filters.NumberFilter(lookup_type='exact')
 
     class Meta:
         model = BasisOfRecordLookup
+        fields = '__all__'
 
 class ResourceTypeLookupFilter(django_filters.FilterSet):
     id = django_filters.NumberFilter(lookup_type='exact')
 
     class Meta:
         model = ResourceTypeLookup
+        fields = '__all__'
 
 class DistributionDataFilter(django_filters.FilterSet):
     acode = django_filters.CharFilter(lookup_type='exact')
 
     class Meta:
         model = DistributionData
+        fields = '__all__'
 
 """
 class SearchViewFilter(django_filters.FilterSet):
