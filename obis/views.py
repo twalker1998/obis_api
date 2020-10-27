@@ -1,4 +1,4 @@
-from rest_framework import viewsets, filters
+from rest_framework import viewsets
 from rest_framework.renderers import BrowsableAPIRenderer,JSONRenderer
 from rest_framework_csv.renderers import CSVRenderer
 from obis.filters import *
@@ -8,6 +8,7 @@ from obis.models import *
 #SpatialRefSys #, VwSearch, VwSearchmv #SearchView
 from obis.serializer import *
 from rest_framework import permissions
+import django_filters as filters
 
 
 #DB Table ViewSet Class
