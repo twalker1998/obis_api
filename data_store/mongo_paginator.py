@@ -6,7 +6,7 @@ from bson.objectid import ObjectId
 from bson.code import Code
 from operator import itemgetter
 
-from ordereddict import OrderedDict
+from collections import OrderedDict
 from rest_framework.templatetags.rest_framework import replace_query_param
 
 def MongoDistinct(field,DB_MongoClient, database, collection, query=None):
