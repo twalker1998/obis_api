@@ -3,7 +3,7 @@ from django.contrib.contenttypes.models import ContentType
 from django.contrib.auth.models import Permission
 # Register your models here.
 from api import config
-from models import catalogModel
+from .models import catalogModel
 from pymongo import MongoClient
 
 def setpermissions(app_label,codename,name):

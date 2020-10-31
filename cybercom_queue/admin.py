@@ -2,8 +2,7 @@ from django.contrib import admin
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.auth.models import Permission
 # Register your models here.
-from api import config
-from models import taskModel
+from .models import taskModel
 
 # Register your models here.
 def setpermissions(app_label,codename,name):

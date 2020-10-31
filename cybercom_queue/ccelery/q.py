@@ -1,5 +1,5 @@
 # from pymongo import Connection
-import celeryconfig
+from cybercom_queue.ccelery import celeryconfig
 # import cherrypy
 import simplejson as json
 from celery import Celery

@@ -2,7 +2,6 @@ __author__ = 'mstacy'
 from django.conf.urls import url
 from data_store.views import MongoDataStore, DataStore, DataStoreDetail
 from rest_framework.urlpatterns import format_suffix_patterns
-from api import config
 
 urlpatterns = [
     url(r'^data/$', MongoDataStore.as_view(), name='data-list'),

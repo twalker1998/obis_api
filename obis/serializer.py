@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from obis.models import *
+from .models import *
 
 class AcctaxSerializer(serializers.HyperlinkedModelSerializer):
     family = serializers.SlugRelatedField(slug_field='family', queryset=Acctax.objects.all())

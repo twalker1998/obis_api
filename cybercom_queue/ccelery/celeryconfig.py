@@ -1,8 +1,6 @@
 #from cybercom_queue.ccelery import config
 from api import config
 
-import ssl
-
 BROKER_URL = config.BROKER_URL
 BROKER_USE_SSL = config.BROKER_USE_SSL
 

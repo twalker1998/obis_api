@@ -11,7 +11,7 @@ from rest_framework.settings import api_settings
 from .mongo_paginator import MongoDataPagination, MongoDistinct,MongoGroupby, MongoDataGet,MongoDataDelete,MongoDataSave,MongoDataInsert
 from .renderer import DataBrowsableAPIRenderer, mongoJSONPRenderer,mongoJSONRenderer
 from rest_framework.parsers import JSONParser
-from permission import  DataStorePermission, createDataStorePermission
+from .permission import  DataStorePermission, createDataStorePermission
  
 class MongoDataStore(APIView):
     permission_classes = ( createDataStorePermission,)

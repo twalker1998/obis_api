@@ -7,7 +7,7 @@ from rest_framework.views import APIView
 from cybercom_queue.ccelery.q import QueueTask, list_tasks, task_docstring,rm_memcache
 from cybercom_queue.models import taskModel #Run_model
 from rest_framework.renderers import JSONRenderer
-from renderer import QueueRunBrowsableAPIRenderer
+from .renderer import QueueRunBrowsableAPIRenderer
 from rest_framework.parsers import JSONParser,MultiPartParser,FormParser,FileUploadParser
 from cybercom_queue.util import trim
 from rest_framework.authtoken.models import Token

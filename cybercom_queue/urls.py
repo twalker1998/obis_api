@@ -1,7 +1,7 @@
 __author__ = 'mstacy'
 from django.conf.urls import url
 from django.contrib import admin
-from cybercom_queue.views import Run, Queue, UserTasks, UserResult,flushMemcache
+from .views import Run, Queue, UserTasks, UserResult,flushMemcache
 from rest_framework.urlpatterns import format_suffix_patterns
 
 # q = QueueTask()

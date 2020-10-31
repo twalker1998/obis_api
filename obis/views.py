@@ -1,12 +1,12 @@
 from rest_framework import filters, viewsets
 from rest_framework.renderers import BrowsableAPIRenderer,JSONRenderer
 from rest_framework_csv.renderers import CSVRenderer
-from obis.filters import *
-from obis.models import Acctax,Comtax,Syntax,Hightax,FedStatus,StStatus,OkSwap,RankChange
-from obis.models import Occurrence,Source,Institution,County,CoTrs,IdentificationVerification
-from obis.models import *
+from .filters import *
+from .models import Acctax,Comtax,Syntax,Hightax,FedStatus,StStatus,OkSwap,RankChange
+from .models import Occurrence,Source,Institution,County,CoTrs,IdentificationVerification
+from .models import *
 #SpatialRefSys #, VwSearch, VwSearchmv #SearchView
-from obis.serializer import *
+from .serializer import *
 from rest_framework import permissions
 from django_filters.rest_framework import DjangoFilterBackend
 

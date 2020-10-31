@@ -2,7 +2,7 @@ from django.conf.urls import include, url
 from django.contrib import admin
 from django.views.generic import TemplateView
 from django.contrib.auth.models import Permission
-from api.views import APIRoot, UserProfile, login #, UserView
+from .views import APIRoot, UserProfile, login #, UserView
 
 #from rest_framework import routers
 

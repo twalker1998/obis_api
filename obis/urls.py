@@ -2,14 +2,7 @@ __author__ = 'mstacy'
 from django.conf.urls import include, url
 from rest_framework import routers
 from rest_framework.urlpatterns import format_suffix_patterns
-
-from obis.views import AcctaxViewSet, ComtaxViewSet, SyntaxViewSet,HightaxViewSet,FedStatusViewSet,StStatusViewSet
-from obis.views import OkSwapViewSet, OccurrenceViewSet, SourceViewSet, InstitutionViewSet,CountyViewSet
-from obis.views import CoTrsViewSet, IdentificationVerificationViewSet, RankChangeViewSet, SpatialRefSysViewSet
-#from obis.views import VwSearchViewSet, VwSearchmvViewSet
-#from obis.views import SearchViewSet
-from obis.views import VwSearchViewSet
-from obis.views import *
+from .views import *
 
 router = routers.SimpleRouter()
 router.register('acctax', AcctaxViewSet)
