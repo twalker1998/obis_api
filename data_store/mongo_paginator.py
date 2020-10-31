@@ -161,5 +161,5 @@ def get_id_types(id):
         results.append(int(float(str(id))))
     except:
         pass
-    print results
+    print(results)
     return results
