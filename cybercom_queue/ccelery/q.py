@@ -18,7 +18,7 @@ from datetime import datetime
 import pickle
 import re, math
 import collections
-from ordereddict import OrderedDict
+from collections import OrderedDict
 from rest_framework.reverse import reverse
 
 i = inspect()
