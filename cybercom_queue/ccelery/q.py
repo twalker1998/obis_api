@@ -230,11 +230,11 @@ class QueueTask():
     def task(self, task_id=None):
         """Return task log and task results"""
         doc = self.db[self.database][self.collection].find_one({'task_id': task_id}, {'_id': False})
-	col = self.db[self.database][self.tomb_collection]
+        col = self.db[self.database][self.tomb_collection]
         if doc:
             result = col.find_one({'_id': task_id}, {'_id': False})
             if result:
-		result=self.unpickle_result(result)
+                result = self.unpickle_result(result)
                 #if 'traceback' in result:
                 #    result['traceback'] = pickle.loads(result['traceback'])
                 #if 'children' in result:
@@ -248,25 +248,25 @@ class QueueTask():
             doc['result'] = result
             return doc
         else:
-	    result = col.find_one({'_id': task_id}, {'_id': False})
-	    if result:
-		result=self.unpickle_result(result)
-		return result
-	    else:
-		result = self.status(task_id=task_id)
-		return result
+            result = col.find_one({'_id': task_id}, {'_id': False})
+            if result:
+                result = self.unpickle_result(result)
+                return result
+            else:
+                result = self.status(task_id=task_id)
+                return result
             	#raise Exception("Task was not found. Not a valid task_id")
 
     def unpickle_result(self,result):
-	if 'traceback' in result:
-	    result['traceback'] = pickle.loads(result['traceback'])
-	if 'children' in result:
-	    result['children'] = pickle.loads(result['children'])
-	if 'result' in result:
-	    result['result'] = pickle.loads(result['result'])
-	    if isinstance(result['result'], Exception):
-		result['result'] = "ERROR: %s" % (result['result'].message)
-	return result
+        if 'traceback' in result:
+            result['traceback'] = pickle.loads(result['traceback'])
+        if 'children' in result:
+            result['children'] = pickle.loads(result['children'])
+        if 'result' in result:
+            result['result'] = pickle.loads(result['result'])
+            if isinstance(result['result'], Exception):
+                result['result'] = "ERROR: %s" % (result['result'].message)
+        return result
 
 
     def reset(self, user=None):
