@@ -1,4 +1,4 @@
-FROM python:3.4
+FROM python:3.5
 MAINTAINER Mark Stacy <markstacy@ou.edu>
 
 RUN apt-get update && apt-get install -y vim libpq-dev python-dev
