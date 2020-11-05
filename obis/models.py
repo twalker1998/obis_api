@@ -17,7 +17,7 @@ class Acctax(models.Model):
     acode = models.CharField(primary_key=True, max_length=500)
     sname = models.CharField(max_length=500, blank=True)
     scientificnameauthorship = models.CharField(max_length=500, blank=True)
-    family = models.ForeignKey('Hightax', db_column='family', blank=True, null=True)
+    family = models.ForeignKey('Hightax', db_column='family', blank=True, null=True, on_delete=models.CASCADE)
     genus = models.CharField(max_length=500, blank=True)
     species = models.CharField(max_length=500, blank=True)
     subspecies = models.CharField(max_length=500, blank=True)
@@ -25,16 +25,16 @@ class Acctax(models.Model):
     forma = models.CharField(max_length=500, blank=True)
     elcode = models.CharField(max_length=500, blank=True)
     gelcode = models.IntegerField(blank=True, null=True)
-    iucncode = models.ForeignKey('IUCNLookup', db_column='iucncode', blank=True, null=True)
-    g_rank = models.ForeignKey('GlobalRankLookup', db_column='g_rank', blank=True, null=True)
-    s_rank = models.ForeignKey('StateRankLookup', db_column='s_rank', blank=True, null=True)
-    nativity = models.ForeignKey('NativityLookup', db_column='nativity', blank=True, null=True)
+    iucncode = models.ForeignKey('IUCNLookup', db_column='iucncode', blank=True, null=True, on_delete=models.DO_NOTHING)
+    g_rank = models.ForeignKey('GlobalRankLookup', db_column='g_rank', blank=True, null=True, on_delete=models.DO_NOTHING)
+    s_rank = models.ForeignKey('StateRankLookup', db_column='s_rank', blank=True, null=True, on_delete=models.DO_NOTHING)
+    nativity = models.ForeignKey('NativityLookup', db_column='nativity', blank=True, null=True, on_delete=models.CASCADE)
     source = models.CharField(max_length=500, blank=True)
     usda_code = models.CharField(max_length=500, blank=True)
     tsn = models.IntegerField(blank=True, null=True)
-    fed_status = models.ForeignKey('FedStatus', blank=True, null=True)
-    st_status = models.ForeignKey('StStatus', blank=True, null=True)
-    swap = models.ForeignKey('OkSwap', blank=True, null=True)
+    fed_status = models.ForeignKey('FedStatus', blank=True, null=True, on_delete=models.DO_NOTHING)
+    st_status = models.ForeignKey('StStatus', blank=True, null=True, on_delete=models.DO_NOTHING)
+    swap = models.ForeignKey('OkSwap', blank=True, null=True, on_delete=models.DO_NOTHING)
     scientificname = models.CharField(max_length=500, blank=True)
     sspscientificnameauthorship = models.CharField(max_length=500, blank=True)
     varscientificnameauthorship = models.CharField(max_length=500, blank=True)
@@ -150,7 +150,7 @@ class CoTrs(models.Model):
 
 class Comtax(models.Model):
     c_id = models.IntegerField(primary_key=True)
-    acode = models.ForeignKey(Acctax, db_column='acode', blank=True, null=True)
+    acode = models.ForeignKey(Acctax, db_column='acode', blank=True, null=True, on_delete=models.CASCADE)
     vernacularname = models.CharField(max_length=500, blank=True)
     primary_name = models.CharField(max_length=500, blank=True, null=True)
 
@@ -275,13 +275,13 @@ class DirectionLookup(models.Model):
 
 class DistributionData(models.Model):
     d_id = models.IntegerField(primary_key=True, blank=False, null=False)
-    acode = models.ForeignKey(Acctax, db_column='acode', blank=True, null=True)
+    acode = models.ForeignKey(Acctax, db_column='acode', blank=True, null=True, on_delete=models.DO_NOTHING)
     elcode = models.CharField(max_length=50, blank=True, null=True)
-    origin = models.ForeignKey(DOrigin, db_column='origin', blank=True, null=True)
-    regularity = models.ForeignKey(DRegularity, db_column='regularity', blank=True, null=True)
-    dist_confidence = models.ForeignKey(DDistConfidence, db_column='dist_confidence', blank=True, null=True)
-    presence_absence = models.ForeignKey(DPresenceAbsence, db_column='presence_absence', blank=True, null=True)
-    population = models.ForeignKey(DPopulation, db_column='population', blank=True, null=True)
+    origin = models.ForeignKey(DOrigin, db_column='origin', blank=True, null=True, on_delete=models.DO_NOTHING)
+    regularity = models.ForeignKey(DRegularity, db_column='regularity', blank=True, null=True, on_delete=models.DO_NOTHING)
+    dist_confidence = models.ForeignKey(DDistConfidence, db_column='dist_confidence', blank=True, null=True, on_delete=models.DO_NOTHING)
+    presence_absence = models.ForeignKey(DPresenceAbsence, db_column='presence_absence', blank=True, null=True, on_delete=models.DO_NOTHING)
+    population = models.ForeignKey(DPopulation, db_column='population', blank=True, null=True, on_delete=models.DO_NOTHING)
 
     class Meta:
         managed = False
@@ -497,9 +497,9 @@ class Hightax(models.Model):
     taxclass = models.CharField(max_length=500, blank=True)
     taxorder = models.CharField(max_length=500, blank=True)
     family = models.CharField(primary_key=True, max_length=500)
-    category = models.ForeignKey('CategoryLookup', db_column='category', blank=True, null=True)
-    name_type_desc = models.ForeignKey('NameTypeDescLookup', db_column='name_type_desc', blank=True, null=True)
-    name_category_desc = models.ForeignKey('NameCategoryDescLookup', db_column='name_category_desc', blank=True, null=True)
+    category = models.ForeignKey('CategoryLookup', db_column='category', blank=True, null=True, on_delete=models.DO_NOTHING)
+    name_type_desc = models.ForeignKey('NameTypeDescLookup', db_column='name_type_desc', blank=True, null=True, on_delete=models.DO_NOTHING)
+    name_category_desc = models.ForeignKey('NameCategoryDescLookup', db_column='name_category_desc', blank=True, null=True, on_delete=models.DO_NOTHING)
 
     class Meta:
         managed = False
@@ -513,7 +513,7 @@ class IdentificationVerification(models.Model):
     identificationremarks = models.CharField(max_length=500, blank=True)
     datalastmodified = models.CharField(max_length=500, blank=True)
     identifiedacode = models.CharField(max_length=500, blank=True)
-    gid = models.ForeignKey('Occurrence', db_column='gid', blank=True, null=True)
+    gid = models.ForeignKey('Occurrence', db_column='gid', blank=True, null=True, on_delete=models.DO_NOTHING)
 
     class Meta:
         managed = False
@@ -550,7 +550,7 @@ class IUCNLookup(models.Model):
 
 
 class Layer(models.Model):
-    topology = models.ForeignKey('Topology')
+    topology = models.ForeignKey('Topology', on_delete=models.DO_NOTHING)
     layer_id = models.IntegerField()
     schema_name = models.CharField(max_length=500)
     table_name = models.CharField(max_length=500)
@@ -642,12 +642,12 @@ class NativityLookup(models.Model):
 
 
 class Occurrence(models.Model):
-    resourcetype = models.ForeignKey('ResourceTypeLookup', db_column='resourcetype', blank=True, null=True)
+    resourcetype = models.ForeignKey('ResourceTypeLookup', db_column='resourcetype', blank=True, null=True, on_delete=models.DO_NOTHING)
     gid = models.IntegerField(primary_key=True)
-    acode = models.ForeignKey(Acctax, db_column='acode', blank=True, null=True)
+    acode = models.ForeignKey(Acctax, db_column='acode', blank=True, null=True, on_delete=models.DO_NOTHING)
     eventdate = models.DateField(blank=True, null=True)
     recordedby = models.CharField(max_length=500, blank=True)
-    county = models.ForeignKey(County, db_column='county', blank=True, null=True)
+    county = models.ForeignKey(County, db_column='county', blank=True, null=True, on_delete=models.DO_NOTHING)
     locality = models.CharField(max_length=500, blank=True)
     behavior = models.CharField(max_length=500, blank=True)
     habitat = models.CharField(max_length=500, blank=True)
@@ -660,8 +660,8 @@ class Occurrence(models.Model):
     individualcount = models.IntegerField(blank=True, null=True)
     occurrenceremarks = models.CharField(max_length=500, blank=True)
     taxonremarks = models.CharField(max_length=500, blank=True)
-    institutioncode = models.ForeignKey(Institution, db_column='institutioncode', blank=True, null=True)
-    basisofrecord = models.ForeignKey(BasisOfRecordLookup, db_column='basisofrecord', blank=True, null=True)
+    institutioncode = models.ForeignKey(Institution, db_column='institutioncode', blank=True, null=True, on_delete=models.CASCADE)
+    basisofrecord = models.ForeignKey(BasisOfRecordLookup, db_column='basisofrecord', blank=True, null=True, on_delete=models.DO_NOTHING)
     catalognumber = models.CharField(max_length=500, blank=True)
     othercatalognumbers = models.CharField(max_length=500, blank=True)
     typestatus = models.CharField(max_length=25, blank=True)
@@ -670,7 +670,7 @@ class Occurrence(models.Model):
     preparations = models.CharField(max_length=500, blank=True)
     primary_data = models.CharField(max_length=500, blank=True)
     associatedreferences = models.CharField(max_length=500, blank=True)
-    datasetname = models.ForeignKey('Source', db_column='datasetname', blank=True, null=True)
+    datasetname = models.ForeignKey('Source', db_column='datasetname', blank=True, null=True, on_delete=models.DO_NOTHING)
     coordinateprecision = models.IntegerField(blank=True, null=True)
     decimallatitude = models.FloatField(blank=True, null=True)
     decimallongitude = models.FloatField(blank=True, null=True)
@@ -799,7 +799,7 @@ class PlaceLookup(models.Model):
 
 class RankChange(models.Model):
     r_id = models.IntegerField(primary_key=True)
-    acode = models.ForeignKey(Acctax, db_column='acode', blank=True, null=True)
+    acode = models.ForeignKey(Acctax, db_column='acode', blank=True, null=True, on_delete=models.DO_NOTHING)
     previous_s_rank = models.CharField(max_length=500, blank=True)
     s_rank = models.CharField(max_length=500, blank=True)
     changedby = models.CharField(max_length=500, blank=True)
@@ -953,7 +953,7 @@ class StreetTypeLookup(models.Model):
 
 class Syntax(models.Model):
     s_id = models.IntegerField()
-    acode = models.ForeignKey(Acctax, db_column='acode', blank=True, null=True)
+    acode = models.ForeignKey(Acctax, db_column='acode', blank=True, null=True, on_delete=models.CASCADE)
     scode = models.CharField(primary_key=True, max_length=500)
     sname = models.CharField(max_length=500, blank=True)
     scientificnameauthorship = models.CharField(max_length=500, blank=True)
