@@ -124,7 +124,6 @@ class OccurrenceViewSet(obisTableViewSet):
     This is the Occurrence ViewSet with hyperlinked tables.
     """
     model = Occurrence
-    # queryset = Occurrence.objects.all()
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
     renderer_classes = (BrowsableAPIRenderer, JSONRenderer)
     serializer_class = OccurenceSerializer
@@ -134,7 +133,7 @@ class OccurrenceViewSet(obisTableViewSet):
     def get_queryset(self):
         user = self.request.user
 
-        if user.is_authenticated() == False or user.is_staff:
+        if user.is_authenticated == False or user.is_staff:
             return Occurrence.objects.all()
         else:
             # Will have to change method of filtering when Django/DRF is upgraded
