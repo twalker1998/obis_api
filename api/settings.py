@@ -113,8 +113,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'api.disable.DisableCSRFMiddleware',
-    #'api.cors.CorsMiddleware'
+    'api.middleware.DisableCSRFMiddleware',
+    'api.middleware.DisableCORSMiddleware'
 ]
 
 ACCOUNT_ADAPTER = 'api.adapter.CustomDefaultAccountAdapter'
