@@ -75,11 +75,8 @@ REST_FRAMEWORK = {
 
     ),
     #Pagination settings
-    'PAGINATE_BY': 150,
-    'PAGINATE_BY_PARAM': 'page_size',
-    'MAX_PAGINATE_BY': 1000000,
-    'Page_Title': config.Page_Title ,
-    'Application_Title': config.Application_Title
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': 150
 
 }
 
