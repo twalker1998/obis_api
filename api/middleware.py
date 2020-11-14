@@ -14,5 +14,5 @@ class DisableCORSMiddleware:
     def __call__(self, request):
         response = self.get_response(request)
         response["Access-Control-Allow-Headers"] = "*"
-        response["Access-Control-Allow-Methods"] + "*"
+        response["Access-Control-Allow-Methods"] = "*"
         return response
