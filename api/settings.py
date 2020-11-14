@@ -114,7 +114,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'api.disable.DisableCSRF',
+    'api.disable.DisableCSRFMiddleware',
     'api.cors.CorsMiddleware'
 )
 
