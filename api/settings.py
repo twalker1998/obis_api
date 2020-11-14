@@ -105,7 +105,7 @@ INSTALLED_APPS = (
 
 SITE_ID = 2
 
-MIDDLEWARE_CLASSES = (
+MIDDLEWARE = [
     'django.middleware.gzip.GZipMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -116,7 +116,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'api.disable.DisableCSRFMiddleware',
     'api.cors.CorsMiddleware'
-)
+]
 
 ACCOUNT_ADAPTER = 'api.adapter.CustomDefaultAccountAdapter'
 ACCOUNT_EMAIL_SUBJECT_PREFIX = "[obis.ou.edu] "
