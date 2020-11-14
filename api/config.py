@@ -38,7 +38,7 @@ DEBUG = True
 
 TEMPLATE_DEBUG = True
 
-ALLOWED_HOSTS = ['obis.ou.edu']
+ALLOWED_HOSTS = ['obis.ou.edu', 'obis.twalk.tech']
 # Cookie Domain
 # Domain cookie. Can overide for subdomains ie. ".example.com"  (note the leading dot!)
 # for cross-domain cookies, or use None for a standard domain cookie.

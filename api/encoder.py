@@ -3,10 +3,10 @@ Helper classes for parsers.
 """
 from __future__ import unicode_literals
 from django.db.models.query import QuerySet
-from django.utils.datastructures import SortedDict
+from collections import OrderedDict as SortedDict
 from django.utils.functional import Promise
-from rest_framework.compat import timezone, force_text
-from rest_framework.serializers import DictWithMetadata, SortedDictWithMetadata
+from django.utils import timezone
+from django.utils.encoding import force_text
 import datetime
 import decimal
 import types
@@ -103,10 +103,6 @@ else:
             SafeDumper.represent_decimal)
 
     SafeDumper.add_representer(SortedDict,
-            yaml.representer.SafeRepresenter.represent_dict)
-    SafeDumper.add_representer(DictWithMetadata,
-            yaml.representer.SafeRepresenter.represent_dict)
-    SafeDumper.add_representer(SortedDictWithMetadata,
             yaml.representer.SafeRepresenter.represent_dict)
     SafeDumper.add_representer(types.GeneratorType,
             yaml.representer.SafeRepresenter.represent_list)

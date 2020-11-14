@@ -10,13 +10,12 @@ from .models import dataStore
 from rest_framework.settings import api_settings
 from .mongo_paginator import MongoDataPagination, MongoDistinct,MongoGroupby, MongoDataGet,MongoDataDelete,MongoDataSave,MongoDataInsert
 from .renderer import DataBrowsableAPIRenderer, mongoJSONPRenderer,mongoJSONRenderer
-from rest_framework.renderers import XMLRenderer, YAMLRenderer,JSONPRenderer
 from rest_framework.parsers import JSONParser
-from permission import  DataStorePermission, createDataStorePermission
+from .permission import  DataStorePermission, createDataStorePermission
  
 class MongoDataStore(APIView):
     permission_classes = ( createDataStorePermission,)
-    renderer_classes = (DataBrowsableAPIRenderer, mongoJSONRenderer, mongoJSONPRenderer, XMLRenderer, YAMLRenderer)
+    renderer_classes = (DataBrowsableAPIRenderer, mongoJSONRenderer, mongoJSONPRenderer)
     title = "Database"
     parser_classes = (JSONParser,)
     connect_uri = config.DATA_STORE_MONGO_URI
@@ -113,7 +112,7 @@ class MongoDataStore(APIView):
 class DataStore(APIView):
     permission_classes = (DataStorePermission,) #DjangoModelPermissionsOrAnonReadOnly,)
     model = dataStore 
-    renderer_classes = (DataBrowsableAPIRenderer, mongoJSONRenderer, mongoJSONPRenderer, XMLRenderer, YAMLRenderer)
+    renderer_classes = (DataBrowsableAPIRenderer, mongoJSONRenderer, mongoJSONPRenderer)
     parser_classes = (JSONParser,)
     connect_uri = config.DATA_STORE_MONGO_URI
     def __init__(self):
@@ -162,7 +161,7 @@ class DataStore(APIView):
 class DataStoreDetail(APIView):
     permission_classes = (DataStorePermission,) #DjangoModelPermissionsOrAnonReadOnly,)
     model = dataStore
-    renderer_classes = (DataBrowsableAPIRenderer, mongoJSONRenderer, mongoJSONPRenderer, XMLRenderer, YAMLRenderer)
+    renderer_classes = (DataBrowsableAPIRenderer, mongoJSONRenderer, mongoJSONPRenderer)
     parser_classes = (JSONParser,)
     connect_uri = config.DATA_STORE_MONGO_URI
     def __init__(self):

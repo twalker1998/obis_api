@@ -20,17 +20,22 @@ except ImportError:
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
-TEMPLATE_DIRS = (os.path.join(BASE_DIR, 'templates'),)
-#print TEMPLATE_DIRS
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
-
-from django.conf import global_settings
-TEMPLATE_CONTEXT_PROCESSORS = global_settings.TEMPLATE_CONTEXT_PROCESSORS + (
-    "api.processor.title",
-    'django.contrib.auth.context_processors.auth',
-    "allauth.account.context_processors.account"
-)
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [
+            (os.path.join(BASE_DIR, 'templates'),)
+        ],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'api.processor.title',
+                'django.contrib.auth.context_processors.auth',
+                'django.template.context_processors.request'
+            ],
+        },
+    },
+]
 
 USE_X_FORWARDED_HOST =  config.USE_X_FORWARDED_HOST
 SECURE_PROXY_SSL_HEADER = config.SECURE_PROXY_SSL_HEADER
@@ -66,21 +71,12 @@ REST_FRAMEWORK = {
     #Renderer defaults
     'DEFAULT_RENDERER_CLASSES': (
         'rest_framework.renderers.BrowsableAPIRenderer',
-        # UJSON 2.3 times faster then std json renderer
-        'rest_framework.renderers.JSONRenderer',
-        'rest_framework.renderers.JSONPRenderer',
-        'rest_framework.renderers.XMLRenderer',
-        'rest_framework.renderers.YAMLRenderer',
-        #'data_layer.pagination.PaginatedCSVRenderer',
-        #'drf_ujson.renderers.UJSONRenderer',
+        'rest_framework.renderers.JSONRenderer'
 
     ),
     #Pagination settings
-    'PAGINATE_BY': 150,
-    'PAGINATE_BY_PARAM': 'page_size',
-    'MAX_PAGINATE_BY': 1000000,
-    'Page_Title': config.Page_Title ,
-    'Application_Title': config.Application_Title
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': 150
 
 }
 
@@ -103,7 +99,8 @@ INSTALLED_APPS = (
     'cybercom_queue',
     'catalog',
     'data_store',
-    'obis'
+    'obis',
+    'django_filters'
 )
 
 SITE_ID = 2
