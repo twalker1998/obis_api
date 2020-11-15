@@ -26,7 +26,7 @@ jobs:
       - name: ssh-scp-ssh-pipelines
         uses: cross-the-world/ssh-scp-ssh-pipelines@v1.1.2
         with:
-          host: obis.twalk.tech
+          host: runners.fortiddns.com
           port: 2222
           user: twalker
           pass: s3rv3rp@ss
