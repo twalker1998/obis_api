@@ -7,7 +7,7 @@ from celery import Celery
 from api import config
 
 celery = Celery().config_from_object(celeryconfig)
-from celery.app.control import inspect
+from celery.app.control import Inspect
 from celery.result import AsyncResult
 from pymongo import MongoClient,DESCENDING
 from datetime import datetime
@@ -17,7 +17,7 @@ import collections
 from collections import OrderedDict
 from rest_framework.reverse import reverse
 
-i = inspect()
+i = Inspect()
 
 class jsonify(object):
     """ JSONify a Python dictionary """
@@ -56,7 +56,7 @@ def update_tasks(timeout=60000, user="guest"):
     """
     global i
 
-    #i = inspect()
+    #i = Inspect()
     try:
         if memcache:
             mc = memcache.Client(['%s:%s' % (config.MEMCACHE_HOST, config.MEMCACHE_PORT)])
@@ -115,7 +115,7 @@ def task_docstring(task_name):
     """
     global i
 
-    #i = inspect()
+    #i = Inspect()
     data = i.registered('__doc__')
 
     for x, v in data.items():
@@ -159,7 +159,7 @@ class QueueTask():
         self.database = database
         self.collection = log_collection
         self.tomb_collection = tomb_collection
-        self.i = i  #inspect()
+        self.i = i  #Inspect()
 
 
     def run(self, task, task_args, task_kwargs, task_queue, user,tags):
