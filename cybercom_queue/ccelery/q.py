@@ -6,14 +6,10 @@ from celery import Celery
 #from cybercom_queue.ccelery import config
 from api import config
 
-
 celery = Celery().config_from_object(celeryconfig)
-from celery.task.control import inspect
+from celery.app.control import inspect
 from celery.result import AsyncResult
-#from celery import send_task
-#from celery.execute import send_task
 from pymongo import MongoClient,DESCENDING
-#from pymongo import Connection, DESCENDING
 from datetime import datetime
 import pickle
 import re, math
@@ -22,7 +18,6 @@ from collections import OrderedDict
 from rest_framework.reverse import reverse
 
 i = inspect()
-
 
 class jsonify(object):
     """ JSONify a Python dictionary """
@@ -316,5 +311,3 @@ class QueueTask():
             #older python versions < 2.7
             od=OrderedDict(sorted(result.items()))
         return od
-
-

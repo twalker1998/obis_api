@@ -4,3 +4,4 @@ config.sh
 *.swp
 *.pyc
 .vscode/settings.json
+obis_api/
