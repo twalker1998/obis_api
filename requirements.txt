@@ -13,7 +13,7 @@ django-rest-auth==0.9.5
 django-allauth==0.33.0
 ecdsa==0.13.3
 gunicorn==19.6.0
-Jinja2==2.7.3
+Jinja2==2.10.1
 kombu==3.0.34
 Markdown==2.4.1
 MarkupSafe==0.23
