@@ -5,10 +5,10 @@ from rest_framework.urlpatterns import format_suffix_patterns
 
 
 urlpatterns = [
-    url(r'^data/$', Catalog.as_view(),name='catalog-list'),
-    url(r'^data/(?P<database>[^/]+)/$',Catalog.as_view(),name='catalog-list'),
-    url(r'^data/(?P<database>[^/]+)/(?P<collection>[^/]+)/$',CatalogData.as_view(),name='catalog-detail'),
-    url(r'^data/(?P<database>[^/]+)/(?P<collection>[^/]+)/(?P<id>[^/]+)/$', CatalogDataDetail.as_view(), name='catalog-detail-id')
+    url('data/$', Catalog.as_view(),name='catalog-list'),
+    url('data/(?P<database>[^/]+)/$',Catalog.as_view(),name='catalog-list'),
+    url('data/(?P<database>[^/]+)/(?P<collection>[^/]+)/$',CatalogData.as_view(),name='catalog-detail'),
+    url('data/(?P<database>[^/]+)/(?P<collection>[^/]+)/(?P<id>[^/]+)/$', CatalogDataDetail.as_view(), name='catalog-detail-id')
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns, allowed=['api', 'json', 'jsonp', 'xml', 'yaml'])

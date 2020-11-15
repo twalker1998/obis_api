@@ -42,7 +42,7 @@ router.register('vwsearch', VwSearchViewSet)
 
 
 urlpatterns = [
-    url(r'^', include(router.urls))
+    url('', include(router.urls))
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns, allowed=['api', 'json', 'jsonp', 'xml', 'yaml'])
