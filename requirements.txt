@@ -20,7 +20,7 @@ MarkupSafe==0.23
 mock==1.0.1
 ordereddict==1.1
 paramiko==2.0.9
-psycopg2-binary==2.7.3.2
+psycopg2-binary==2.8
 pycrypto==2.6.1
 pymongo==3.2.1
 python-dateutil==1.5
