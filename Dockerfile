@@ -1,5 +1,5 @@
 FROM python:3.9
-MAINTAINER Mark Stacy <markstacy@ou.edu>
+MAINTAINER Tyler Walker <twalker1998@ou.edu>
 
 RUN apt-get update && apt-get install -y vim libpq-dev python-dev
 
