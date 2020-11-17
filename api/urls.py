@@ -17,25 +17,25 @@ admin.autodiscover()
 #router.register(r'accounts', UserView, 'list')
 
 urlpatterns = [
-    #url('api/', include(router.urls)),
+    #url(r'^api/', include(router.urls)),
     # Django Rest Login Urls
-    url('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     # Queue Application
-    url('queue/', include('cybercom_queue.urls')),
-    url('data_store/',include('data_store.urls')),
-    url('catalog/', include('catalog.urls')),
-    url('obis/',include('obis.urls')),
+    url(r'^queue/', include('cybercom_queue.urls')),
+    url(r'^data_store/',include('data_store.urls')),
+    url(r'^catalog/', include('catalog.urls')),
+    url(r'^obis/',include('obis.urls')),
     # Main Project View - Customize depending on what Apps are enabled
-    url('$', APIRoot.as_view()),
-    url('/\.(?P<format>(api|json|jsonp|xml|yaml))/$', APIRoot.as_view()),
+    url(r'^$', APIRoot.as_view()),
+    url(r'^/\.(?P<format>(api|json|jsonp|xml|yaml))/$', APIRoot.as_view()),
     # User Profile
-    url('user/',UserProfile.as_view(),name='user-list'),
-    url('login', login),
+    url(r'^user/',UserProfile.as_view(),name='user-list'),
+    url(r'^login', login),
     # Authentication
-    url('register/$', TemplateView.as_view(template_name="register.html"), name='register'),
-    url('verify/$', TemplateView.as_view(template_name="verify.html"), name='verify'),
-    url('rest-auth/', include('rest_auth.urls')),
-    url('rest-auth/registration/', include('rest_auth.registration.urls')),
+    url(r'^register/$', TemplateView.as_view(template_name="register.html"), name='register'),
+    url(r'^verify/$', TemplateView.as_view(template_name="verify.html"), name='verify'),
+    url(r'^rest-auth/', include('rest_auth.urls')),
+    url(r'^rest-auth/registration/', include('rest_auth.registration.urls')),
     # Admin Urls
-    url('admin/', admin.site.urls)
+    url(r'^admin/', admin.site.urls)
 ]
