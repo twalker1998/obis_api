@@ -5,3 +5,4 @@ config.sh
 *.pyc
 .vscode/settings.json
 obis_api/
+**/.DS_Store
