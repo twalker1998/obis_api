@@ -53,16 +53,6 @@ class CategoryLookup(models.Model):
         managed  = False
         db_table = 'category_lu'
 
-class CoTrs(models.Model):
-    gid  = models.IntegerField(primary_key=True)
-    name = models.CharField(max_length=100, blank=True)
-    trs  = models.CharField(max_length=30, blank=True)
-    geom = models.TextField(blank=True)
-
-    class Meta:
-        managed  = False
-        db_table = 'co_trs'
-
 class Comtax(models.Model):
     c_id           = models.IntegerField(primary_key=True)
     acode          = models.ForeignKey(Acctax, db_column='acode', blank=True, null=True, on_delete=models.CASCADE)
@@ -72,6 +62,16 @@ class Comtax(models.Model):
     class Meta:
         managed  = False
         db_table = 'comtax'
+
+class CoTrs(models.Model):
+    gid  = models.IntegerField(primary_key=True)
+    name = models.CharField(max_length=100, blank=True)
+    trs  = models.CharField(max_length=30, blank=True)
+    geom = models.TextField(blank=True)
+
+    class Meta:
+        managed  = False
+        db_table = 'co_trs'
 
 class County(models.Model):
     county = models.CharField(primary_key=True, unique=True, max_length=25, blank=True)
@@ -88,6 +88,20 @@ class DDistConfidence(models.Model):
     class Meta:
         managed  = False
         db_table = 'd_dist_confidence'
+
+class DistributionData(models.Model):
+    d_id             = models.IntegerField(primary_key=True, blank=False, null=False)
+    acode            = models.ForeignKey(Acctax, db_column='acode', blank=True, null=True, on_delete=models.DO_NOTHING)
+    elcode           = models.CharField(max_length=50, blank=True, null=True)
+    origin           = models.ForeignKey(DOrigin, db_column='origin', blank=True, null=True, on_delete=models.DO_NOTHING)
+    regularity       = models.ForeignKey(DRegularity, db_column='regularity', blank=True, null=True, on_delete=models.DO_NOTHING)
+    dist_confidence  = models.ForeignKey(DDistConfidence, db_column='dist_confidence', blank=True, null=True, on_delete=models.DO_NOTHING)
+    presence_absence = models.ForeignKey(DPresenceAbsence, db_column='presence_absence', blank=True, null=True, on_delete=models.DO_NOTHING)
+    population       = models.ForeignKey(DPopulation, db_column='population', blank=True, null=True, on_delete=models.DO_NOTHING)
+
+    class Meta:
+        managed  = False
+        db_table = 'distribution_data'
 
 class DOrigin(models.Model):
     d_origin_id = models.IntegerField(blank=False, null=False)
@@ -120,20 +134,6 @@ class DRegularity(models.Model):
     class Meta:
         managed  = False
         db_table = 'd_regularity'
-
-class DistributionData(models.Model):
-    d_id             = models.IntegerField(primary_key=True, blank=False, null=False)
-    acode            = models.ForeignKey(Acctax, db_column='acode', blank=True, null=True, on_delete=models.DO_NOTHING)
-    elcode           = models.CharField(max_length=50, blank=True, null=True)
-    origin           = models.ForeignKey(DOrigin, db_column='origin', blank=True, null=True, on_delete=models.DO_NOTHING)
-    regularity       = models.ForeignKey(DRegularity, db_column='regularity', blank=True, null=True, on_delete=models.DO_NOTHING)
-    dist_confidence  = models.ForeignKey(DDistConfidence, db_column='dist_confidence', blank=True, null=True, on_delete=models.DO_NOTHING)
-    presence_absence = models.ForeignKey(DPresenceAbsence, db_column='presence_absence', blank=True, null=True, on_delete=models.DO_NOTHING)
-    population       = models.ForeignKey(DPopulation, db_column='population', blank=True, null=True, on_delete=models.DO_NOTHING)
-
-    class Meta:
-        managed  = False
-        db_table = 'distribution_data'
 
 class FedStatus(models.Model):
     status_id   = models.IntegerField(primary_key=True)
