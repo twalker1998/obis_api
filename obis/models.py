@@ -239,3 +239,224 @@ class KingdomLookup(models.Model):
     class Meta:
         managed  = False
         db_table = 'kingdom_lu'
+
+class NameCategoryDescLookup(models.Model):
+    a_id               = models.IntegerField(blank=False, null=False)
+    name_category_desc = models.CharField(primary_key=True, max_length=30, blank=False, null=False)
+
+    class Meta:
+        managed  = False
+        db_table = 'name_category_desc_lu'
+
+class NameTypeDescLookup(models.Model):
+    a_id           = models.IntegerField(blank=False, null=False)
+    name_type_desc = models.CharField(primary_key=True, max_length=30, blank=False, null=False)
+
+    class Meta:
+        managed  = False
+        db_table = 'name_type_desc_lu'
+
+class NativityLookup(models.Model):
+    n_id     = models.IntegerField(blank=False, null=False)
+    nativity = models.CharField(primary_key=True, max_length=60, blank=False, null=False)
+
+    class Meta:
+        managed  = False
+        db_table = 'nativity_lu'
+
+class Occurrence(models.Model):
+    resourcetype                     = models.ForeignKey('ResourceTypeLookup', db_column='resourcetype', blank=True, null=True, on_delete=models.DO_NOTHING)
+    gid                              = models.IntegerField(primary_key=True)
+    acode                            = models.ForeignKey(Acctax, db_column='acode', blank=True, null=True, on_delete=models.DO_NOTHING)
+    eventdate                        = models.DateField(blank=True, null=True)
+    recordedby                       = models.CharField(max_length=500, blank=True)
+    county                           = models.ForeignKey(County, db_column='county', blank=True, null=True, on_delete=models.DO_NOTHING)
+    locality                         = models.CharField(max_length=500, blank=True)
+    behavior                         = models.CharField(max_length=500, blank=True)
+    habitat                          = models.CharField(max_length=500, blank=True)
+    sex                              = models.CharField(max_length=500, blank=True)
+    lifestage                        = models.CharField(max_length=500, blank=True)
+    associatedtaxa                   = models.CharField(max_length=500, blank=True)
+    verbatimelevation                = models.FloatField(blank=True, null=True)
+    depth                            = models.FloatField(blank=True, null=True)
+    depthaccuracy                    = models.IntegerField(blank=True, null=True)
+    individualcount                  = models.IntegerField(blank=True, null=True)
+    occurrenceremarks                = models.CharField(max_length=500, blank=True)
+    taxonremarks                     = models.CharField(max_length=500, blank=True)
+    institutioncode                  = models.ForeignKey(Institution, db_column='institutioncode', blank=True, null=True, on_delete=models.CASCADE)
+    basisofrecord                    = models.ForeignKey(BasisOfRecordLookup, db_column='basisofrecord', blank=True, null=True, on_delete=models.DO_NOTHING)
+    catalognumber                    = models.CharField(max_length=500, blank=True)
+    othercatalognumbers              = models.CharField(max_length=500, blank=True)
+    typestatus                       = models.CharField(max_length=25, blank=True)
+    recordnumber                     = models.CharField(max_length=500, blank=True)
+    samplingprotocol                 = models.CharField(max_length=500, blank=True)
+    preparations                     = models.CharField(max_length=500, blank=True)
+    primary_data                     = models.CharField(max_length=500, blank=True)
+    associatedreferences             = models.CharField(max_length=500, blank=True)
+    datasetname                      = models.ForeignKey('Source', db_column='datasetname', blank=True, null=True, on_delete=models.DO_NOTHING)
+    coordinateprecision              = models.IntegerField(blank=True, null=True)
+    decimallatitude                  = models.FloatField(blank=True, null=True)
+    decimallongitude                 = models.FloatField(blank=True, null=True)
+    geodeticdatum                    = models.CharField(max_length=10, blank=True)
+    georeferencedby                  = models.CharField(max_length=500, blank=True)
+    georeferenceddate                = models.DateField(blank=True, null=True)
+    georeferenceremarks              = models.CharField(max_length=500, blank=True)
+    georeferencesources              = models.CharField(max_length=500, blank=True)
+    georeferenceverificationstatus   = models.CharField(max_length=500, blank=True)
+    geom                             = models.TextField(blank=True)
+    problem_with_record              = models.CharField(max_length=500, blank=True)
+    previousidentifications          = models.CharField(max_length=500, blank=True)
+    identificationverificationstatus = models.CharField(max_length=500, blank=True)
+    identificationconfidence         = models.CharField(max_length=10, blank=True)
+    identificationremarks            = models.CharField(max_length=500, blank=True)
+    datelastmodified                 = models.DateField(blank=True, null=True)
+    associatedoccurrences            = models.CharField(max_length=500, blank=True)
+    associatedsequences              = models.CharField(max_length=500, blank=True)
+    entby                            = models.CharField(max_length=500, blank=True)
+    entrydate                        = models.DateField(blank=True, null=True)
+    obs_gid                          = models.IntegerField(blank=True, null=True)
+    mtr                              = models.TextField(blank=True)
+    township                         = models.IntegerField(blank=True, null=True)
+    ns                               = models.TextField(blank=True)
+    range                            = models.IntegerField(blank=True, null=True)
+    ew                               = models.TextField(blank=True)
+    section                          = models.IntegerField(blank=True, null=True)
+    quarter                          = models.TextField(blank=True)
+    zone                             = models.IntegerField(blank=True, null=True)
+    utme                             = models.IntegerField(blank=True, null=True)
+    utmn                             = models.IntegerField(blank=True, null=True)
+    hiderecord                       = models.NullBooleanField()
+    hiderecordcomment                = models.CharField(max_length=500, blank=True)
+    relationshipremarks              = models.CharField(max_length=500, blank=True)
+    informationwitheld               = models.NullBooleanField()
+    awaitingreview                   = models.IntegerField(blank=True, null=True)
+    occurrenceid                     = models.TextField(blank=True)
+
+    class Meta:
+        managed  = False
+        db_table = 'occurrence'
+
+class OkSwap(models.Model):
+    swap_id     = models.IntegerField(primary_key=True)
+    tier        = models.CharField(max_length=4, blank=True)
+    description = models.CharField(max_length=500, blank=True)
+
+    class Meta:
+        managed  = False
+        db_table = 'ok_swap'
+
+class RankChange(models.Model):
+    r_id                 = models.IntegerField(primary_key=True)
+    acode                = models.ForeignKey(Acctax, db_column='acode', blank=True, null=True, on_delete=models.DO_NOTHING)
+    previous_s_rank      = models.CharField(max_length=500, blank=True)
+    s_rank               = models.CharField(max_length=500, blank=True)
+    changedby            = models.CharField(max_length=500, blank=True)
+    rankremarks          = models.CharField(max_length=500, blank=True)
+    datelastmodified     = models.DateField(blank=True, null=True)
+    previousdatemodified = models.DateField(blank=True, null=True)
+
+    class Meta:
+        managed  = False
+        db_table = 'rank_change'
+
+class RasterColumns(models.Model):
+    r_table_catalog  = models.TextField(blank=True)
+    r_table_schema   = models.TextField(blank=True)
+    r_table_name     = models.TextField(blank=True)
+    r_raster_column  = models.TextField(blank=True)
+    srid             = models.IntegerField(blank=True, null=True)
+    scale_x          = models.FloatField(blank=True, null=True)
+    scale_y          = models.FloatField(blank=True, null=True)
+    blocksize_x      = models.IntegerField(blank=True, null=True)
+    blocksize_y      = models.IntegerField(blank=True, null=True)
+    same_alignment   = models.NullBooleanField()
+    regular_blocking = models.NullBooleanField()
+    num_bands        = models.IntegerField(blank=True, null=True)
+    pixel_types      = models.TextField(blank=True)
+    nodata_values    = models.TextField(blank=True)
+    out_db           = models.TextField(blank=True)
+    extent           = models.TextField(blank=True)
+
+    class Meta:
+        managed  = False
+        db_table = 'raster_columns'
+
+class RasterOverviews(models.Model):
+    o_table_catalog = models.TextField(blank=True)
+    o_table_schema  = models.TextField(blank=True)
+    o_table_name    = models.TextField(blank=True)
+    o_raster_column = models.TextField(blank=True)
+    r_table_catalog = models.TextField(blank=True)
+    r_table_schema  = models.TextField(blank=True)
+    r_table_name    = models.TextField(blank=True)
+    r_raster_column = models.TextField(blank=True)
+    overview_factor = models.IntegerField(blank=True, null=True)
+
+    class Meta:
+        managed  = False
+        db_table = 'raster_overviews'
+
+class ResourceTypeLookup(models.Model):
+    id           = models.IntegerField(blank=False, null=False)
+    resourcetype = models.CharField(primary_key=True, max_length=50, blank=False, null=False)
+
+    class Meta:
+        managed  = False
+        db_table = 'resourcetype_lu'
+
+class Source(models.Model):
+    source      = models.CharField(primary_key=True, max_length=30)
+    description = models.CharField(max_length=500, blank=True)
+
+    class Meta:
+        managed  = False
+        db_table = 'source'
+
+class SpatialRefSys(models.Model):
+    srid      = models.IntegerField(primary_key=True)
+    auth_name = models.CharField(max_length=256, blank=True)
+    auth_srid = models.IntegerField(blank=True, null=True)
+    srtext    = models.CharField(max_length=2048, blank=True)
+    proj4text = models.CharField(max_length=2048, blank=True)
+
+    class Meta:
+        managed  = False
+        db_table = 'spatial_ref_sys'
+
+class StateRankLookup(models.Model):
+    id   = models.IntegerField(blank=False, null=False)
+    code = models.CharField(primary_key=True, max_length=15, blank=False, null=False)
+
+    class Meta:
+        managed  = False
+        db_table = 'state_rank_lu'
+
+class StStatus(models.Model):
+    status_id   = models.IntegerField(primary_key=True)
+    status      = models.CharField(max_length=500, blank=True)
+    description = models.CharField(max_length=500, blank=True)
+
+    class Meta:
+        managed  = False
+        db_table = 'st_status'
+
+class Syntax(models.Model):
+    s_id                          = models.IntegerField()
+    acode                         = models.ForeignKey(Acctax, db_column='acode', blank=True, null=True, on_delete=models.CASCADE)
+    scode                         = models.CharField(primary_key=True, max_length=500)
+    sname                         = models.CharField(max_length=500, blank=True)
+    scientificnameauthorship      = models.CharField(max_length=500, blank=True)
+    family                        = models.CharField(max_length=500, blank=True)
+    genus                         = models.CharField(max_length=500, blank=True)
+    species                       = models.CharField(max_length=500, blank=True)
+    subspecies                    = models.CharField(max_length=500, blank=True)
+    variety                       = models.CharField(max_length=500, blank=True)
+    scientificname                = models.CharField(max_length=500, blank=True)
+    sspscientificnameauthorship   = models.CharField(max_length=500, blank=True)
+    varscientificnameauthorship   = models.CharField(max_length=500, blank=True)
+    formascientificnameauthorship = models.CharField(max_length=500, blank=True)
+    tsn                           = models.IntegerField(blank=True, null=True)
+
+    class Meta:
+        managed  = False
+        db_table = 'syntax'
