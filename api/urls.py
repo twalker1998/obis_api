@@ -34,10 +34,7 @@ urlpatterns = [
     # Django Rest Login URLs
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')), # TODO: might not need
 
-    # Queue Application URLs
-    url(r'^queue/', include('cybercom_queue.urls')),
-    url(r'^data_store/',include('data_store.urls')),
-    url(r'^catalog/', include('catalog.urls')),
+    # OBIS Application URLs
     url(r'^obis/',include('obis.urls')),
 
     # Main Project View - Customize depending on what Apps are enabled
