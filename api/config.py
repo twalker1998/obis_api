@@ -2,12 +2,12 @@ __author__ = 'Tyler Walker' # twalker1998@gmail.com
 
 import os
 
-# ************ Application Settings ************
+# &&&&&&&&&&&& Application Settings &&&&&&&&&&&&
 appName          = 'obis'
 pageTitle        = 'OBIS API'
 applicationTitle = 'Oklahoma Biodiversity Information System'
 
-# ************ Django Settings ************
+# &&&&&&&&&&&& Django Settings &&&&&&&&&&&&
 BASE_DIR          = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ALLOWED_HOSTS     = ['obis.ou.edu', 'obis.twalk.tech']
 SECRET_KEY        = '**secret-key**'
@@ -58,10 +58,10 @@ DATABASES = {
 
 DATABASE_ROUTERS = ['obis.database_router.obisRouter']
 
-# ************ Docker ************
+# &&&&&&&&&&&& Docker &&&&&&&&&&&&
 DOCKER_HOST_DATA_DIRECTORY = "/opt/obis"
 
-# ************ Email Configuration ************
+# &&&&&&&&&&&& Email Configuration &&&&&&&&&&&&
 EMAIL_BACKEND       = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST          = 'smtp.gmail.com'
 EMAIL_PORT          = 587
