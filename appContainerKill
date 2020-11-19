@@ -1,6 +1,6 @@
 #!/bin/bash
 
 #Kill only namespace docker container and remove containers
-docker ps | grep obis | xargs docker kill 
-docker ps -a | grep obis | awk '{print $1}' | xargs docker rm 
+docker ps --format {{.Names}} | xargs docker kill >/dev/null
+docker ps -a --format {{.Names}} | awk '{print $0}' | xargs docker rm
 service docker restart

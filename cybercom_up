@@ -4,9 +4,9 @@
 source /opt/obis/config/config.sh
 
 # Docker worker host
-host_ip = "example.oscer.ou.edu"
+# host_ip = "example.oscer.ou.edu"
 # If docker is going to ssh to docker host. Need to setup keys and docker_username.
-docker_username = "mstacy"
+# docker_username = "mstacy"
 
 # OBIS API
 echo "************* OBIS API *************"
