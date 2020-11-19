@@ -1,7 +1,6 @@
 __author__ = 'Tyler Walker' # twalker1998@gmail.com
 
 import os
-import ssl
 
 # ************ Application Settings ************
 appName          = 'obis'

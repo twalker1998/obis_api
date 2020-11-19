@@ -1,7 +1,11 @@
 {% extends "rest_framework/base.html" %}
 
 {% block bootstrap_theme %}
-    <link rel="stylesheet" href="https://bootswatch.com/4/slate/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="https://bootswatch.com/4/flatly/bootstrap.min.css" type="text/css">
+{% endblock %}
+
+{% block branding %}
+    <a class='brand' rel="nofollow" href='#'> {{ api.config.pageTitle }} <span class="version">v 2.0</span></a>
 {% endblock %}
 
 {% block bootstrap_navbar_variant %}{% endblock %}
