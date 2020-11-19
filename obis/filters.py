@@ -83,6 +83,8 @@ class NameCategoryDescLookupFilter(django_filters.FilterSet):
         model  = NameCategoryDescLookup
         fields = '__all__'
 
+# TODO: might need NameTypeDescLookupFilter
+
 class NativityLookupFilter(django_filters.FilterSet):
     n_id = django_filters.NumberFilter(lookup_expr='exact')
 
