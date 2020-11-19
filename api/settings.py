@@ -75,7 +75,6 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'django_filters',
-    'drf-yasg',
     'obis',
     'rest_auth',
     'rest_auth.registration',
