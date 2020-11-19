@@ -50,34 +50,24 @@ class APIRoot(APIView):
 
     def get(self, request, format=None):
         return Response({
-            'Queue': { # TODO: do we need this?
-                'Tasks':         reverse('queue-main', request=request),
-                'Tasks History': reverse('queue-user-tasks', request=request)
-            },
-            'Catalog': { # TODO: do we need this?
-                'Data Source': reverse('catalog-list', request=request)
-            },
-            'Data Store': {
-                'OBIS': {
-                    'Tables': [ # TODO: why can't I reverse any of the views I wrote?
-                        reverse('acctax-list', request=request),
-                        reverse('comtax-list', request=request),
-                        reverse('syntax-list', request=request),
-                        reverse('occurrence-list', request=request),
-                        reverse('source-list', request=request),
-                        reverse('hightax-list', request=request),
-                        reverse('fedstatus-list', request=request),
-                        reverse('ststatus-list', request=request),
-                        reverse('okswap-list', request=request),
-                        reverse('institution-list', request=request),
-                        reverse('county-list', request=request),
-                        reverse('cotrs-list', request=request),
-                        reverse('identificationverification-list', request=request),
-                        reverse('rankchange-list', request=request),
-                        reverse('spatialrefsys-list', request=request)
-                    ]
-                },
-                'Mongo': reverse('data-list', request=request) # TODO: do we need this?
+            'OBIS': {
+                'Tables': [ # TODO: why can't I reverse any of the views I wrote?
+                    reverse('acctax-list', request=request),
+                    reverse('comtax-list', request=request),
+                    reverse('syntax-list', request=request),
+                    reverse('occurrence-list', request=request),
+                    reverse('source-list', request=request),
+                    reverse('hightax-list', request=request),
+                    reverse('fedstatus-list', request=request),
+                    reverse('ststatus-list', request=request),
+                    reverse('okswap-list', request=request),
+                    reverse('institution-list', request=request),
+                    reverse('county-list', request=request),
+                    reverse('cotrs-list', request=request),
+                    reverse('identificationverification-list', request=request),
+                    reverse('rankchange-list', request=request),
+                    reverse('spatialrefsys-list', request=request)
+                ]
             },
             'User Profile': {
                 'User': reverse('user-list', request=request)
