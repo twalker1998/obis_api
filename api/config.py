@@ -11,9 +11,8 @@ applicationTitle = 'Oklahoma Biodiversity Information System'
 # ************ Django Settings ************
 BASE_DIR          = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ALLOWED_HOSTS     = ['obis.ou.edu', 'obis.twalk.tech']
-SECRET_KEY        = 'w4dr^thkfn9h!1)=h%0*wm1)xy^ezgpp*)(+qwm$xog&2*(1$%'
+SECRET_KEY        = '**secret-key**'
 FORCE_SCRIPT_NAME = '/api/'
-SITE_ID           = 1
 
 # Behind reverse proxy, set header to trust for https
 # Replace values in next two lines with commented text if https is needed and behind proxy
@@ -51,7 +50,7 @@ DATABASES = {
     },
     'obis': {
         'ENGINE':   'django.db.backends.postgresql_psycopg2',
-        'HOST':     '10.27.192.243',
+        'HOST':     '**test-db**',
         'NAME':     'obis',
         'USER':     '**obis-db-user**',
         'PASSWORD': '**obis-db-pass**'
@@ -59,41 +58,6 @@ DATABASES = {
 }
 
 DATABASE_ROUTERS = ['obis.database_router.obisRouter']
-
-# ************ Queue ************
-MEMCACHE_HOST = 'cybercom_memcache'
-MEMCACHE_PORT = 11211
-
-MONGO_HOST                 = 'cybercom_mongo'
-MONGO_PORT                 = 27017
-MONGO_DB                   = 'obis'
-MONGO_LOG_COLLECTION       = 'task_log'
-MONGO_TOMBSTONE_COLLECTION = 'tombstone'
-
-BROKER_URL     = 'amqp://bkobis:dhY7GFEW12@cybercom_rabbitmq:5671/obis'
-BROKER_USE_SSL = {
-    'keyfile':   '/ssl/client/key.pem',
-    'certfile':  '/ssl/client/cert.pem',
-    'ca_certs':  '/ssl/testca/cacert.pem',
-    'cert_reqs': ssl.CERT_REQUIRED
-}
-
-CELERY_RESULT_BACKEND           = 'mongodb://bkobis:**bkobis-pass**@cybercom_mongo:27017/?ssl=true&ssl_ca_certs=/ssl/testca/cacert.pem&ssl_certfile=/ssl/client/mongodb.pem' 
-CELERY_MONGODB_BACKEND_SETTINGS = {
-    "database":            MONGO_DB,
-    "taskmeta_collection": MONGO_TOMBSTONE_COLLECTION
-}
-
-# ************ Catalog ************
-CATALOG_EXCLUDE   = ['admin','local','cybercom_auth','system.users','default_collection','obis']
-CATALOG_INCLUDE   = ['catalog']
-CATALOG_URI       = 'mongodb://bkobis:**bkobis-pass**@cybercom_mongo:27017/?ssl=true&ssl_ca_certs=/ssl/testca/cacert.pem&ssl_certfile=/ssl/client/mongodb.pem'
-CATALOG_ANONYMOUS = True
-
-# ************ Data Store ************
-DATA_STORE_EXCLUDE   = ['admin','local','cybercom_auth','system.users','catalog','default_collection','obis',]
-DATA_STORE_MONGO_URI = 'mongodb://bkobis:**bkobis-pass**@cybercom_mongo:27017/?ssl=true&ssl_ca_certs=/ssl/testca/cacert.pem&ssl_certfile=/ssl/client/mongodb.pem'
-DATA_STORE_ANONYMOUS = True
 
 # ************ Docker ************
 DOCKER_HOST_DATA_DIRECTORY = "/opt/obis"
