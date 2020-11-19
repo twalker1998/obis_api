@@ -13,7 +13,7 @@ steps:
 - task: replacetokens@3
   inputs:
     rootDirectory: 'api'
-    targetFiles: 'config.py'
+    targetFiles: '**/*.py'
     encoding: 'auto'
     writeBOM: true
     escapeType: 'none'
