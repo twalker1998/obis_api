@@ -9,8 +9,8 @@ from obis.models import (Acctax, BasisOfRecordLookup, CategoryLookup, Comtax,
 
 class AcctaxFilter(django_filters.FilterSet):
     a_id     = django_filters.NumberFilter(lookup_expr='exact')
-    acode    = django_filters.CharFilter(lookup_type='icontains')
-    sname    = django_filters.CharFilter(lookup_type='icontains')
+    acode    = django_filters.CharFilter(lookup_expr='icontains')
+    sname    = django_filters.CharFilter(lookup_expr='icontains')
     phylum   = django_filters.CharFilter(lookup_expr='icontains')
     taxclass = django_filters.CharFilter(lookup_expr='icontains')
     taxorder = django_filters.CharFilter(lookup_expr='icontains')
