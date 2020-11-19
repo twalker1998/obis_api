@@ -31,7 +31,7 @@ class Acctax(models.Model):
     sspscientificnameauthorship   = models.CharField(max_length=500, blank=True)
     varscientificnameauthorship   = models.CharField(max_length=500, blank=True)
     formascientificnameauthorship = models.CharField(max_length=500, blank=True)
-    tracked                       = models.NullBooleanField() # TODO: remove NullBooleanField
+    tracked                       = models.BooleanField(null=True)
 
     class Meta:
         managed  = False
@@ -325,10 +325,10 @@ class Occurrence(models.Model):
     zone                             = models.IntegerField(blank=True, null=True)
     utme                             = models.IntegerField(blank=True, null=True)
     utmn                             = models.IntegerField(blank=True, null=True)
-    hiderecord                       = models.NullBooleanField()
+    hiderecord                       = models.BooleanField(null=True)
     hiderecordcomment                = models.CharField(max_length=500, blank=True)
     relationshipremarks              = models.CharField(max_length=500, blank=True)
-    informationwitheld               = models.NullBooleanField()
+    informationwitheld               = models.BooleanField(null=True)
     awaitingreview                   = models.IntegerField(blank=True, null=True)
     occurrenceid                     = models.TextField(blank=True)
 
@@ -369,8 +369,8 @@ class RasterColumns(models.Model):
     scale_y          = models.FloatField(blank=True, null=True)
     blocksize_x      = models.IntegerField(blank=True, null=True)
     blocksize_y      = models.IntegerField(blank=True, null=True)
-    same_alignment   = models.NullBooleanField()
-    regular_blocking = models.NullBooleanField()
+    same_alignment   = models.BooleanField(null=True)
+    regular_blocking = models.BooleanField(null=True)
     num_bands        = models.IntegerField(blank=True, null=True)
     pixel_types      = models.TextField(blank=True)
     nodata_values    = models.TextField(blank=True)
