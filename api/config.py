@@ -49,7 +49,7 @@ DATABASES = {
     },
     'obis': {
         'ENGINE':   'django.db.backends.postgresql_psycopg2',
-        'HOST':     '**test-db**',
+        'HOST':     '**prod-db**',
         'NAME':     'obis',
         'USER':     '**obis-db-user**',
         'PASSWORD': '**obis-db-pass**'
