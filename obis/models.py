@@ -93,11 +93,11 @@ class DistributionData(models.Model):
     d_id             = models.IntegerField(primary_key=True, blank=False, null=False)
     acode            = models.ForeignKey(Acctax, db_column='acode', blank=True, null=True, on_delete=models.DO_NOTHING)
     elcode           = models.CharField(max_length=50, blank=True, null=True)
-    origin           = models.ForeignKey(DOrigin, db_column='origin', blank=True, null=True, on_delete=models.DO_NOTHING)
-    regularity       = models.ForeignKey(DRegularity, db_column='regularity', blank=True, null=True, on_delete=models.DO_NOTHING)
+    origin           = models.ForeignKey('DOrigin', db_column='origin', blank=True, null=True, on_delete=models.DO_NOTHING)
+    regularity       = models.ForeignKey('DRegularity', db_column='regularity', blank=True, null=True, on_delete=models.DO_NOTHING)
     dist_confidence  = models.ForeignKey(DDistConfidence, db_column='dist_confidence', blank=True, null=True, on_delete=models.DO_NOTHING)
-    presence_absence = models.ForeignKey(DPresenceAbsence, db_column='presence_absence', blank=True, null=True, on_delete=models.DO_NOTHING)
-    population       = models.ForeignKey(DPopulation, db_column='population', blank=True, null=True, on_delete=models.DO_NOTHING)
+    presence_absence = models.ForeignKey('DPresenceAbsence', db_column='presence_absence', blank=True, null=True, on_delete=models.DO_NOTHING)
+    population       = models.ForeignKey('DPopulation', db_column='population', blank=True, null=True, on_delete=models.DO_NOTHING)
 
     class Meta:
         managed  = False
