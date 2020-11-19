@@ -1,5 +1,2 @@
-
 def title(request):
-    from api import config
-    return {'page_title': config.Page_Title,
-            'application_title':config.Application_Title }
+    return {'page_title': 'OBIS API', 'application_title': 'Oklahoma Biodiversity Information System'}

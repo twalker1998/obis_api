@@ -2,16 +2,18 @@
 Helper classes for parsers.
 """
 from __future__ import unicode_literals
-from django.db.models.query import QuerySet
-from collections import OrderedDict as SortedDict
-from django.utils.functional import Promise
-from django.utils import timezone
-from django.utils.encoding import force_text
+
 import datetime
 import decimal
-import types
 import json
+import types
+from collections import OrderedDict as SortedDict
+
 from bson.objectid import ObjectId
+from django.db.models.query import QuerySet
+from django.utils import timezone
+from django.utils.encoding import force_text
+from django.utils.functional import Promise
 
 class JSONEncoder(json.JSONEncoder):
     """
@@ -21,6 +23,7 @@ class JSONEncoder(json.JSONEncoder):
     def default(self, o):
         if isinstance(o, ObjectId):
             return str(o)
+        
         # For Date Time string spec, see ECMA 262
         # http://ecma-international.org/ecma-262/5.1/#sec-15.9.1.15
         if isinstance(o, Promise):
@@ -58,7 +61,6 @@ class JSONEncoder(json.JSONEncoder):
             return [i for i in o]
         return super(JSONEncoder, self).default(o)
 
-
 try:
     import yaml
 except ImportError:
@@ -76,7 +78,7 @@ else:
 
         def represent_mapping(self, tag, mapping, flow_style=None):
             value = []
-            node = yaml.MappingNode(tag, value, flow_style=flow_style)
+            node  = yaml.MappingNode(tag, value, flow_style=flow_style)
             if self.alias_key is not None:
                 self.represented_objects[self.alias_key] = node
             best_style = True
@@ -85,7 +87,7 @@ else:
                 if not isinstance(mapping, SortedDict):
                     mapping.sort()
             for item_key, item_value in mapping:
-                node_key = self.represent_data(item_key)
+                node_key   = self.represent_data(item_key)
                 node_value = self.represent_data(item_value)
                 if not (isinstance(node_key, yaml.ScalarNode) and not node_key.style):
                     best_style = False

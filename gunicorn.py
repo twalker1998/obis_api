@@ -1,4 +1,5 @@
-# gunicorn.py
+__author__ = 'Tyler Walker' # twalker1998@gmail.com
+__author__ = 'Mark Stacy'
 import multiprocessing
 import os
 
