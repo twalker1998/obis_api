@@ -43,7 +43,7 @@ from obis.serializer import (AcctaxSerializer, BasisOfRecordLookupSerializer,
 # ************ OBIS Table ViewSet Class ************
 class obisTableViewSet(viewsets.ModelViewSet):
     filter_backends    = (DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter)
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly) # TODO: might need to put a comma at the end
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
     renderer_classes   = (BrowsableAPIRenderer, JSONRenderer)
 
 # ************ OBIS Tables ************
