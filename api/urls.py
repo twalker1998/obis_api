@@ -39,7 +39,7 @@ urlpatterns = [
 
     # Main Project View - Customize depending on what Apps are enabled
     url(r'^$', views.APIRoot.as_view()),
-    url(r'^/\.(?P<format>(api|json))/$', views.APIRoot.as_view()),
+    url(r'^\.(?P<format>(api|json))/$', views.APIRoot.as_view()),
 
     # User Profile
     url(r'^user/', views.UserProfile.as_view(), name='user-list'),
