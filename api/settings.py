@@ -41,9 +41,9 @@ REST_FRAMEWORK = {
 
     # Use Django's standard `django.contrib.auth` permissions,
     # or allow read-only access for unauthenticated users.
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
-    ],
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly',
+    ),
 
     # Authentication defaults
     'DEFAULT_AUTHENTICATION_CLASSES': (
@@ -54,7 +54,7 @@ REST_FRAMEWORK = {
     # Renderer defaults
     'DEFAULT_RENDERER_CLASSES': [
         'rest_framework.renderers.BrowsableAPIRenderer',
-        'rest_framework.renderers.JSONRenderer'
+        'rest_framework.renderers.JSONRenderer',
     ],
 
     # Pagination settings
@@ -95,7 +95,7 @@ MIDDLEWARE = [
     'api.middleware.DisableCORSMiddleware'
 ]
 
-SITE_ID = config.SITE_ID
+SITE_ID = 1
 
 ROOT_URLCONF = 'api.urls'
 
