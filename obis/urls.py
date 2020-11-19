@@ -2,7 +2,7 @@ __author__ = 'Tyler Walker' # twalker1998@gmail.com
 __author__ = 'Mark Stacy'
 from django.conf.urls import include, url
 from rest_framework import routers
-from rest_framework.urlpatterns import format_suffix_patterns, urlpatterns
+from rest_framework.urlpatterns import format_suffix_patterns
 
 from obis.views import (AcctaxViewSet, BasisOfRecordLookupViewSet,
                         CategoryLookupViewSet, ComtaxViewSet, CoTrsViewSet,
@@ -41,7 +41,7 @@ router.register('iucn_lu', IUCNLookupViewSet)
 router.register('name_category_desc_lu', NameCategoryDescLookupViewSet)
 router.register('name_type_desc_lu', NameTypeDescLookupViewSet)
 router.register('nativity_lu', NativityLookupViewSet)
-router.register('occurrence', OccurrenceViewSet)
+router.register('occurrence', OccurrenceViewSet, basename='occurrence')
 router.register('okswap', OkSwapViewSet)
 router.register('rankchange', RankChangeViewSet)
 router.register('resourcetype_lu', ResourceTypeLookupViewSet)
