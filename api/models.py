@@ -89,7 +89,6 @@ class DjangoAdminLog(models.Model):
 
 class DjangoContentType(models.Model):
     id        = models.IntegerField(primary_key=True)
-    name      = models.CharField(max_length=100)
     app_label = models.CharField(max_length=100)
     model     = models.CharField(max_length=100)
 
