@@ -1,11 +1,39 @@
 {% extends "rest_framework/base.html" %}
+{% load static %}
+{% load rest_framework %}
 
-{% block bootstrap_theme %}
-    <link rel="stylesheet" href="https://bootswatch.com/4/flatly/bootstrap.min.css" type="text/css">
-{% endblock %}
+<html>
+    <head>
+    {% block head %}
+        {% block style %}
+            {% block bootstrap_theme %}
+                <link rel="stylesheet" href="https://bootswatch.com/4/flatly/bootstrap.min.css" type="text/css">
+            {% endblock %}
 
-{% block branding %}
-    <a class='brand' rel="nofollow" href='#'>OBIS API <span class="version">v 2.0</span></a>
-{% endblock %}
+            <link rel="stylesheet" type="text/css" href="{% static 'api/styles.css' %}">
+            <link rel="stylesheet" type="text/css" href="{% static 'rest_framework/css/default.css'%}">
+        {% endblock %}
+    {% endblock %}
+    </head>
+    <body>
+        {% block branding %}
+            <a class='brand' rel="nofollow" href='#'>OBIS API <span class="version">2.0</span></a>
+        {% endblock %}
 
-{% block bootstrap_navbar_variant %}{% endblock %}
+        {% block userlinks %}
+            <a href="/api/admin/login/?next=/api/admin/">Log In</a>
+        {% endblock %}
+
+        {% block bootstrap_navbar_variant %}{% endblock %}
+
+        {% block breadcrumbs %}
+        <ul class="breadcrumb">
+            {% for breadcrumb_name, breadcrumb_url in breadcrumblist %}
+                <li>
+                    <a href="{{ breadcrumb_url }}" {% if forloop.last %}class="active"{% endif %}>{{ breadcrumb_name }}</a> {% if not forloop.last %}<span class="divider">&rsaquo;</span>{% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+        {% endblock %}
+    </body>
+</html>

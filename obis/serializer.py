@@ -6,10 +6,11 @@ from obis.models import (Acctax, BasisOfRecordLookup, CategoryLookup, Comtax,
                          DOrigin, DPopulation, DPresenceAbsence, DRegularity,
                          FedStatus, GlobalRankLookup, Hightax,
                          IdentificationVerification, Institution, IUCNLookup,
-                         NameCategoryDescLookup, NameTypeDescLookup,
-                         NativityLookup, Occurrence, OkSwap, RankChange,
-                         ResourceTypeLookup, Source, SpatialRefSys,
-                         StateRankLookup, StStatus, Syntax)
+                         KingdomLookup, NameCategoryDescLookup,
+                         NameTypeDescLookup, NativityLookup, Occurrence,
+                         OkSwap, RankChange, ResourceTypeLookup, Source,
+                         SpatialRefSys, StateRankLookup, StStatus, Syntax)
+
 
 class AcctaxSerializer(serializers.HyperlinkedModelSerializer):
     family = serializers.SlugRelatedField(slug_field='family', queryset=Acctax.objects.all())
@@ -125,6 +126,13 @@ class IUCNLookupSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model  = IUCNLookup
         fields = ('code', 'description', 'id')
+
+class KingdomLookupSerializer(serializers.HyperlinkedModelSerializer):
+    kingdom = serializers.CharField()
+
+    class Meta:
+        model  = KingdomLookup
+        fields = ('id', 'kingdom')
 
 class NameCategoryDescLookupSerializer(serializers.HyperlinkedModelSerializer):
     a_id = serializers.CharField()

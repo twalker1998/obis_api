@@ -12,7 +12,8 @@ from obis.views import (AcctaxViewSet, BasisOfRecordLookupViewSet,
                         DRegularityViewSet, FedStatusViewSet,
                         GlobalRankLookupViewSet, HightaxViewSet,
                         IdentificationVerificationViewSet, InstitutionViewSet,
-                        IUCNLookupViewSet, NameCategoryDescLookupViewSet,
+                        IUCNLookupViewSet, KingdomLookupViewSet,
+                        NameCategoryDescLookupViewSet,
                         NameTypeDescLookupViewSet, NativityLookupViewSet,
                         OccurrenceViewSet, OkSwapViewSet, RankChangeViewSet,
                         ResourceTypeLookupViewSet, SourceViewSet,
@@ -38,6 +39,7 @@ router.register('hightax', HightaxViewSet)
 router.register('identificationverification', IdentificationVerificationViewSet)
 router.register('institution', InstitutionViewSet)
 router.register('iucn_lu', IUCNLookupViewSet)
+router.register('kingdom_lu', KingdomLookupViewSet)
 router.register('name_category_desc_lu', NameCategoryDescLookupViewSet)
 router.register('name_type_desc_lu', NameTypeDescLookupViewSet)
 router.register('nativity_lu', NativityLookupViewSet)

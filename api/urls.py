@@ -29,11 +29,11 @@ except:
 admin.autodiscover()
 
 urlpatterns = [
+    # Grappelli URLs
+    url(r'^grappelli/', include('grappelli.urls')),
+
     # Admin URLs
     url(r'^admin/', admin.site.urls),
-
-    # Django Rest Login URLs
-    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')), # TODO: might not need
 
     # OBIS Application URLs
     url(r'^obis/',include('obis.urls')),
@@ -44,8 +44,7 @@ urlpatterns = [
 
     # User Profile
     url(r'^user/', views.UserProfile.as_view(), name='user-list'),
-    url(r'^login', views.login),
-
+    
     # Authentication
     url(r'^register/$', TemplateView.as_view(template_name="register.html"), name='register'), # TODO: might not need
     url(r'^verify/$', TemplateView.as_view(template_name="verify.html"), name='verify'), # TODO: might not need
