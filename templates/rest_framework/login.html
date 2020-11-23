@@ -1,0 +1,23 @@
+{% extends "rest_framework/login_base.html" %}
+{% load static %}
+{% load rest_framework %}
+
+<html>
+    <head>
+    {% block head %}
+        {% block style %}
+            {% block bootstrap_theme %}
+                <link rel="stylesheet" href="https://bootswatch.com/4/flatly/bootstrap.min.css" type="text/css">
+            {% endblock %}
+
+            <link rel="stylesheet" type="text/css" href="{% static 'api/rest_framework/css/styles.css' %}">
+            <link rel="stylesheet" type="text/css" href="{% static 'api/admin/css/styles.css' %}">
+        {% endblock %}
+    {% endblock %}
+    </head>
+    <body>
+        {% block branding %}
+            <h3 class="brand">OBIS API Login</h3>
+        {% endblock %}
+    </body>
+</html>
