@@ -16,10 +16,10 @@ from obis.models import (Acctax, BasisOfRecordLookup, CategoryLookup, Comtax,
                          DOrigin, DPopulation, DPresenceAbsence, DRegularity,
                          FedStatus, GlobalRankLookup, Hightax,
                          IdentificationVerification, Institution, IUCNLookup,
-                         NameCategoryDescLookup, NameTypeDescLookup,
-                         NativityLookup, Occurrence, OkSwap, RankChange,
-                         ResourceTypeLookup, Source, SpatialRefSys,
-                         StateRankLookup, StStatus, Syntax)
+                         KingdomLookup, NameCategoryDescLookup,
+                         NameTypeDescLookup, NativityLookup, Occurrence,
+                         OkSwap, RankChange, ResourceTypeLookup, Source,
+                         SpatialRefSys, StateRankLookup, StStatus, Syntax)
 from obis.serializer import (AcctaxSerializer, BasisOfRecordLookupSerializer,
                              CategoryLookupSerializer, ComtaxSerializer,
                              CoTrsSerializer, CountySerializer,
@@ -30,6 +30,7 @@ from obis.serializer import (AcctaxSerializer, BasisOfRecordLookupSerializer,
                              GlobalRankLookupSerializer, HightaxSerializer,
                              IdentificationVerificationSerializer,
                              InstitutionSerializer, IUCNLookupSerializer,
+                             KingdomLookupSerializer,
                              NameCategoryDescLookupSerializer,
                              NameTypeDescLookupSerializer,
                              NativityLookupSerializer, OccurenceSerializer,
@@ -160,6 +161,11 @@ class IUCNLookupViewSet(obisTableViewSet):
     filter_class     = IUCNLookupFilter
     serializer_class = IUCNLookupSerializer
     search_fields    = ('id')
+
+class KingdomLookupViewSet(obisTableViewSet):
+    model            = KingdomLookup
+    queryset         = KingdomLookup.objects.all()
+    serializer_class = KingdomLookupSerializer
 
 class NameCategoryDescLookupViewSet(obisTableViewSet):
     model            = NameCategoryDescLookup
