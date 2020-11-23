@@ -14,16 +14,14 @@ docker run -d --name obis_api \
   -p 8080:8080 \
   -v /opt/obis/config/ssl/backend:/ssl:z \
   -v /opt/obis/api_code:/usr/src/app:z \
-  -v /opt/obis/config/api_config.py:/usr/src/app/api/config.py:z \
   -v /opt/obis/log:/log:z \
-  -v /opt/obis/data:/data:z \
   obis_api
 
 # OBIS NGINX
 echo "************ OBIS NGINX ************"
 docker run -p 81:81 --name obis_nginx \
   --link obis_api \
-  -v /opt/obis/data:/data:z \
-  -v /opt/obis/config/nginx/nginx.conf:/etc/nginx/nginx.conf:z \
-  -v /opt/obis/config/nginx/default.conf:/etc/nginx/conf.d/default.conf:z \
+  -v /opt/obis/api_code/static:/data/static/:z \
+  -v /opt/obis/api_code/nginx_config/nginx.conf:/etc/nginx/nginx.conf:z \
+  -v /opt/obis/api_code/nginx_config/default.conf:/etc/nginx/conf.d/default.conf:z \
   -d nginx
