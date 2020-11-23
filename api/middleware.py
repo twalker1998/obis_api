@@ -24,4 +24,5 @@ class DisableCORSMiddleware:
         response = self.get_response(request)
         response["Access-Control-Allow-Headers"] = "*"
         response["Access-Control-Allow-Methods"] = "*"
+        response["Access-Control-Allow-Origin"] = "*"
         return response
