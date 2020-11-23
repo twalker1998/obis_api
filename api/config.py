@@ -13,7 +13,7 @@ ALLOWED_HOSTS     = ['obis.ou.edu', 'obis.twalk.tech', 'localhost']
 SECRET_KEY        = '**secret-key**'
 FORCE_SCRIPT_NAME = '/api/'
 SITE_ID           = '**site-id-test**'
-STATIC_ROOT       = '**static-route-test**'
+STATIC_ROOT       = '**static-root**'
 
 # Behind reverse proxy, set header to trust for https
 # Replace values in next two lines with commented text if https is needed and behind proxy
