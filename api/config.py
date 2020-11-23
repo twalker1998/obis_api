@@ -9,9 +9,11 @@ applicationTitle = 'Oklahoma Biodiversity Information System'
 
 # &&&&&&&&&&&& Django Settings &&&&&&&&&&&&
 BASE_DIR          = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-ALLOWED_HOSTS     = ['obis.ou.edu', 'obis.twalk.tech']
+ALLOWED_HOSTS     = ['obis.ou.edu', 'obis.twalk.tech', 'localhost']
 SECRET_KEY        = '**secret-key**'
 FORCE_SCRIPT_NAME = '/api/'
+SITE_ID           = '**site-id-test**'
+STATIC_ROOT       = '**static-route-test**'
 
 # Behind reverse proxy, set header to trust for https
 # Replace values in next two lines with commented text if https is needed and behind proxy
@@ -49,7 +51,7 @@ DATABASES = {
     },
     'obis': {
         'ENGINE':   'django.db.backends.postgresql_psycopg2',
-        'HOST':     '**prod-db**',
+        'HOST':     '**test-db**',
         'NAME':     'obis',
         'USER':     '**obis-db-user**',
         'PASSWORD': '**obis-db-pass**'
