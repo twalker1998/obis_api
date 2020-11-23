@@ -1,0 +1,89 @@
+a {
+    color: #548235;
+}
+
+a:hover {
+    color: #72b446;
+}
+
+.navbar {
+    background-color: #548235;
+    margin-bottom: 16px;
+}
+
+.navbar a {
+    color: #ffffff;
+}
+
+.breadcrumb {
+    border-radius: 0.5rem;
+}
+
+span.divider {
+    margin: 0px 3px;
+}
+
+.btn-primary {
+    background-color: #548235;
+    border-color: #548235;
+}
+
+.btn-primary:hover {
+    background-color: #72b446;
+    border-color: #72b446;
+}
+
+.btn-primary:not(:disabled):not(.disabled):active {
+    background-color: #548235;
+    border-color: #548235;
+}
+
+.btn-primary:disabled {
+    background-color: #548235;
+    border-color: #548235;
+}
+
+.btn-default {
+    color: #ffffff;
+    background-color: #548235;
+    border-color: #548235;
+}
+
+.btn-default:hover {
+    color: #ffffff;
+    background-color: #72b446;
+    border-color: #72b446;
+}
+
+.btn-default:not(:disabled):not(.disabled):active {
+    background-color: #548235;
+    border-color: #548235;
+}
+
+.btn-default:disabled {
+    background-color: #548235;
+    border-color: #548235;
+}
+
+.content-main {
+    margin: 16px 16px;
+    background-color: #ECF0F1;
+    padding: 12px 16px;
+    border-radius: .5rem;
+}
+
+ul.pagination {
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+}
+
+ul.pagination li {
+    display: inline;
+}
+
+ul.pagination li a {
+    float: left;
+    padding: 0px 5px;
+    text-decoration: none;
+}
