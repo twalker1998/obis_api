@@ -64,6 +64,7 @@ REST_FRAMEWORK = {
 
 # Application definition
 INSTALLED_APPS = [
+    'grappelli',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -95,7 +96,7 @@ MIDDLEWARE = [
     'api.middleware.DisableCORSMiddleware'
 ]
 
-SITE_ID = 1
+SITE_ID = config.SITE_ID
 
 ROOT_URLCONF = 'api.urls'
 
@@ -151,6 +152,7 @@ USE_TZ        = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 # TODO: Might not need this
 STATIC_URL       = '/static/'
+STATIC_ROOT      = config.STATIC_ROOT
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static/'),)
 
 # Cookie Domain
