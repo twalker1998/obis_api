@@ -19,11 +19,11 @@ docker run -d --name obis_api \
 
 # OBIS NGINX
 echo "************ OBIS NGINX ************"
-docker run -p 80:80 --name obis_nginx \
+docker run -p 80:80 --name obis_apache \
   --link obis_api \
-  -v /opt/obis/api_code/static:/data/static/:z \
-  -v /opt/obis/obis/:/var/www/obis/:z \
-  -v /opt/obis/obis_db_scripts/:/var/www/obis_db_scripts/:z \
-  -v /opt/obis/api_code/nginx_config/nginx.conf:/etc/nginx/nginx.conf:z \
-  -v /opt/obis/api_code/nginx_config/default.conf:/etc/nginx/conf.d/default.conf:z \
-  -d nginx
+  -v /opt/obis/api_code/static:/var/www/html/static/:z \
+  -v /opt/obis/obis/:/var/www/html/:z \
+  -v /opt/obis/obis_db_scripts/:/var/www/html/obis_db_scripts/:z \
+  -v /opt/obis/private_config/:/var/www/private_config/:z \
+  -v /opt/obis/api_code/web_config/apache2.conf:/etc/apache2/apache2.conf:z \
+  -d obis_apache
