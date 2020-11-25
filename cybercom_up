@@ -24,6 +24,4 @@ docker run -p 80:8081 --name obis_nginx \
   -v /opt/obis/api_code/static:/data/static/:z \
   -v /opt/obis/obis/:/var/www/html/obis/:z \
   -v /opt/obis/obis_db_scripts/:/var/www/html/obis_db_scripts/:z \
-  -v /opt/obis/api_code/web_config/nginx.conf:/etc/nginx/nginx.conf:z \
-  -v /opt/obis/api_code/web_config/default.conf:/etc/nginx/conf.d/default.conf:z \
   -d obis_nginx
