@@ -19,7 +19,7 @@ docker run -d --name obis_api \
 
 # OBIS NGINX
 echo "************ OBIS NGINX ************"
-docker run -p 80:8081 --name obis_nginx \
+docker run -p 81:81 --name obis_nginx \
   --link obis_api \
   -v /opt/obis/api_code/static:/data/static/:z \
   -v /opt/obis/obis/:/var/www/html/obis/:z \
