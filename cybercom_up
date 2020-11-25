@@ -25,5 +25,6 @@ docker run -p 80:80 --name obis_apache \
   -v /opt/obis/obis/:/var/www/html/:z \
   -v /opt/obis/obis_db_scripts/:/var/www/html/obis_db_scripts/:z \
   -v /opt/obis/private_config/:/var/www/private_config/:z \
-  -v /opt/obis/api_code/web_config/apache2.conf:/etc/apache2/apache2.conf:z \
+  -v /opt/obis/api_code/web_config/apache/apache2.conf:/etc/apache2/apache2.conf:z \
+  -v /opt/obis/api_code/web_config/apache/obis.conf:/etc/apache2/sites-enabled/000-default.conf:z \
   -d obis_apache
