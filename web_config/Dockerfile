@@ -8,15 +8,15 @@ RUN apk --no-cache add php7 php7-fpm php7-opcache php7-mysqli php7-json php7-ope
     rm /etc/nginx/conf.d/default.conf
 
 # Configure nginx
-COPY /opt/obis/api_code/web_config/nginx/nginx.conf /etc/nginx/nginx.conf
-COPY /opt/obis/api_code/web_config/nginx/default.conf /etc/nginx/conf.d/default.conf
+COPY nginx/nginx.conf /etc/nginx/nginx.conf
+COPY nginx/default.conf /etc/nginx/conf.d/default.conf
 
 # Configure PHP-FPM
-COPY /opt/obis/api_code/web_config/php/fpm-pool.conf /etc/php7/php-fpm.d/www.conf
-COPY /opt/obis/api_code/web_config/php/php.ini /etc/php7/conf.d/custom.ini
+COPY /php/fpm-pool.conf /etc/php7/php-fpm.d/www.conf
+COPY php/php.ini /etc/php7/conf.d/custom.ini
 
 # Configure supervisord
-COPY /opt/obis/api_code/web_config/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 # Setup document root
 RUN mkdir -p /var/www/html
@@ -29,11 +29,6 @@ RUN chown -R nobody.nobody /var/www/html && \
 
 # Switch to use a non-root user from here on
 USER nobody
-
-# Add applications
-WORKDIR /var/www/html
-COPY --chown=nobody /opt/obis/obis/ /var/www/html/
-COPY --chown=nobody /opt/obis/obis_db_scripts/ /var/www/html/
 
 # Expose the port nginx is reachable on
 EXPOSE 8081
