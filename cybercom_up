@@ -18,7 +18,7 @@ docker run -d --name obis_api \
   obis_api
 
 # OBIS NGINX
-echo "************ OBIS NGINX ************"
+echo "*********** OBIS APACHE2 ***********"
 docker run -p 80:80 --name obis_apache \
   --link obis_api \
   -v /opt/obis/api_code/static:/var/www/html/static/:z \
