@@ -94,9 +94,6 @@ class NativityLookupFilter(django_filters.FilterSet):
 
 class OccurrenceFilter(django_filters.FilterSet):
     acode         = django_filters.CharFilter(lookup_expr='exact')
-    eventdate     = django_filters.DateFilter(lookup_expr='range')
-    recordedby    = django_filters.CharFilter(lookup_expr='icontains')
-    county        = django_filters.CharFilter(lookup_expr='icontains')
     catalognumber = django_filters.CharFilter(lookup_expr='icontains')
 
     class Meta:
