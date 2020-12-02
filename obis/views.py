@@ -1,6 +1,5 @@
 __author__ = 'Tyler Walker' # twalker1998@gmail.com
 __author__ = 'Mark Stacy'
-from django import setup
 from django.http import request
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import filters, permissions, viewsets
