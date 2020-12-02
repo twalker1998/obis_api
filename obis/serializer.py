@@ -11,7 +11,38 @@ from obis.models import (Acctax, BasisOfRecordLookup, CategoryLookup, Comtax,
                          OkSwap, RankChange, ResourceTypeLookup, Source,
                          SpatialRefSys, StateRankLookup, StStatus, Syntax)
 
+# ************ OBIS Blankable Field Classes ************
+class ObisBlankableFloatField(serializers.FloatField):
+    """
+    We need to be able to receive an empty string ('') for a decimal field and in that case
+    turn it into a None number.
+    """
 
+    def to_internal_value(self, data):
+        if data == '':
+            """
+            If you return None you shall get a type error ```TypeError: '>' not supported between instances of 'NoneType' and 'int'```
+            """
+            return 0
+        
+        return super(ObisBlankableFloatField, self).to_internal_value(data)
+
+class ObisBlankableNumberField(serializers.IntegerField):
+    """
+    We need to be able to receive an empty string ('') for a number field and in that case
+    turn it into a None number.
+    """
+
+    def to_internal_value(self, data):
+        if data == '':
+            """
+            If you return None you shall get a type error ```TypeError: '>' not supported between instances of 'NoneType' and 'int'```
+            """
+            return 0
+        
+        return super(ObisBlankableNumberField, self).to_internal_value(data)
+
+# ************ OBIS Serializers ************
 class AcctaxSerializer(serializers.HyperlinkedModelSerializer):
     family = serializers.SlugRelatedField(slug_field='family', queryset=Acctax.objects.all())
 
