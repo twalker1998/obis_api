@@ -11,7 +11,23 @@ from obis.models import (Acctax, BasisOfRecordLookup, CategoryLookup, Comtax,
                          OkSwap, RankChange, ResourceTypeLookup, Source,
                          SpatialRefSys, StateRankLookup, StStatus, Syntax)
 
+# ************ OBIS Blankable Number Field Class ************
+class ObisBlankableNumberField(serializers.IntegerField):
+    """
+    We need to be able to receive an empty string ('') for a number field and in that case
+    turn it into a None number.
+    """
 
+    def to_internal_value(self, data):
+        if data == '':
+            """
+            If you return None you shall get a type error ```TypeError: '>' not supported between instances of 'NoneType' and 'int'```
+            """
+            return 0
+        
+        return super(ObisBlankableNumberField, self).to_internal_value(data)
+
+# ************ OBIS Serializers ************
 class AcctaxSerializer(serializers.HyperlinkedModelSerializer):
     family = serializers.SlugRelatedField(slug_field='family', queryset=Acctax.objects.all())
 
@@ -87,7 +103,7 @@ class DRegularitySerializer(serializers.HyperlinkedModelSerializer):
         fields = ('url', 'd_regularity_id', 'regularity')
 
 class FedStatusSerializer(serializers.HyperlinkedModelSerializer):
-     class Meta:
+    class Meta:
         model  = FedStatus
         fields = ('url', 'status_id', 'status', 'description')
 
@@ -115,7 +131,7 @@ class IdentificationVerificationSerializer(serializers.HyperlinkedModelSerialize
                   'identificationremarks', 'datalastmodified', 'identifiedacode', 'gid')
 
 class InstitutionSerializer(serializers.HyperlinkedModelSerializer):
-     class Meta:
+    class Meta:
         model  = Institution
         fields = ('url', 'institutioncode', 'institution', 'curator', 'email', 'telephone',
                   'address', 'city', 'state', 'country', 'zipcode', 'institutiontype', 'link')
@@ -156,18 +172,24 @@ class NativityLookupSerializer(serializers.HyperlinkedModelSerializer):
         fields = ('n_id', 'nativity')
 
 class OccurenceSerializer(serializers.HyperlinkedModelSerializer):
-     class Meta:
+    decimallatitude  = ObisBlankableNumberField(allow_null=True)
+    decimallongitude = ObisBlankableNumberField(allow_null=True)
+    township         = ObisBlankableNumberField(allow_null=True)
+    range            = ObisBlankableNumberField(allow_null=True)
+    section          = ObisBlankableNumberField(allow_null=True)
+
+    class Meta:
         model  = Occurrence
         fields = ('url', 'resourcetype', 'gid', 'acode', 'eventdate', 'recordedby', 'county', 'locality', 'behavior', 'habitat', 'sex', 'lifestage', 'associatedtaxa', 'verbatimelevation', 'depth', 'depthaccuracy', 'individualcount', 'occurrenceremarks', 'taxonremarks', 'institutioncode', 'basisofrecord', 'catalognumber', 'othercatalognumbers', 'typestatus', 'recordnumber', 'samplingprotocol', 'preparations', 'primary_data', 'associatedreferences', 'datasetname', 'coordinateprecision', 'decimallatitude', 'decimallongitude', 'geodeticdatum', 'georeferencedby',
                   'georeferenceddate', 'georeferenceremarks', 'georeferencesources', 'georeferenceverificationstatus', 'geom', 'problem_with_record', 'previousidentifications', 'identificationverificationstatus', 'identificationconfidence', 'identificationremarks', 'datelastmodified', 'associatedoccurrences', 'associatedsequences', 'entby', 'entrydate', 'obs_gid', 'mtr', 'township', 'ns', 'range', 'ew', 'section', 'quarter', 'zone', 'utme', 'utmn', 'hiderecord', 'hiderecordcomment', 'relationshipremarks', 'informationwitheld', 'awaitingreview', 'occurrenceid')
 
 class OkSwapSerializer(serializers.HyperlinkedModelSerializer):
-     class Meta:
+    class Meta:
         model  = OkSwap
         fields = ('url', 'swap_id', 'tier', 'description')
 
 class RankChangeSerializer(serializers.HyperlinkedModelSerializer):
-     class Meta:
+    class Meta:
         model  = RankChange
         fields = ('url', 'r_id', 'acode', 'previous_s_rank', 's_rank',
                   'changedby', 'rankremarks', 'datelastmodified', 'previousdatemodified')
@@ -185,7 +207,7 @@ class SourceSerializer(serializers.HyperlinkedModelSerializer):
         fields = ('url', 'source', 'description')
 
 class SpatialRefSysSerializer(serializers.HyperlinkedModelSerializer):
-     class Meta:
+    class Meta:
         model  = SpatialRefSys
         fields = ('url', 'srid', 'auth_name',
                   'auth_srid', 'srtext', 'proj4text')
@@ -198,12 +220,12 @@ class StateRankLookupSerializer(serializers.HyperlinkedModelSerializer):
         fields = ('id', 'code')
 
 class StStatusSerializer(serializers.HyperlinkedModelSerializer):
-     class Meta:
+    class Meta:
         model  = StStatus
         fields = ('url', 'status_id', 'status', 'description')
 
 class SyntaxSerializer(serializers.HyperlinkedModelSerializer):    
-     class Meta:
+    class Meta:
         model  = Syntax
         fields = ('url', 's_id', 'acode', 'scode', 'sname', 'scientificnameauthorship', 'family', 'genus', 'species', 'subspecies',
                   'variety', 'scientificname', 'sspscientificnameauthorship', 'varscientificnameauthorship', 'formascientificnameauthorship', 'tsn')

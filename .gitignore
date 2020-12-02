@@ -6,3 +6,4 @@ config.sh
 .vscode/settings.json
 obis_api/
 **/.DS_Store
+db.sqlite3
