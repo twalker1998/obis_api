@@ -203,8 +203,8 @@ class OccurrenceViewSet(obisTableViewSet):
             institutioncodes = [g.name for g in user.groups.all()]
             queryset         = Occurrence.objects.filter(institutioncode__in=institutioncodes)
 
-            if self.request.method == 'POST':
-                params           = self.request.POST
+            if self.request.method == 'GET':
+                params           = self.request.GET
                 county           = params.get('county', '')
                 sname            = params.get('sname', '')
                 family           = params.get('family', '')
@@ -212,13 +212,36 @@ class OccurrenceViewSet(obisTableViewSet):
                 species          = params.get('species', '')
                 subspecies       = params.get('ssp', '')
                 variety          = params.get('var', '')
-                vernacularname   = params.get('commonName', '')
+                vernacularname   = params.get('commonname', '')
                 recordedby       = params.get('collector', '')
-                eventdate        = params.get('collectiondate', '')
-                catalognumber    = params.get('catalogNumber', '')
+                start_date       = params.get('date1', '')
+                end_date         = params.get('date2', '')
+                catalognumber    = params.get('catalognumber', '')
 
                 if county:
                     queryset = queryset.select_related('county').filter(county__exact=county)
+                if sname:
+                    queryset = queryset.select_related('acode').filter(sname__icontains=sname)
+                if family:
+                    queryset = queryset.select_related('acode__family').filter(family__icontains=family)
+                if genus:
+                    queryset = queryset.select_related('acode').filter(genus__icontains=genus)
+                if species:
+                    queryset = queryset.select_related('acode').filter(species__icontains=species)
+                if subspecies:
+                    queryset = queryset.select_related('acode').filter(subspecies__icontains=subspecies)
+                if variety:
+                    queryset = queryset.select_related('acode').filter(variety__icontains=variety)
+                if vernacularname:
+                    comtax_query = Comtax.objects.filter(vernacularname__icontains=vernacularname)
+                    queryset     = queryset.select_related('acode').filter(acode__in=comtax_query)
+                if recordedby:
+                    queryset = queryset.filter(recordedby__icontains=recordedby)
+                if start_date and end_date:
+                    queryset = queryset.filter(eventdate__range=(start_date, end_date))
+                if catalognumber:
+                    queryset = queryset.filter(catalognumber__exact=catalognumber)
+                
             
             return queryset
 
