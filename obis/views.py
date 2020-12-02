@@ -1,5 +1,7 @@
 __author__ = 'Tyler Walker' # twalker1998@gmail.com
 __author__ = 'Mark Stacy'
+from django import setup
+from django.http import request
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import filters, permissions, viewsets
 from rest_framework.renderers import BrowsableAPIRenderer, JSONRenderer
@@ -199,7 +201,26 @@ class OccurrenceViewSet(obisTableViewSet):
             return Occurrence.objects.all()
         else:
             institutioncodes = [g.name for g in user.groups.all()]
-            return Occurrence.objects.filter(institutioncode__in=institutioncodes)
+            queryset         = Occurrence.objects.filter(institutioncode__in=institutioncodes)
+
+            if self.request.method == 'POST':
+                params           = self.request.POST
+                county           = params.get('county', '')
+                sname            = params.get('sname', '')
+                family           = params.get('family', '')
+                genus            = params.get('genus', '')
+                species          = params.get('species', '')
+                subspecies       = params.get('ssp', '')
+                variety          = params.get('var', '')
+                vernacularname   = params.get('commonName', '')
+                recordedby       = params.get('collector', '')
+                eventdate        = params.get('collectiondate', '')
+                catalognumber    = params.get('catalogNumber', '')
+
+                if county:
+                    queryset = queryset.select_related('county').filter(county__exact=county)
+            
+            return queryset
 
 class OkSwapViewSet(obisTableViewSet):
     model            = OkSwap
