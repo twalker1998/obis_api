@@ -194,54 +194,53 @@ class OccurrenceViewSet(obisTableViewSet):
     search_fields    = ('acode', 'catalognumber') # TODO: should we add gid?
 
     def get_queryset(self):
-        user = self.request.user
+        user     = self.request.user
+        queryset = Occurrence.objects.all()
+
+        if self.request.method == 'GET':
+            params           = self.request.GET
+            county           = params.get('county', '')
+            sname            = params.get('sname', '')
+            family           = params.get('family', '')
+            genus            = params.get('genus', '')
+            species          = params.get('species', '')
+            subspecies       = params.get('ssp', '')
+            variety          = params.get('var', '')
+            vernacularname   = params.get('commonname', '')
+            recordedby       = params.get('collector', '')
+            start_date       = params.get('date1', '')
+            end_date         = params.get('date2', '')
+            catalognumber    = params.get('catalognumber', '')
+
+            if county:
+                queryset = queryset.filter(county__county__exact=county)
+            if sname:
+                queryset = queryset.filter(acode__sname__icontains=sname)
+            if family:
+                queryset = queryset.filter(acode__family__family__icontains=family)
+            if genus:
+                queryset = queryset.filter(acode__genus__icontains=genus)
+            if species:
+                queryset = queryset.filter(acode__species__icontains=species)
+            if subspecies:
+                queryset = queryset.filter(acode__subspecies__icontains=subspecies)
+            if variety:
+                queryset = queryset.filter(acode__variety__icontains=variety)
+            if vernacularname:
+                comtax_query = Comtax.objects.filter(vernacularname__icontains=vernacularname).values_list('acode', flat=True)
+                queryset     = queryset.filter(acode__acode__in=comtax_query)
+            if recordedby:
+                queryset = queryset.filter(recordedby__icontains=recordedby)
+            if start_date and end_date:
+                queryset = queryset.filter(eventdate__range=(start_date, end_date))
+            if catalognumber:
+                queryset = queryset.filter(catalognumber__exact=catalognumber)
 
         if user.is_authenticated == False or user.is_staff:
-            return Occurrence.objects.all()
+            return queryset
         else:
             institutioncodes = [g.name for g in user.groups.all()]
-            queryset         = Occurrence.objects.filter(institutioncode__in=institutioncodes)
-
-            if self.request.method == 'GET':
-                params           = self.request.GET
-                county           = params.get('county', '')
-                sname            = params.get('sname', '')
-                family           = params.get('family', '')
-                genus            = params.get('genus', '')
-                species          = params.get('species', '')
-                subspecies       = params.get('ssp', '')
-                variety          = params.get('var', '')
-                vernacularname   = params.get('commonname', '')
-                recordedby       = params.get('collector', '')
-                start_date       = params.get('date1', '')
-                end_date         = params.get('date2', '')
-                catalognumber    = params.get('catalognumber', '')
-
-                if county:
-                    queryset = queryset.filter(county__county__exact=county)
-                if sname:
-                    queryset = queryset.filter(acode__sname__icontains=sname)
-                if family:
-                    queryset = queryset.filter(acode__family__family__icontains=family)
-                if genus:
-                    queryset = queryset.filter(acode__genus__icontains=genus)
-                if species:
-                    queryset = queryset.filter(acode__species__icontains=species)
-                if subspecies:
-                    queryset = queryset.filter(acode__subspecies__icontains=subspecies)
-                if variety:
-                    queryset = queryset.filter(acode__variety__icontains=variety)
-                if vernacularname:
-                    comtax_query = Comtax.objects.filter(vernacularname__icontains=vernacularname).values_list('acode', flat=True)
-                    queryset     = queryset.filter(acode__acode__in=comtax_query)
-                if recordedby:
-                    queryset = queryset.filter(recordedby__icontains=recordedby)
-                if start_date and end_date:
-                    queryset = queryset.filter(eventdate__range=(start_date, end_date))
-                if catalognumber:
-                    queryset = queryset.filter(catalognumber__exact=catalognumber)
-                
-            return queryset
+            return queryset.filter(institutioncode__in=institutioncodes)
 
 class OkSwapViewSet(obisTableViewSet):
     model            = OkSwap
