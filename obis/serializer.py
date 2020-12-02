@@ -11,22 +11,7 @@ from obis.models import (Acctax, BasisOfRecordLookup, CategoryLookup, Comtax,
                          OkSwap, RankChange, ResourceTypeLookup, Source,
                          SpatialRefSys, StateRankLookup, StStatus, Syntax)
 
-# ************ OBIS Blankable Field Classes ************
-class ObisBlankableFloatField(serializers.FloatField):
-    """
-    We need to be able to receive an empty string ('') for a decimal field and in that case
-    turn it into a None number.
-    """
-
-    def to_internal_value(self, data):
-        if data == '':
-            """
-            If you return None you shall get a type error ```TypeError: '>' not supported between instances of 'NoneType' and 'int'```
-            """
-            return 0
-        
-        return super(ObisBlankableFloatField, self).to_internal_value(data)
-
+# ************ OBIS Blankable Number Field Class ************
 class ObisBlankableNumberField(serializers.IntegerField):
     """
     We need to be able to receive an empty string ('') for a number field and in that case
@@ -187,6 +172,12 @@ class NativityLookupSerializer(serializers.HyperlinkedModelSerializer):
         fields = ('n_id', 'nativity')
 
 class OccurenceSerializer(serializers.HyperlinkedModelSerializer):
+    decimallatitude  = ObisBlankableNumberField(allow_null=True)
+    decimallongitude = ObisBlankableNumberField(allow_null=True)
+    township         = ObisBlankableNumberField(allow_null=True)
+    range            = ObisBlankableNumberField(allow_null=True)
+    section          = ObisBlankableNumberField(allow_null=True)
+
     class Meta:
         model  = Occurrence
         fields = ('url', 'resourcetype', 'gid', 'acode', 'eventdate', 'recordedby', 'county', 'locality', 'behavior', 'habitat', 'sex', 'lifestage', 'associatedtaxa', 'verbatimelevation', 'depth', 'depthaccuracy', 'individualcount', 'occurrenceremarks', 'taxonremarks', 'institutioncode', 'basisofrecord', 'catalognumber', 'othercatalognumbers', 'typestatus', 'recordnumber', 'samplingprotocol', 'preparations', 'primary_data', 'associatedreferences', 'datasetname', 'coordinateprecision', 'decimallatitude', 'decimallongitude', 'geodeticdatum', 'georeferencedby',
