@@ -232,7 +232,7 @@ class OccurrenceViewSet(obisTableViewSet):
                 if variety:
                     queryset = queryset.filter(acode__variety__icontains=variety)
                 if vernacularname:
-                    comtax_query = Comtax.objects.filter(vernacularname__icontains=vernacularname)
+                    comtax_query = Comtax.objects.filter(vernacularname__icontains=vernacularname).values_list('acode', flat=True)
                     queryset     = queryset.filter(acode__acode__in=comtax_query)
                 if recordedby:
                     queryset = queryset.filter(recordedby__icontains=recordedby)
@@ -241,7 +241,6 @@ class OccurrenceViewSet(obisTableViewSet):
                 if catalognumber:
                     queryset = queryset.filter(catalognumber__exact=catalognumber)
                 
-            
             return queryset
 
 class OkSwapViewSet(obisTableViewSet):
