@@ -1,6 +1,5 @@
 __author__ = 'Tyler Walker' # twalker1998@gmail.com
 __author__ = 'Mark Stacy'
-from django.http import request
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import filters, permissions, viewsets
 from rest_framework.renderers import BrowsableAPIRenderer, JSONRenderer
@@ -35,7 +34,8 @@ from obis.serializer import (AcctaxSerializer, BasisOfRecordLookupSerializer,
                              NameCategoryDescLookupSerializer,
                              NameTypeDescLookupSerializer,
                              NativityLookupSerializer, OccurenceSerializer,
-                             OkSwapSerializer, RankChangeSerializer,
+                             OccurrenceSearchSerializer, OkSwapSerializer,
+                             RankChangeSerializer,
                              ResourceTypeLookupSerializer, SourceSerializer,
                              SpatialRefSysSerializer,
                              StateRankLookupSerializer, StStatusSerializer,
@@ -197,6 +197,20 @@ class OccurrenceViewSet(obisTableViewSet):
         user     = self.request.user
         queryset = Occurrence.objects.all()
 
+        if user.is_authenticated == False or user.is_staff:
+            return queryset
+        else:
+            institutioncodes = [g.name for g in user.groups.all()]
+            return queryset.filter(institutioncode__in=institutioncodes)
+
+class OccurrenceSearchViewSet(obisTableViewSet):
+    model            = Occurrence
+    serializer_class = OccurrenceSearchSerializer
+
+    def get_queryset(self):
+        user     = self.request.user
+        queryset = Occurrence.objects.all()
+
         if self.request.method == 'GET':
             params           = self.request.GET
             county           = params.get('county', '')
@@ -235,12 +249,12 @@ class OccurrenceViewSet(obisTableViewSet):
                 queryset = queryset.filter(eventdate__range=(start_date, end_date))
             if catalognumber:
                 queryset = queryset.filter(catalognumber__exact=catalognumber)
-
+        
         if user.is_authenticated == False or user.is_staff:
-            return queryset
+            return queryset.order_by('acode')
         else:
             institutioncodes = [g.name for g in user.groups.all()]
-            return queryset.filter(institutioncode__in=institutioncodes)
+            return queryset.filter(institutioncode__in=institutioncodes).order_by('acode')
 
 class OkSwapViewSet(obisTableViewSet):
     model            = OkSwap
