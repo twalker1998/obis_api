@@ -251,10 +251,10 @@ class OccurrenceSearchViewSet(obisTableViewSet):
                 queryset = queryset.filter(catalognumber__exact=catalognumber)
         
         if user.is_authenticated == False or user.is_staff:
-            return queryset.order_by('acode')
+            return queryset.order_by('acode__sname')
         else:
             institutioncodes = [g.name for g in user.groups.all()]
-            return queryset.filter(institutioncode__in=institutioncodes).order_by('acode')
+            return queryset.filter(institutioncode__in=institutioncodes).order_by('acode__sname')
 
 class OkSwapViewSet(obisTableViewSet):
     model            = OkSwap
