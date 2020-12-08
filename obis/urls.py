@@ -15,7 +15,8 @@ from obis.views import (AcctaxViewSet, BasisOfRecordLookupViewSet,
                         IUCNLookupViewSet, KingdomLookupViewSet,
                         NameCategoryDescLookupViewSet,
                         NameTypeDescLookupViewSet, NativityLookupViewSet,
-                        OccurrenceViewSet, OkSwapViewSet, RankChangeViewSet,
+                        OccurrenceSearchViewSet, OccurrenceViewSet,
+                        OkSwapViewSet, RankChangeViewSet,
                         ResourceTypeLookupViewSet, SourceViewSet,
                         SpatialRefSysViewSet, StateRankLookupViewSet,
                         StStatusViewSet, SyntaxViewSet)
@@ -44,6 +45,7 @@ router.register('name_category_desc_lu', NameCategoryDescLookupViewSet)
 router.register('name_type_desc_lu', NameTypeDescLookupViewSet)
 router.register('nativity_lu', NativityLookupViewSet)
 router.register('occurrence', OccurrenceViewSet, basename='occurrence')
+router.register('occurrence_search', OccurrenceSearchViewSet, basename='occurrence_search')
 router.register('okswap', OkSwapViewSet)
 router.register('rankchange', RankChangeViewSet)
 router.register('resourcetype_lu', ResourceTypeLookupViewSet)
