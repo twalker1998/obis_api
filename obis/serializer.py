@@ -183,6 +183,13 @@ class OccurenceSerializer(serializers.HyperlinkedModelSerializer):
         fields = ('url', 'resourcetype', 'gid', 'acode', 'eventdate', 'recordedby', 'county', 'locality', 'behavior', 'habitat', 'sex', 'lifestage', 'associatedtaxa', 'verbatimelevation', 'depth', 'depthaccuracy', 'individualcount', 'occurrenceremarks', 'taxonremarks', 'institutioncode', 'basisofrecord', 'catalognumber', 'othercatalognumbers', 'typestatus', 'recordnumber', 'samplingprotocol', 'preparations', 'primary_data', 'associatedreferences', 'datasetname', 'coordinateprecision', 'decimallatitude', 'decimallongitude', 'geodeticdatum', 'georeferencedby',
                   'georeferenceddate', 'georeferenceremarks', 'georeferencesources', 'georeferenceverificationstatus', 'geom', 'problem_with_record', 'previousidentifications', 'identificationverificationstatus', 'identificationconfidence', 'identificationremarks', 'datelastmodified', 'associatedoccurrences', 'associatedsequences', 'entby', 'entrydate', 'obs_gid', 'mtr', 'township', 'ns', 'range', 'ew', 'section', 'quarter', 'zone', 'utme', 'utmn', 'hiderecord', 'hiderecordcomment', 'relationshipremarks', 'informationwitheld', 'awaitingreview', 'occurrenceid')
 
+class OccurrenceSearchSerializer(serializers.HyperlinkedModelSerializer):
+    acode = serializers.SlugRelatedField(many=False, read_only=True, slug_field='sname')
+
+    class Meta:
+        model  = Occurrence
+        fields = ('url', 'gid', 'acode', 'county', 'recordedby', 'eventdate', 'catalognumber', 'institutioncode')
+
 class OkSwapSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model  = OkSwap
