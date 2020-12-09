@@ -167,14 +167,21 @@ if FORCE_SCRIPT_NAME:
     else:
         base = FORCE_SCRIPT_NAME
     LOGIN_REDIRECT_URL = '%s/' % (base)
-    LOGIN_URL          = '%s/api-auth/login' % (base) # TODO: might change
+    LOGIN_URL          = '%s/rest-auth/login' % (base)
 else:
     LOGIN_REDIRECT_URL = '%s/' % (base)
-    LOGIN_URL          = '%s/api-auth/login' % (base) # TODO: might change
+    LOGIN_URL          = '%s/rest-auth/login' % (base)
 
-# Registration account adapter
-# TODO: comment
+# Email Settings
+EMAIL_BACKEND       = config.EMAIL_BACKEND
+EMAIL_HOST          = config.EMAIL_HOST
+EMAIL_PORT          = config.EMAIL_PORT
+EMAIL_HOST_USER     = config.EMAIL_HOST_USER
+EMAIL_HOST_PASSWORD = config.EMAIL_HOST_PASSWORD
+EMAIL_USE_TLS       = config.EMAIL_USE_TLS
+
+# Registration/allauth settings
 ACCOUNT_ADAPTER              = 'api.adapter.CustomDefaultAccountAdapter'
-ACCOUNT_EMAIL_SUBJECT_PREFIX = "[obis.ou.edu] "
+ACCOUNT_EMAIL_SUBJECT_PREFIX = '[obis.ou.edu] '
 ACCOUNT_SIGNUP_FORM_CLASS    = 'api.forms.SignupForm'
-URL_FRONT                    = 'http://obsvweb1.ou.edu/obis/registration/' # TODO: will change
+URL_FRONT                    = 'http://obis.ou.edu/user-portal/registration/'
