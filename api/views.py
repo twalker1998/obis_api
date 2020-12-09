@@ -8,41 +8,18 @@ from django.contrib.auth import authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.shortcuts import redirect
-from django.views.decorators.csrf import csrf_exempt
-from rest_framework import permissions, serializers
+from rest_auth.registration.views import RegisterView
+from rest_framework import permissions
 from rest_framework.authtoken.models import Token
-from rest_framework.decorators import api_view, permission_classes
-from rest_framework.permissions import (AllowAny, IsAuthenticated,
+from rest_framework.permissions import (IsAuthenticated,
                                         IsAuthenticatedOrReadOnly)
 from rest_framework.response import Response
 from rest_framework.reverse import reverse
-from rest_framework.status import (HTTP_200_OK, HTTP_400_BAD_REQUEST,
-                                   HTTP_404_NOT_FOUND)
 from rest_framework.views import APIView
 
-
-# TODO: might not need this
-@csrf_exempt
-@api_view(['POST'])
-@permission_classes((AllowAny,))
-def login(request):
-    username = request.DATA.get('username')
-    password = request.DATA.get("password")
-
-    if username is None or password is None:
-        return Response({'error': 'Please provide both username and password'}, status=HTTP_400_BAD_REQUEST)
-
-    user = authenticate(username=username, password=password)
-
-    if not user:
-        return Response({'error': 'Invalid Credentials'}, status=HTTP_404_NOT_FOUND)
-
-    token, _ = Token.objects.get_or_create(user=user)
-
-    return Response({'token': token.key}, status=HTTP_200_OK)
+from api.serializer import UserSerializer
 
 # Login required mixin
-# TODO: might not need this
 class LoginRequiredMixin(object):
     @classmethod
     def as_view(cls, **initkwargs):
@@ -122,14 +99,8 @@ class CustomConfirmEmailView(ConfirmEmailView):
         # Redirect the user to the login page on the front end.
         return 'https://obis.ou.edu/collaborators/login?returnUrl=/collaborators/search/main&verify=true'
 
-class UserSerializer(serializers.Serializer):
-    username   = serializers.CharField(max_length=100)
-    email      = serializers.EmailField()
-    first_name = serializers.CharField(max_length=50)
-    last_name  = serializers.CharField(max_length=50)
-
-class UserProfile(LoginRequiredMixin,APIView):
-    permission_classes = ( IsAuthenticated,)
+class UserProfile(LoginRequiredMixin, APIView):
+    permission_classes = (IsAuthenticated, )
     serializer_class   = UserSerializer
     fields             = ('username', 'first_name', 'last_name', 'email')
     model              = User
