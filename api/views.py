@@ -1,9 +1,15 @@
 __author__ = 'Tyler Walker' # twalker1998@gmail.com
 from hashlib import md5
 
+from django.http.response import Http404
+
+from allauth.account.adapter import get_adapter
+from allauth.account.views import app_settings, ConfirmEmailView
+from django.contrib import messages
 from django.contrib.auth import authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.shortcuts import redirect
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework import permissions, serializers
 from rest_framework.authtoken.models import Token
@@ -15,7 +21,6 @@ from rest_framework.reverse import reverse
 from rest_framework.status import (HTTP_200_OK, HTTP_400_BAD_REQUEST,
                                    HTTP_404_NOT_FOUND)
 from rest_framework.views import APIView
-
 
 # TODO: might not need this
 @csrf_exempt
@@ -73,6 +78,50 @@ class APIRoot(APIView):
                 'User': reverse('user-list', request=request)
             }
         })
+
+class CustomConfirmEmailView(ConfirmEmailView):
+    def get(self, *args, **kwargs):
+        # Simply call the view's post function so the user's email will be confirmed.
+        return self.post()
+    
+    def post(self, *args, **kwargs):
+        self.object = confirmation = self.get_object()
+        confirmation.confirm(self.request)
+
+        # In the event someone clicks on an email confirmation link
+        # for one account while logged into another account,
+        # logout of the currently logged in account.
+        if (
+            self.request.user.is_authenticated
+            and self.request.user.pk != confirmation.email_address.user_id
+        ):
+            self.logout()
+
+        get_adapter(self.request).add_message(
+            self.request,
+            messages.SUCCESS,
+            "account/messages/email_confirmed.txt",
+            {"email": confirmation.email_address.email},
+        )
+        if app_settings.LOGIN_ON_EMAIL_CONFIRMATION:
+            resp = self.login_on_confirm(confirmation)
+            if resp is not None:
+                return resp
+        # Don't -- allauth doesn't touch is_active so that sys admin can
+        # use it to block users et al
+        #
+        # user = confirmation.email_address.user
+        # user.is_active = True
+        # user.save()
+        redirect_url = self.get_redirect_url()
+        if not redirect_url:
+            ctx = self.get_context_data()
+            return self.render_to_response(ctx)
+        return redirect(redirect_url)
+    
+    def get_redirect_url(self):
+        # Redirect the user to the login page on the front end.
+        return 'https://obis.ou.edu/collaborators/login?returnUrl=/collaborators/search/main'
 
 class UserSerializer(serializers.Serializer):
     username   = serializers.CharField(max_length=100)
