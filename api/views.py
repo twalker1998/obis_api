@@ -120,7 +120,7 @@ class CustomConfirmEmailView(ConfirmEmailView):
     
     def get_redirect_url(self):
         # Redirect the user to the login page on the front end.
-        return 'https://obis.ou.edu/collaborators/login?returnUrl=/collaborators/search/main'
+        return 'https://obis.ou.edu/collaborators/login?returnUrl=/collaborators/search/main&verify=true'
 
 class UserSerializer(serializers.Serializer):
     username   = serializers.CharField(max_length=100)
