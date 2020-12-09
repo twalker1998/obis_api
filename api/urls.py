@@ -17,7 +17,6 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 from django.contrib.auth.models import Permission
-from django.views.generic import TemplateView
 
 from api import views
 
@@ -46,8 +45,8 @@ urlpatterns = [
     url(r'^user/', views.UserProfile.as_view(), name='user-list'),
     
     # Authentication
-    url(r'^register/$', TemplateView.as_view(template_name="register.html"), name='register'), # TODO: might not need
-    url(r'^verify/$', TemplateView.as_view(template_name="verify.html"), name='verify'), # TODO: might not need
+    url(r'^accounts/', include('allauth.urls')),
     url(r'^rest-auth/', include('rest_auth.urls')),
+    url(r'^rest-auth/registration/account-confirm-email/(?P<key>.+)/$', views.CustomConfirmEmailView.as_view(), name='account_confirm_email'),
     url(r'^rest-auth/registration/', include('rest_auth.registration.urls')),
 ]
