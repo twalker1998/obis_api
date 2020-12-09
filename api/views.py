@@ -1,10 +1,8 @@
 __author__ = 'Tyler Walker' # twalker1998@gmail.com
 from hashlib import md5
 
-from django.http.response import Http404
-
 from allauth.account.adapter import get_adapter
-from allauth.account.views import app_settings, ConfirmEmailView
+from allauth.account.views import ConfirmEmailView, app_settings
 from django.contrib import messages
 from django.contrib.auth import authenticate
 from django.contrib.auth.decorators import login_required
@@ -21,6 +19,7 @@ from rest_framework.reverse import reverse
 from rest_framework.status import (HTTP_200_OK, HTTP_400_BAD_REQUEST,
                                    HTTP_404_NOT_FOUND)
 from rest_framework.views import APIView
+
 
 # TODO: might not need this
 @csrf_exempt
