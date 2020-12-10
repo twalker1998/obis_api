@@ -1,44 +1,23 @@
 __author__ = 'Tyler Walker' # twalker1998@gmail.com
 from hashlib import md5
 
-from django.contrib.auth import authenticate
+from allauth.account.adapter import get_adapter
+from allauth.account.views import ConfirmEmailView, app_settings
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from django.views.decorators.csrf import csrf_exempt
-from rest_framework import permissions, serializers
+from django.shortcuts import redirect
+from rest_framework import permissions
 from rest_framework.authtoken.models import Token
-from rest_framework.decorators import api_view, permission_classes
-from rest_framework.permissions import (AllowAny, IsAuthenticated,
+from rest_framework.permissions import (IsAuthenticated,
                                         IsAuthenticatedOrReadOnly)
 from rest_framework.response import Response
 from rest_framework.reverse import reverse
-from rest_framework.status import (HTTP_200_OK, HTTP_400_BAD_REQUEST,
-                                   HTTP_404_NOT_FOUND)
 from rest_framework.views import APIView
 
-
-# TODO: might not need this
-@csrf_exempt
-@api_view(['POST'])
-@permission_classes((AllowAny,))
-def login(request):
-    username = request.DATA.get('username')
-    password = request.DATA.get("password")
-
-    if username is None or password is None:
-        return Response({'error': 'Please provide both username and password'}, status=HTTP_400_BAD_REQUEST)
-
-    user = authenticate(username=username, password=password)
-
-    if not user:
-        return Response({'error': 'Invalid Credentials'}, status=HTTP_404_NOT_FOUND)
-
-    token, _ = Token.objects.get_or_create(user=user)
-
-    return Response({'token': token.key}, status=HTTP_200_OK)
+from api.serializer import UserSerializer
 
 # Login required mixin
-# TODO: might not need this
 class LoginRequiredMixin(object):
     @classmethod
     def as_view(cls, **initkwargs):
@@ -74,14 +53,52 @@ class APIRoot(APIView):
             }
         })
 
-class UserSerializer(serializers.Serializer):
-    username   = serializers.CharField(max_length=100)
-    email      = serializers.EmailField()
-    first_name = serializers.CharField(max_length=50)
-    last_name  = serializers.CharField(max_length=50)
+class CustomConfirmEmailView(ConfirmEmailView):
+    def get(self, *args, **kwargs):
+        # Simply call the view's post function so the user's email will be confirmed.
+        return self.post()
+    
+    def post(self, *args, **kwargs):
+        self.object = confirmation = self.get_object()
+        confirmation.confirm(self.request)
 
-class UserProfile(LoginRequiredMixin,APIView):
-    permission_classes = ( IsAuthenticated,)
+        # In the event someone clicks on an email confirmation link
+        # for one account while logged into another account,
+        # logout of the currently logged in account.
+        if (
+            self.request.user.is_authenticated
+            and self.request.user.pk != confirmation.email_address.user_id
+        ):
+            self.logout()
+
+        get_adapter(self.request).add_message(
+            self.request,
+            messages.SUCCESS,
+            "account/messages/email_confirmed.txt",
+            {"email": confirmation.email_address.email},
+        )
+        if app_settings.LOGIN_ON_EMAIL_CONFIRMATION:
+            resp = self.login_on_confirm(confirmation)
+            if resp is not None:
+                return resp
+        # Don't -- allauth doesn't touch is_active so that sys admin can
+        # use it to block users et al
+        #
+        # user = confirmation.email_address.user
+        # user.is_active = True
+        # user.save()
+        redirect_url = self.get_redirect_url()
+        if not redirect_url:
+            ctx = self.get_context_data()
+            return self.render_to_response(ctx)
+        return redirect(redirect_url)
+    
+    def get_redirect_url(self):
+        # Redirect the user to the login page on the front end.
+        return 'https://obis.ou.edu/collaborators/login?returnUrl=/collaborators/search/main&verify=true'
+
+class UserProfile(LoginRequiredMixin, APIView):
+    permission_classes = (IsAuthenticated, )
     serializer_class   = UserSerializer
     fields             = ('username', 'first_name', 'last_name', 'email')
     model              = User
