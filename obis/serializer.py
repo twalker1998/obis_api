@@ -17,7 +17,6 @@ class ObisBlankableNumberField(serializers.IntegerField):
     We need to be able to receive an empty string ('') for a number field and in that case
     turn it into a None number.
     """
-
     def to_internal_value(self, data):
         if data == '':
             """
@@ -29,7 +28,7 @@ class ObisBlankableNumberField(serializers.IntegerField):
 
 # ************ OBIS Serializers ************
 class AcctaxSerializer(serializers.HyperlinkedModelSerializer):
-    family = serializers.SlugRelatedField(slug_field='family', queryset=Acctax.objects.all())
+    family = serializers.SlugRelatedField(many=False, read_only=False, slug_field='family', queryset=Hightax.objects.all())
 
     class Meta:
         model  = Acctax
