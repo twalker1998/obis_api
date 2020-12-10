@@ -5,6 +5,7 @@ class CustomDefaultAccountAdapter(DefaultAccountAdapter):
     """
     Extend the `DefaultAccountAdapter` class from `allauth.account.adapter`
     to allow the API to send registration emails.
+    TODO: not sure this is correct/needed
     """
     def send_mmail(self, template_prefix, email, context):
         context['activate_url'] = settings.URL_FRONT + 'verify/' + context['key']
