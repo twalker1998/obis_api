@@ -185,3 +185,7 @@ ACCOUNT_ADAPTER              = 'api.adapter.CustomDefaultAccountAdapter'
 ACCOUNT_EMAIL_SUBJECT_PREFIX = '[obis.ou.edu] '
 ACCOUNT_SIGNUP_FORM_CLASS    = 'api.forms.SignupForm'
 URL_FRONT                    = 'http://obis.ou.edu/user-portal/registration/'
+
+REST_AUTH_REGISTER_SERIALIZERS = {
+    'REGISTER_SERIALIZER': 'api.serializer.RegisterSerializer'
+}
