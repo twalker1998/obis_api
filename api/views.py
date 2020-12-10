@@ -4,11 +4,9 @@ from hashlib import md5
 from allauth.account.adapter import get_adapter
 from allauth.account.views import ConfirmEmailView, app_settings
 from django.contrib import messages
-from django.contrib.auth import authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.shortcuts import redirect
-from rest_auth.registration.views import RegisterView
 from rest_framework import permissions
 from rest_framework.authtoken.models import Token
 from rest_framework.permissions import (IsAuthenticated,
