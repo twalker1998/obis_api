@@ -17,19 +17,18 @@ class ObisBlankableNumberField(serializers.IntegerField):
     We need to be able to receive an empty string ('') for a number field and in that case
     turn it into a None number.
     """
-
     def to_internal_value(self, data):
         if data == '':
             """
             If you return None you shall get a type error ```TypeError: '>' not supported between instances of 'NoneType' and 'int'```
             """
-            return 0
+            return None
         
         return super(ObisBlankableNumberField, self).to_internal_value(data)
 
 # ************ OBIS Serializers ************
 class AcctaxSerializer(serializers.HyperlinkedModelSerializer):
-    family = serializers.SlugRelatedField(slug_field='family', queryset=Acctax.objects.all())
+    family = serializers.SlugRelatedField(many=False, read_only=False, slug_field='family', queryset=Hightax.objects.all())
 
     class Meta:
         model  = Acctax
@@ -172,8 +171,6 @@ class NativityLookupSerializer(serializers.HyperlinkedModelSerializer):
         fields = ('n_id', 'nativity')
 
 class OccurenceSerializer(serializers.HyperlinkedModelSerializer):
-    decimallatitude  = ObisBlankableNumberField(allow_null=True)
-    decimallongitude = ObisBlankableNumberField(allow_null=True)
     township         = ObisBlankableNumberField(allow_null=True)
     range            = ObisBlankableNumberField(allow_null=True)
     section          = ObisBlankableNumberField(allow_null=True)
