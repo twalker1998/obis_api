@@ -22,7 +22,7 @@ class ObisBlankableNumberField(serializers.IntegerField):
             """
             If you return None you shall get a type error ```TypeError: '>' not supported between instances of 'NoneType' and 'int'```
             """
-            return 0
+            return None
         
         return super(ObisBlankableNumberField, self).to_internal_value(data)
 
@@ -171,8 +171,6 @@ class NativityLookupSerializer(serializers.HyperlinkedModelSerializer):
         fields = ('n_id', 'nativity')
 
 class OccurenceSerializer(serializers.HyperlinkedModelSerializer):
-    decimallatitude  = ObisBlankableNumberField(allow_null=True)
-    decimallongitude = ObisBlankableNumberField(allow_null=True)
     township         = ObisBlankableNumberField(allow_null=True)
     range            = ObisBlankableNumberField(allow_null=True)
     section          = ObisBlankableNumberField(allow_null=True)
