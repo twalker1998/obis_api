@@ -77,6 +77,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'django_filters',
     'obis',
+    'obis_registration',
     'rest_auth',
     'rest_auth.registration',
     'rest_framework',
@@ -182,7 +183,9 @@ EMAIL_USE_TLS       = config.EMAIL_USE_TLS
 
 # Registration/allauth settings
 ACCOUNT_ADAPTER              = 'api.adapter.CustomDefaultAccountAdapter'
+ACCOUNT_EMAIL_REQUIRED       = True
 ACCOUNT_EMAIL_SUBJECT_PREFIX = '[obis.ou.edu] '
+ACCOUNT_EMAIL_VERIFICATION   = 'mandatory'
 ACCOUNT_SIGNUP_FORM_CLASS    = 'api.forms.SignupForm'
 URL_FRONT                    = 'http://obis.ou.edu/user-portal/registration/'
 
