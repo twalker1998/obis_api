@@ -6,7 +6,7 @@ from rest_framework.urlpatterns import format_suffix_patterns
 from .views import CheckUUIDView
 
 router = routers.SimpleRouter()
-router.register('checkUuid', CheckUUIDView)
+router.register('checkUuid', CheckUUIDView, basename='checkUuid')
 
 urlpatterns = [
     url(r'^', include(router.urls))
