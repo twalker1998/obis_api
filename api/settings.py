@@ -77,6 +77,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'django_filters',
     'obis',
+    'obis_registration',
     'rest_auth',
     'rest_auth.registration',
     'rest_framework',
