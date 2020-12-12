@@ -48,5 +48,6 @@ urlpatterns = [
     url(r'^accounts/', include('allauth.urls')),
     url(r'^rest-auth/', include('rest_auth.urls')),
     url(r'^rest-auth/registration/account-confirm-email/(?P<key>.+)/$', views.CustomConfirmEmailView.as_view(), name='account_confirm_email'),
-    url(r'^rest-auth/registration/', include('rest_auth.registration.urls')),
+    url(r'^rest-auth/registration/register/', include('obis_registration.urls')),
+    url(r'^rest-auth/registration/', include('rest_auth.registration.urls'))
 ]
