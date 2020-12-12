@@ -24,29 +24,29 @@ class RegisterSerializer(serializers.Serializer):
     password1 = serializers.CharField(required=True)
     password2 = serializers.CharField(required=True)
 
-    # def username_exists(username, exclude_user=None):
-    #     from django.contrib.auth import get_user_model
-    #     from django.contrib.auth.models import User
+    def username_exists(username, exclude_user=None):
+        from django.contrib.auth import get_user_model
+        from django.contrib.auth.models import User
 
-    #     users = User.objects
-    #     if exclude_user:
-    #         users = users.exclude(user=exclude_user)
-    #     ret = users.filter(username__iexact=username).exists()
-    #     if not ret:
-    #         user_field = allauth_settings.USER_MODEL_USERNAME_FIELD
-    #         if user_field:
-    #             users = get_user_model().objects
-    #             if exclude_user:
-    #                 users = users.exclude(pk=exclude_user.pk)
-    #             ret = users.filter(**{user_field + "__iexact": username}).exists()
-    #     return ret
+        users = User.objects
+        if exclude_user:
+            users = users.exclude(user=exclude_user)
+        ret = users.filter(username__iexact=username).exists()
+        if not ret:
+            user_field = allauth_settings.USER_MODEL_USERNAME_FIELD
+            if user_field:
+                users = get_user_model().objects
+                if exclude_user:
+                    users = users.exclude(pk=exclude_user.pk)
+                ret = users.filter(**{user_field + "__iexact": username}).exists()
+        return ret
     
-    # def validate_username(self, username):
-    #     username = get_adapter().clean_username(username)
-    #     if username and self.username_exists(username):
-    #         raise serializers.ValidationError(
-    #             ("This username already exists."))
-    #     return username
+    def validate_username(self, username):
+        username = get_adapter().clean_username(username)
+        if username and self.username_exists(username):
+            raise serializers.ValidationError(
+                ("This username already exists."))
+        return username
 
     def validate_email(self, email):
         email = get_adapter().clean_email(email)
