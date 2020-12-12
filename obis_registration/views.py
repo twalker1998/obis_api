@@ -1,16 +1,19 @@
-from rest_framework import permissions, viewsets
-from rest_framework.renderers import BrowsableAPIRenderer, JSONRenderer
+from obis.views import obisTableViewSet
 
 from .models import InviteUser
 from .serializer import InviteUserSerializer
 
-class CheckUUIDView(viewsets.ModelViewSet):
-    model              = InviteUser
-    serializer_class   = InviteUserSerializer
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
-    renderer_classes   = (BrowsableAPIRenderer, JSONRenderer)
+class CheckUUIDView(obisTableViewSet):
+    model            = InviteUser
+    serializer_class = InviteUserSerializer
 
     def get_queryset(self):
+        queryset = InviteUser.objects.all()
+
         if self.request.method == 'GET':
             id = self.request.GET.get('id', '')
-            return InviteUser.objects.filter(id__exact=id)
+
+            if id:
+                queryset = queryset.filter(id__exact=id)
+
+        return queryset
