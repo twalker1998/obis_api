@@ -4,6 +4,8 @@ from allauth.account.adapter import get_adapter
 from allauth.account.utils import setup_user_email
 from rest_framework import serializers
 
+from obis_registration.models import InviteUser
+
 class UserSerializer(serializers.Serializer):
     username   = serializers.CharField(max_length=100)
     email      = serializers.EmailField()
@@ -79,4 +81,5 @@ class RegisterSerializer(serializers.Serializer):
         adapter.save_user(request, user, self)
         setup_user_email(request, user, [])
         user.save()
+        InviteUser.objects.filter(email__exact=user.email).delete()
         return user
