@@ -15,6 +15,6 @@ class InviteUser(models.Model):
         if self.id and self.email:
             if User.objects.filter(email__exact=self.email):
                 raise ValidationError({'email': ["This email has already been registered with OBIS.",]})
-            message = 'Click here to register for OBIS: ' + 'https://obis.ou.edu/user-portal/register/?id=' + str(self.id)
+            message = 'Click here to register for OBIS: ' + 'https://obis.ou.edu/user-portal/register/?id=' + str(self.id) + '&email=' + self.email
             send_mail('Register for OBIS', message, 'obis.noreply@gmail.com', [self.email])
         super(InviteUser, self).save()
