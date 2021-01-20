@@ -231,7 +231,7 @@ class OccurrenceSearchViewSet(obisTableViewSet):
             if sname:
                 queryset = queryset.filter(acode__sname__icontains=sname)
             if family:
-                queryset = queryset.filter(acode__family__family__icontains=family)
+                queryset = queryset.filter(acode__family__exact=family)
             if genus:
                 queryset = queryset.filter(acode__genus__icontains=genus)
             if species:
