@@ -9,7 +9,7 @@ applicationTitle = 'Oklahoma Biodiversity Information System'
 
 # &&&&&&&&&&&& Django Settings &&&&&&&&&&&&
 BASE_DIR          = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-ALLOWED_HOSTS     = ['obis.ou.edu', 'obis.twalk.tech', 'localhost']
+ALLOWED_HOSTS     = ['obis.ou.edu', 'obis.twalk.tech', 'twalk.fortiddns.com', 'localhost']
 SECRET_KEY        = '**secret-key**'
 FORCE_SCRIPT_NAME = '/api/'
 SITE_ID           = '**site-id-prod**'
