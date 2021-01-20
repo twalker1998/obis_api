@@ -12,7 +12,7 @@ BASE_DIR          = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ALLOWED_HOSTS     = ['obis.ou.edu', 'obis.twalk.tech', 'twalk.fortiddns.com', 'localhost']
 SECRET_KEY        = '**secret-key**'
 FORCE_SCRIPT_NAME = '/api/'
-SITE_ID           = '**site-id-prod**'
+SITE_ID           = '**site-id-test**'
 STATIC_ROOT       = '**static-root**'
 
 # Behind reverse proxy, set header to trust for https
@@ -51,7 +51,7 @@ DATABASES = {
     },
     'obis': {
         'ENGINE':   'django.db.backends.postgresql_psycopg2',
-        'HOST':     '**prod-db**',
+        'HOST':     '**test-db**',
         'NAME':     'obis',
         'USER':     '**obis-db-user**',
         'PASSWORD': '**obis-db-pass**'
