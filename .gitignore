@@ -3,7 +3,10 @@ data/
 config.sh
 *.swp
 *.pyc
-.vscode/settings.json
 obis_api/
 **/.DS_Store
 db.sqlite3
+__pycache__/
+.mypy_cache/
+.vscode/
+web_config/
