@@ -1,0 +1,32 @@
+name: $(major).$(minor).$(Rev:r)
+
+variables:
+- group: obis_api
+
+trigger:
+- main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- task: replacetokens@3
+  inputs:
+    rootDirectory: 'api'
+    targetFiles: 'config.py'
+    encoding: 'auto'
+    writeBOM: true
+    escapeType: 'none'
+    actionOnMissing: 'warn'
+    keepToken: 'false'
+    tokenPrefix: '**'
+    tokenSuffix: '**'
+    useLegacyPattern: false
+    enableTelemetry: true
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: './'
+    ArtifactName: 'obis_api'
+    publishLocation: 'Container'
+  displayName: 'Publish Artifacts'
