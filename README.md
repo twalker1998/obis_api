@@ -1,3 +1,5 @@
+[![Build Status](https://dev.azure.com/ONHI/OBIS/_apis/build/status/API-Prod?branchName=main)](https://dev.azure.com/ONHI/OBIS/_build/latest?definitionId=10&branchName=main)
+
 # Introduction 
 TODO: Give a short introduction of your project. Let this section explain the objectives or the motivation behind this project. 
 
