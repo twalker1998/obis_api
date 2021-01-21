@@ -12,7 +12,7 @@ BASE_DIR          = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ALLOWED_HOSTS     = ['obis.ou.edu', 'obis.twalk.tech', 'twalk.fortiddns.com', 'localhost']
 SECRET_KEY        = '**secret-key**'
 FORCE_SCRIPT_NAME = '/api/'
-SITE_ID           = '**site-id-prod**'
+SITE_ID           = '**site-id**'
 STATIC_ROOT       = '**static-root**'
 
 # Behind reverse proxy, set header to trust for https
@@ -51,10 +51,10 @@ DATABASES = {
     },
     'obis': {
         'ENGINE':   'django.db.backends.postgresql_psycopg2',
-        'HOST':     '**prod-db**',
+        'HOST':     '**db-address**',
         'NAME':     'obis',
-        'USER':     '**obis-db-user**',
-        'PASSWORD': '**obis-db-pass**'
+        'USER':     '**db-user**',
+        'PASSWORD': '**db-pass**'
     }
 }
 
@@ -67,6 +67,6 @@ DOCKER_HOST_DATA_DIRECTORY = "/opt/obis"
 EMAIL_BACKEND       = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST          = 'smtp.gmail.com'
 EMAIL_PORT          = 587
-EMAIL_HOST_USER     = '**noreply-email-user**'
-EMAIL_HOST_PASSWORD = '**noreply-email-pass**'
+EMAIL_HOST_USER     = '**noreply-user**'
+EMAIL_HOST_PASSWORD = '**noreply-pass**'
 EMAIL_USE_TLS       = True
